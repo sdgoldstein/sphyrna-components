@@ -1,0 +1,1 @@
+import{b as _,r,a as s,p as i,E as b}from"./operations-BG71wWEw.js";function E(c,u,o,a=null,t=!1){var n=c,e=null,f=null,l=null,v=t?b:0;_(()=>{l!==(l=!!u())&&(l?(e?r(e):e=s(()=>o(n)),f&&i(f,()=>{f=null})):(f?r(f):a&&(f=s(()=>a(n))),e&&i(e,()=>{e=null})))},v)}export{E as i};
