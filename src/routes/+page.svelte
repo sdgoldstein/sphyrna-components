@@ -1,6 +1,6 @@
 <script>
-    import { Button } from "../../build/dist/index.js";
     import "../app.css";
+    import { Button } from "../main/index";
 </script>
 
 <h1>Welcome to your library project</h1>

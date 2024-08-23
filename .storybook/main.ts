@@ -12,19 +12,6 @@ const config: StorybookConfig = {
   framework: {
     name: "@storybook/sveltekit",
     options: {},
-  },
-  async viteFinal(config, options) {
-        // Merge custom configuration into the default config
-        const { mergeConfig, searchForWorkspaceRoot } = await import('vite');
-
-        const workspaceRoot = searchForWorkspaceRoot(process.cwd());
-        return mergeConfig(config, {
-            server: {
-              fs: {
-                allow: [workspaceRoot, `{workspaceRoot}/build/dist/`]
-              }
-            }        
-        });
   }
 };
 export default config;
