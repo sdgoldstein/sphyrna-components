@@ -17,7 +17,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
     let { colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, classOverride="", children, ...restProps }: ButtonProps = $props();
 
-    const styleClass = themedTWMerge("m-2 rounded-lg py-2 px-4 transition-all active:scale-[95%]",
+    const styleClass = themedTWMerge("m-0 rounded-lg py-2 px-4 transition-all active:scale-[95%]",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
         classOverride
     );

@@ -1,6 +1,9 @@
 <svelte:options runes={true} />
 
-<!-- Overall form CSS inspired by https://www.creative-tim.com/twcomponents/component/simple-registersign-up-form-->
+<!-- Overall form CSS inspired by:
+  https://www.creative-tim.com/twcomponents/component/simple-registersign-up-form
+  https://medium.theoremone.co/button-ambiguity-alignment-order-a42736e25334
+   -->
 <script module lang="ts">
     import { DefaultZodFormValidator, FORM_VALIDATOR_CONTEXT_KEY } from "./form";
 

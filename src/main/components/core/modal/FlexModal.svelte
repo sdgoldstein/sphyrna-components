@@ -4,6 +4,7 @@
     import { Dialog as DialogPrimitive} from "bits-ui";
     import type {ParentComponentProps} from "../../component.js"
     import type { Snippet } from "svelte";
+    import {X} from 'lucide-svelte'
 
     interface FlexModalProps extends ParentComponentProps {
         open: boolean;
@@ -35,11 +36,6 @@
                         {@render footer?.()}
                     </div>
                 </div>
-            <DialogPrimitive.Close class="absolute right-1 top-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-98">
-              <div class="size-4 text-foreground">
-                X 
-              </div>
-            </DialogPrimitive.Close>
         </DialogPrimitive.Content>
     </DialogPrimitive.Portal>
 </DialogPrimitive.Root>

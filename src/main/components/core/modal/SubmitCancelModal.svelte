@@ -46,7 +46,9 @@
         {@render providedChildren()}
     </Form>
     {#snippet footer()}
-        <SubmitButton form="submit_cancel_form">{actionButtonText}</SubmitButton>
-        <CancelButton oncancel={close}/>
+        <div class="flex justify-end w-full py-2 gap-x-2">
+            <SubmitButton form="submit_cancel_form">{actionButtonText}</SubmitButton>
+            <CancelButton oncancel={close}/>
+        </div>
     {/snippet}  
 </Modal>
