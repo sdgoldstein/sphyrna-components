@@ -7,22 +7,24 @@ export default {
 safelist:
 [
   {
-    pattern: /bg.*/
+    pattern: /bg.*/,
+    variants: ['hover']
   },
   {
     pattern: /text.*/
   }
-
 ],
 theme: {
 fontFamily: {
   sans: ['var( --theme-font-family)'],
 },
 colors: {
+  black:'#000000',
   primary:
   {
     DEFAULT:'rgb(var(--color-primary) / <alpha-value>)',
-    text:'rgb(var(--color-primary-text) / <alpha-value>)'
+    text:'rgb(var(--color-primary-text) / <alpha-value>)',
+    dark:'rgb(var(--color-primary-dark) / <alpha-value>)'
 },
 secondary: 
 {
@@ -52,7 +54,9 @@ error:
 'surface':
 {
   DEFAULT:'rgb(var(--color-surface) / <alpha-value>)',
-  'text': 'rgb(var(--color-surface-text) / <alpha-value>)'
+  'text': 'rgb(var(--color-surface-text) / <alpha-value>)',
+  'dark':'rgb(var(--color-surface-dark) / <alpha-value>)',
+  'darkest':'rgb(var(--color-surface-darkest) / <alpha-value>)',
 }
 },
     extend: {},

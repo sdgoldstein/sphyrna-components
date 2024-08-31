@@ -2,32 +2,24 @@
 
 <!--
 Category -> NamedVariant -> Feature -> Element - -> State
-
-Background:
-
-
-Text:
-
-Border:
-
-Shape:
-
-bg-${colorVariant}-500 text-on${colorVariant}
 -->
+
 <script lang="ts">
  
- import { Button as ButtonPrimitive } from "bits-ui";
-    import type { Snippet } from "svelte";
-import type {ParentComponentProps} from "./component.js"
-import {DEFAULT_COLOR_CATEGORY_VARIANT, themedTWMerge, getBaseColorClassesForColorCategoryStyleVariant, getBaseColorStyleForDynamicColorTheme} from "../../theme/theme.js"
+    import { Button as ButtonPrimitive } from "bits-ui";
+    import type {ParentComponentProps} from "../component.js"
+    import {DEFAULT_COLOR_CATEGORY_VARIANT, themedTWMerge, getBaseColorClassesForColorCategoryStyleVariant, getBaseColorStyleForDynamicColorTheme} from "../../theme/theme.js"
 
     interface ButtonProps extends ParentComponentProps {
+        onclick?: (e: MouseEvent) => void;
+        classOverride?:string;
     }
 
-    let { colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, children, ...restProps }: ButtonProps = $props();
+    let { colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, classOverride="", children, ...restProps }: ButtonProps = $props();
 
-    const styleClass = themedTWMerge("m-2 rounded-lg",
-        getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
+    const styleClass = themedTWMerge("m-2 rounded-lg py-2 px-4 transition-all active:scale-[95%]",
+        getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
+        classOverride
     );
 </script>
 
@@ -35,7 +27,8 @@ import {DEFAULT_COLOR_CATEGORY_VARIANT, themedTWMerge, getBaseColorClassesForCol
 	type="button"
     class={styleClass}
     style={dynamicColorTheme ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : ""}
-	{...restProps}>
+	{...restProps}
+    on:click={onclick}>
     {@render children()}
 </ButtonPrimitive.Root>
 
