@@ -29,6 +29,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
     const styleClass = themedTWMerge(
         "flex justify-center items-center w-8 h-8 rounded-full mb-1 p-2 transition-all active:scale-[95%]",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
+        `hover:bg-${colorVariant}-dark`,
     );
 </script>
 

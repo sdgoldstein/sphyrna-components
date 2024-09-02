@@ -19,6 +19,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
     const styleClass = themedTWMerge("m-0 rounded-lg py-2 px-4 transition-all active:scale-[95%]",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
+        `hover:bg-${colorVariant}-dark`,
         classOverride
     );
 </script>

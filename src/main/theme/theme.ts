@@ -15,43 +15,48 @@
  * https://atlassian.design/tokens/design-tokens
  * https://m3.material.io/foundations/design-tokens
  */
-import {extendTailwindMerge} from 'tailwind-merge';
-import type {GuardedMap} from '@sphyrna/tscore'
+import {extendTailwindMerge} from "tailwind-merge";
+import {type GuardedMap} from "@sphyrna/tscore"
 
 type ColorHex = `#${string}`;
 
 enum DesignTokenColorCategoryStyleVariant {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  TERTIARY = 'tertiary',
-  WARNING = 'warning',
-  SUCCESS = 'success',
-  ERROR = 'error',
-  SURFACE = 'surface',
+    PRIMARY = "primary",
+    SECONDARY = "secondary",
+    TERTIARY = "tertiary",
+    WARNING = "warning",
+    SUCCESS = "success",
+    ERROR = "error",
+    SURFACE = "surface",
 }
 
-interface DynamicColorTheme {
-  bgColor: ColorHex;
-  textColor: ColorHex;
+interface DynamicColorTheme
+{
+    coreColor: ColorHex;
+    textColor: ColorHex;
 }
 
-interface DynamicTheme {
-  colorThemes: GuardedMap<string, DynamicColorTheme>;
+interface DynamicTheme
+{
+    colorThemes: GuardedMap<string, DynamicColorTheme>;
 }
 
-interface ThemeableComponentProps {
-  colorVariant?: string;
-  dynamicColorTheme?: DynamicTheme;
+interface ThemeableComponentProps
+{
+    colorVariant?: string;
+    dynamicColorTheme?: DynamicTheme;
 }
 
-enum DesignTokenCategory {
-  COLOR = 'color'
+enum DesignTokenCategory
+{
+    COLOR = "color"
 }
 
-const DEFAULT_COLOR_CATEGORY_VARIANT = 'primary';
+const DEFAULT_COLOR_CATEGORY_VARIANT = "primary";
 
-enum DesignTokenElementState {
-  DISABLED = 'disabled'
+enum DesignTokenElementState
+{
+    DISABLED = "disabled"
 }
 
 /**
@@ -62,35 +67,50 @@ enum DesignTokenElementState {
  *     one
  * @returns the base css classes for the provided style variant
  */
-function getBaseColorClassesForColorCategoryStyleVariant(styleVariant: string):
-    string {
-  return `bg-${styleVariant} hover:bg-${styleVariant}-dark text-${
-      styleVariant}-text`;
+function getBaseColorClassesForColorCategoryStyleVariant(styleVariant: string): string
+{
+    const styleVariantBase = styleVariant.split("-");
+    if (styleVariantBase.length <= 0)
+    {
+        throw new Error(`styleVariant specified is invalid: ${styleVariant}`)
+    }
+
+    return `bg-${styleVariant} text-${styleVariantBase[0]}-text`;
 }
 
-function getBaseColorStyleForDynamicColorTheme(
-    dynamicTheme: DynamicTheme, styleVariant: string): string {
-  const dynamicColorTheme: DynamicColorTheme =
-      dynamicTheme.colorThemes.get(styleVariant);
-  return `background-color:${dynamicColorTheme.bgColor} !important; color:${
-      dynamicColorTheme.textColor} !important;`;
+function getDynamicColorTheme(dynamicTheme: DynamicTheme, styleVariant: string): DynamicColorTheme
+{
+    if (!dynamicTheme.colorThemes.has(styleVariant))
+    {
+        throw new Error("Dynamic Color Theme does not contain provided color variant");
+    }
+
+    return dynamicTheme.colorThemes.get(styleVariant);
+}
+
+function getBaseColorStyleForDynamicColorTheme(dynamicTheme: DynamicTheme, styleVariant: string): string
+{
+    const dynamicColorTheme: DynamicColorTheme = getDynamicColorTheme(dynamicTheme, styleVariant);
+    return `background-color:${dynamicColorTheme.coreColor} !important; color:${
+        dynamicColorTheme.textColor} !important;`;
 }
 
 const themedTWMerge = extendTailwindMerge({
-  extend: {
-    classGroups: {
-      rounded: [{rounded: ['component', 'container']}],
+    extend : {
+        classGroups : {
+            rounded : [ {rounded : [ "component", "container" ]} ],
+        },
     },
-  },
 })
 
 export type{ThemeableComponentProps, DynamicColorTheme, ColorHex, DynamicTheme};
 export {
-  DesignTokenCategory,
-  DesignTokenColorCategoryStyleVariant,
-  DesignTokenElementState,
-  themedTWMerge,
-  DEFAULT_COLOR_CATEGORY_VARIANT,
-  getBaseColorClassesForColorCategoryStyleVariant,
-  getBaseColorStyleForDynamicColorTheme
+    DesignTokenCategory,
+    DesignTokenColorCategoryStyleVariant,
+    DesignTokenElementState,
+    themedTWMerge,
+    DEFAULT_COLOR_CATEGORY_VARIANT,
+    getBaseColorClassesForColorCategoryStyleVariant,
+    getBaseColorStyleForDynamicColorTheme,
+    getDynamicColorTheme
 }

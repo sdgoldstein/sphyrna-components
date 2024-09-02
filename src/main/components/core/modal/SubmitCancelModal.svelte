@@ -3,9 +3,7 @@
 <script module lang="ts">
     import type { ParentComponentProps } from "../../component.js";
 
-    import SubmitButton from "../forms/SubmitButton.svelte";
-
-    import type { Snippet } from "svelte";
+    import SubmitButton from "../form/SubmitButton.svelte";
 
     export type FormSubmitEvent = SubmitEvent & {
         currentTarget: EventTarget & HTMLFormElement;
@@ -14,7 +12,8 @@
     export interface SubmitCancelModalProps
         extends ParentComponentProps {
         open: boolean;
-        title: Snippet;
+        title: string;
+        description:string;
         actionButtonText:string;
         onsubmit:FormSubmissionHandler;
     }
@@ -23,7 +22,7 @@
 <script lang="ts">
     import Modal from "./Modal.svelte";
     import CancelButton from "./CancelButton.svelte";    
-    import Form, { type FormSubmissionHandler } from "../forms/Form.svelte";
+    import Form, { type FormSubmissionHandler } from "../form/Form.svelte";
 
     function close()
     {
@@ -32,23 +31,30 @@
 
     let {
         open = $bindable(),
-        title,
+        title:titleStringOnly,
+        description:descriptionStringOnly,
         actionButtonText,
+        colorVariant, 
+        dynamicColorTheme,
         children:providedChildren,
         onsubmit:providedSubmitHandler,
     }: SubmitCancelModalProps = $props();
 </script>
 
-<Modal
-    {title}
-    bind:open>
-    <Form id="submit_cancel_form" onsubmit={providedSubmitHandler}>
+<Modal bind:open>
+    {#snippet title()}
+        {titleStringOnly}
+    {/snippet}
+    {#snippet description()}
+        {descriptionStringOnly}
+    {/snippet}
+    <Form id="submit_cancel_form" class="w-full" onsubmit={providedSubmitHandler}>
         {@render providedChildren()}
     </Form>
     {#snippet footer()}
         <div class="flex justify-end w-full py-2 gap-x-2">
-            <SubmitButton form="submit_cancel_form">{actionButtonText}</SubmitButton>
-            <CancelButton oncancel={close}/>
+            <SubmitButton form="submit_cancel_form" {colorVariant} {dynamicColorTheme}>{actionButtonText}</SubmitButton>
+            <CancelButton oncancel={close} />
         </div>
     {/snippet}  
 </Modal>

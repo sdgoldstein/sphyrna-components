@@ -1,29 +1,37 @@
 <script module>
   import { fn } from "@storybook/test";
   import Button from "./../../main/components/core/Button.svelte";
-  import { defineMeta } from "@storybook/addon-svelte-csf";
+  import {
+    defineMeta,
+    setTemplate,
+    type Args,
+    type StoryContext,
+  } from "@storybook/addon-svelte-csf";
 
-  const { Story } = defineMeta({});
+  const { Story } = defineMeta({
+    component: Button,
+    args: {
+      children: "Button Text",
+    },
+  });
 
   const dynamicColorTheme = {
     colorThemes: new Map([
-      ["foo", { bgColor: "#900000", textColor: "#000020" }],
+      ["foo", { coreColor: "#900000", textColor: "#000020" }],
     ]),
   };
 </script>
 
-<Story name="Default">
-  <Button onclick={() => fn()}>Button Text</Button>
-</Story>
+<script lang="ts">
+  setTemplate(template);
+</script>
 
-<Story name="Primary Color Variant">
-  <Button colorVariant="primary">Button Text</Button>
-</Story>
+{#snippet template({ children, ...args }: Args<typeof Story>, context: StoryContext<typeof Story>)}
+  <Button {...args}>{children}</Button>
+{/snippet}
 
-<Story name="Secondary Color Variant">
-  <Button colorVariant="secondary">Button Text</Button>
-</Story>
+<Story name="Default" />
+<Story name="Primary Color Variant" args={{ colorVariant: "primary" }} />
+<Story name="Secondary Color Variant" args={{ colorVariant: "secondary" }} />
+<Story name="Dynamic Color Theme" args={{ colorVariant: "foo", dynamicColorTheme:dynamicColorTheme  }} />
 
-<Story name="Dynamic Color Theme">
-  <Button colorVariant="foo" {dynamicColorTheme}>Button Text</Button>
-</Story>

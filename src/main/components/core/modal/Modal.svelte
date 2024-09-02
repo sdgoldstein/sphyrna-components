@@ -4,30 +4,36 @@
     import type {ParentComponentProps} from "../../component.js"
     import type { Snippet } from "svelte";
     import FlexModal from "./FlexModal.svelte";
-    import { Separator } from "bits-ui";
 
     interface ModalProps extends ParentComponentProps {
         open: boolean;
         title:Snippet;
+        description:Snippet;
         footer?:Snippet;
     }
 
     let {
         open = $bindable(),
         title,
+        description,
         children:providedChildren,
         footer:providedFooter,
     }: ModalProps = $props();
 </script>
 
-<FlexModal bind:open={open}>
+<FlexModal bind:open>
     {#snippet header()}
-        <div class="flex w-full items-center justify-center text-lg font-bold">
+        <div class="flex w-full py-2 items-center justify-start text-lg font-bold">
             {@render title()}
         </div>
     {/snippet} 
-    <div class="flex w-full">
-        {@render providedChildren()}
+    <div class="flex flex-col justify-start w-full">
+        <div class="flex py-2 w-full">
+            {@render description()}
+        </div>
+        <div class="flex py-2 w-full">
+            {@render providedChildren()}
+        </div>
     </div>
     {#snippet footer()}
         <div class="flex w-full">

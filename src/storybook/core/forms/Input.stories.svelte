@@ -1,25 +1,37 @@
 <script module>
-    import { defineMeta } from "@storybook/addon-svelte-csf";
-    import { zExtended } from "../../../main/components/core/forms/form";
-    import Input from "../../../main/components/core/forms/Input.svelte";
-    import Form from "../../../main/components/core/forms/Form.svelte";
-
-    const { Story } = defineMeta({});
+    import { defineMeta, setTemplate, type Args, type StoryContext  } from "@storybook/addon-svelte-csf";
+    import Input from "../../../main/components/core/form/Input.svelte";
+    import Form from "../../../main/components/core/form/Form.svelte";
+    import { zExtended } from "../../../main/components/core/form/form";
+    
+    const { Story } = defineMeta({
+        component: Input,
+        args: {
+            placeholder: "John Smith",
+            id: "name_input_id",
+            name: "name_input_name",
+            schema: zExtended.requiredString("Name")
+        },
+    });
 
     const dynamicColorTheme = {
         colorThemes: new Map([
-            ["foo", { bgColor: "#900000", textColor: "#000020" }],
+            ["foo", { coreColor: "#900000", textColor: "#000020" }],
         ]),
     };
 </script>
 
-<Story name="Default">
-    <Form>
-        <Input
-            id="name_input_id"
-            name="name_input_name"
-            placeholder="John Stevens"
-            schema={zExtended.requiredString("Name")}
-        />
+<script lang="ts">
+    setTemplate(template);
+  </script>
+
+{#snippet template({ ...args }: Args<typeof Story>, context: StoryContext<typeof Story>)}
+    <Form onsubmit={()=>{}}>
+        <Input {...args}/>
     </Form>
-</Story>
+{/snippet}
+
+<Story name="Default" />
+<Story name="Primary Color Variant" args={{ colorVariant: "primary" }} />
+<Story name="Secondary Color Variant" args={{ colorVariant: "secondary" }} />
+<Story name="Dynamic Color Theme" args={{ colorVariant: "foo", dynamicColorTheme:dynamicColorTheme  }} />

@@ -8,7 +8,7 @@
 
   const dynamicColorTheme = {
     colorThemes: new Map([
-      ["foo", { bgColor: "#900000", textColor: "#000020" }],
+      ["foo", { coreColor: "#900000", textColor: "#000020" }],
     ]),
   };
 

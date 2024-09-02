@@ -15,4 +15,4 @@
     let { colorVariant="surface-dark", dynamicColorTheme, oncancel }: CancelButtonProps = $props();
 </script>
 
-<Button {colorVariant} {dynamicColorTheme} classOverride="border-surface-darkest border" {oncancel}>Cancel</Button>
+<Button {colorVariant} {dynamicColorTheme} classOverride="hover:bg-surface-darkest bg-surface-dark border-surface-darkest border" {oncancel}>Cancel</Button>

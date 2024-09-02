@@ -1,15 +1,16 @@
 <script module>
-    import Label from "./../../../main/components/core/forms/Label.svelte";
+    import Label from "../../../main/components/core/form/Label.svelte";
     import { defineMeta } from "@storybook/addon-svelte-csf";
-    import { zExtended } from "../../../main/components/core/forms/form";
-    import Input from "../../../main/components/core/forms/Input.svelte";
-    import Form from "../../../main/components/core/forms/Form.svelte";
+
+    import Input from "../../../main/components/core/form/Input.svelte";
+    import Form from "../../../main/components/core/form/Form.svelte";
+    import { zExtended } from "../../../main/components/core/form/form";
 
     const { Story } = defineMeta({});
 
     const dynamicColorTheme = {
         colorThemes: new Map([
-            ["foo", { bgColor: "#900000", textColor: "#000020" }],
+            ["foo", { coreColor: "#900000", textColor: "#000020" }],
         ]),
     };
 </script>

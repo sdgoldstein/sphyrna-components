@@ -1,7 +1,7 @@
 <svelte:options runes={true} />
 
 <script module lang="ts">
-    import { themedTWMerge } from "../../../theme/theme.js";
+    import { DEFAULT_COLOR_CATEGORY_VARIANT, getBaseColorClassesForColorCategoryStyleVariant, getDynamicColorTheme, themedTWMerge } from "../../../theme/theme.js";
 
     import { FORM_VALIDATOR_CONTEXT_KEY, type ZodFormValidator, type FormError } from "./form.js";
 
@@ -26,6 +26,8 @@
         name,
         placeholder,
         schema,
+        colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT,
+        dynamicColorTheme,
         error,
         ...restProps
     }: InputProps = $props();
@@ -38,9 +40,13 @@
     }
     let errors: FormError[] = $derived($formValidator.getErrors(name));
 
-    let styleClass = $derived(themedTWMerge("rounded-md w-full p-2 border-2 border-surface-dark outline-none focus:border-primary",
+    let styleClass = $derived(themedTWMerge("rounded-md w-full p-2 border-2 border-surface-dark outline-none",
+        getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
+        `focus:border-${colorVariant}`,
         errors.length > 0 && "bg-error border-error text-error-text"
     ));
+
+    let style:string=$state.raw("");
 </script>
 
 <input
@@ -48,6 +54,9 @@
     name={name}
     placeholder={placeholder}
     class={styleClass}
+    style={style}
+    onfocus={() => { if (dynamicColorTheme) { style=`border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`}}}
+    onblur={() => { if (dynamicColorTheme) { style=""}}}
     {...restProps}
     onchange={() => {
         $formValidator.clearErrors(name);
