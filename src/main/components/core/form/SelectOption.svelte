@@ -14,12 +14,12 @@
     let { value, children, ...restProps }: SelectOptionProps = $props();
 </script>
 
-<SelectPrimitive.Item {value}>
+<SelectPrimitive.Item class="flex w-full select-none rounded-sm px-2 py-1 items-center justify-between"
+{value} 
+{...restProps}>
     {@render children()}
     <SelectPrimitive.ItemIndicator>
-        <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-            <Check class="h-4 w-4" />
-        </span>
+        <Check class="h-4 w-4" />
     </SelectPrimitive.ItemIndicator>
 </SelectPrimitive.Item>
 

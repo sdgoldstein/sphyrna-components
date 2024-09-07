@@ -6,6 +6,11 @@
     import SubmitCancelModal from "../../../main/components/core/modal/SubmitCancelModal.svelte";
     import Button from "../../../main/components/core/Button.svelte";
     import { zExtended } from "../../../main/components/core/form/form.js";
+    import Select from "../../../main/components/core/form/Select.svelte";
+    import SelectOption from "../../../main/components/core/form/SelectOption.svelte";
+
+    import RadioGroupOption from "../../../main/components/core/form/RadioGroupOption.svelte";
+    import RadioGroup from "../../../main/components/core/form/RadioGroup.svelte";
 
     const { Story } = defineMeta({});
 
@@ -40,5 +45,25 @@
             placeholder="John Stevens"
             schema={zExtended.requiredString("Name")}
         />
+
+        <Label for="name_select_id">Item</Label>
+        <Select
+            id="name_select_id"
+            name="name_select_name"
+            placeholder="Select an Item"
+        >
+            <SelectOption value="one">One</SelectOption>
+            <SelectOption value="two">Two</SelectOption>
+            <SelectOption value="three">Three</SelectOption>
+            <SelectOption value="four">Fourth Option</SelectOption>
+        </Select>
+
+        <Label for="name_radio_id">Select a Radio</Label>
+        <RadioGroup id="name_radio_id" name="name_radio_name">
+            <RadioGroupOption value="one">One</RadioGroupOption>
+            <RadioGroupOption value="two">Two</RadioGroupOption>
+            <RadioGroupOption value="three">Three</RadioGroupOption>
+            <RadioGroupOption value="four">Fourth Option</RadioGroupOption>
+        </RadioGroup>
     </SubmitCancelModal>
 </Story>

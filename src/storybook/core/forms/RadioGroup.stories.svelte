@@ -1,16 +1,12 @@
 <script module lang="ts">
     import { defineMeta, setTemplate, type Args, type StoryContext  } from "@storybook/addon-svelte-csf";
-    import Input from "../../../main/components/core/form/Input.svelte";
+    import RadioGroup from "../../../main/components/core/form/RadioGroup.svelte";
     import Form from "../../../main/components/core/form/Form.svelte";
-    import { zExtended } from "../../../main/components/core/form/form";
     
     const { Story } = defineMeta({
-        component: Input,
+        component: RadioGroup,
         args: {
-            placeholder: "John Smith",
-            id: "name_input_id",
-            name: "name_input_name",
-            schema: zExtended.requiredString("Name")
+            name: "radio_name"
         },
     });
 
@@ -19,15 +15,23 @@
             ["foo", { coreColor: "#900000", textColor: "#000020" }],
         ]),
     };
+
+    let value="three"
 </script>
 
 <script lang="ts">
+    import RadioGroupOption from "../../../main/components/core/form/RadioGroupOption.svelte";
+
     setTemplate(template);
   </script>
 
 {#snippet template({ ...args }: Args<typeof Story>, context: StoryContext<typeof Story>)}
     <Form onsubmit={()=>{}}>
-        <Input {...args}/>
+        <RadioGroup {...args}>
+            <RadioGroupOption value="one">One</RadioGroupOption>
+            <RadioGroupOption value="two">Two</RadioGroupOption>
+            <RadioGroupOption value="three">Three</RadioGroupOption>
+        </RadioGroup>
     </Form>
 {/snippet}
 
@@ -35,5 +39,4 @@
 <Story name="Primary Color Variant" args={{ colorVariant: "primary" }} />
 <Story name="Secondary Color Variant" args={{ colorVariant: "secondary" }} />
 <Story name="Dynamic Color Theme" args={{ colorVariant: "foo", dynamicColorTheme:dynamicColorTheme  }} />
-
-<!-- FIXME - Cannot test error messages.  See Form.stories.svelte-->
+<Story name="Selected Value" args={{value:value}}/>

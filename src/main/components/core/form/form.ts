@@ -1,5 +1,5 @@
 import type {GuardedMap} from "@kameleon/tscore/jscore";
-import {z, ZodError} from 'zod';
+import {z, ZodError} from "zod";
 
 const FORM_VALIDATOR_CONTEXT_KEY: string = "FORM_VALIDATOR_CONTEXT_KEY";
 
@@ -85,4 +85,4 @@ class DefaultZodFormError implements FormError
 }
 
 export {zExtended, FORM_VALIDATOR_CONTEXT_KEY, DefaultZodFormValidator};
-export type {FormValidator, ZodFormValidator, FormError};
+export type{FormValidator, ZodFormValidator, FormError};

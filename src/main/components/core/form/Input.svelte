@@ -40,7 +40,7 @@
     }
     let errors: FormError[] = $derived($formValidator.getErrors(name));
 
-    let styleClass = $derived(themedTWMerge("rounded-md w-full p-2 border-2 border-surface-dark outline-none",
+    let styleClass = $derived(themedTWMerge("rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
         getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
         `focus:border-${colorVariant}`,
         errors.length > 0 && "bg-error border-error text-error-text"
