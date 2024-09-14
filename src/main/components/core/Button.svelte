@@ -4,16 +4,19 @@
 Category -> NamedVariant -> Feature -> Element - -> State
 -->
 
+<script module lang="ts">
+    interface ButtonProps extends ParentComponentProps {
+        onclick?: (e: MouseEvent) => void;
+        classOverride?:string;
+    }
+
+    export type {ButtonProps};
+</script>
 <script lang="ts">
  
     import { Button as ButtonPrimitive } from "bits-ui";
     import type {ParentComponentProps} from "../component.js"
     import {DEFAULT_COLOR_CATEGORY_VARIANT, themedTWMerge, getBaseColorClassesForColorCategoryStyleVariant, getBaseColorStyleForDynamicColorTheme} from "../../theme/theme.js"
-
-    interface ButtonProps extends ParentComponentProps {
-        onclick?: (e: MouseEvent) => void;
-        classOverride?:string;
-    }
 
     let { colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, classOverride="", children, ...restProps }: ButtonProps = $props();
 

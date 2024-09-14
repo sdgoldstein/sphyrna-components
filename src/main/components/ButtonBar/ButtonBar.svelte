@@ -3,13 +3,14 @@
 <!--
 Category -> NamedVariant -> Feature -> Element - -> State
 -->
+<script module lang="ts">
+    export interface ButtonBarProps extends ParentComponentProps {
+    }
+</script>
 <script lang="ts">
     import { Toolbar as ToolbarPrimitive } from "bits-ui";
     import type {ParentComponentProps} from "../component.js"
     import {DEFAULT_COLOR_CATEGORY_VARIANT, themedTWMerge, getBaseColorClassesForColorCategoryStyleVariant, getBaseColorStyleForDynamicColorTheme} from "../../theme/theme.js"
-
-    interface ButtonBarProps extends ParentComponentProps {
-    }
 
     let { colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, children, ...restProps }: ButtonBarProps = $props();
 

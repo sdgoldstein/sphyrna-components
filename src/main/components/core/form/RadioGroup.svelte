@@ -48,6 +48,11 @@
     let style:string=$state.raw("");
 </script>
 
+{#if errors.length > 0}
+    <div class="text-xs font-medium px-1 text-error">
+        {errors[0].getMessage()}
+    </div>
+{/if}
 <RadioGroupPrimitive.Root 
     bind:value
     {...restProps}

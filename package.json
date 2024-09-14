@@ -2,6 +2,20 @@
   "name": "@sphyrna/uicomponents",
   "version": "0.0.9",
   "description": "Sphyrna Svelte Component Library",
+  "type": "module",
+  "svelte": "./build/dist/index.js",
+  "types": "./build/dist/index.d.ts",
+  "files": [
+    "build/dist",
+    "!build/dist/**/*.test.*",
+    "!build/dist/**/*.spec.*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./build/dist/index.d.ts",
+      "svelte": "./build/dist/index.js"
+    }
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run package",
@@ -17,17 +31,6 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "exports": {
-    ".": {
-      "types": "./build/dist/index.d.ts",
-      "svelte": "./build/dist/index.js"
-    }
-  },
-  "files": [
-    "build/dist",
-    "!build/dist/**/*.test.*",
-    "!build/dist/**/*.spec.*"
-  ],
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
     "@playwright/test": "^1.28.1",
@@ -54,7 +57,7 @@
     "postcss": "^8.4.41",
     "publint": "^0.1.9",
     "storybook": "^8.2.9",
-    "svelte": "5.0.0-next.233",
+    "svelte": "5.0.0-next.244",
     "svelte-check": "^3.6.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss": "^3.4.10",
@@ -67,9 +70,6 @@
   "dependencies": {
     "bits-ui": "^0.21.13"
   },
-  "svelte": "./build/dist/index.js",
-  "types": "./build/dist/index.d.ts",
-  "type": "module",
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended",
