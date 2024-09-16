@@ -40,3 +40,4 @@
 <Story name="Secondary Color Variant" args={{ colorVariant: "secondary" }} />
 <Story name="Dynamic Color Theme" args={{ colorVariant: "foo", dynamicColorTheme:dynamicColorTheme  }} />
 <Story name="Selected Value" args={{value:value}}/>
+<Story name="With Error" args={{ error:"You messed up!"  }} />

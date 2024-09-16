@@ -12,11 +12,13 @@
         FORM_VALIDATOR_CONTEXT_KEY,
         type ZodFormValidator,
         type FormError,
+        SimpleFormError,
     } from "./form.js";
 
     import { getContext } from "svelte";
     import type { Writable } from "svelte/store";
     import type { InputProps } from "./input.js";
+    import FormElementErrorMessage from "./FormElementErrorMessage.svelte";
 
     let {
         id,
@@ -25,35 +27,46 @@
         schema,
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
-        error,
+        error: errorProp,
         ...restProps
     }: InputProps = $props();
 
+    /**************/
+    /*
+        The code between the star comments is repeated for all form elements
+        I tried to put out into a FormElementValidationHelper.svelte
+        But, I need to make "errors" bindable so that the Input or other form element component can read it for sytling, etc.
+        It's not possible to have both a property that is bindale and have its value be derived
+        "state_invalid_placement" - $derived can only be used to initialize a variable 
+    */
+    /**************/
     const formValidator: Writable<ZodFormValidator> = getContext(
         FORM_VALIDATOR_CONTEXT_KEY,
     );
     if (schema) {
         $formValidator.register(name, schema);
     }
-    let errors: FormError[] = $derived($formValidator.getErrors(name));
+    let errors: FormError[] = $derived(
+        errorProp
+            ? [new SimpleFormError(errorProp)]
+            : $formValidator.getErrors(name),
+    );
+    /**************/
 
     let styleClass = $derived(
         themedTWMerge(
             "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
             getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
             `focus:border-${colorVariant}`,
-            errors.length > 0 && "bg-error border-error text-error-text",
+            errors.length > 0 &&
+                "bg-error-lightest border-error text-error-text",
         ),
     );
 
     let style: string = $state.raw("");
 </script>
 
-{#if errors.length > 0}
-    <div class="text-xs font-medium px-1 text-error">
-        {errors[0].getMessage()}
-    </div>
-{/if}
+<FormElementErrorMessage {errors} />
 <input
     {id}
     {name}
@@ -71,8 +84,9 @@
         }
     }}
     {...restProps}
-    onchange={() => {
+    oninput={() => {
         $formValidator.clearErrors(name);
+        errorProp = undefined;
 
         // FIXME - force update
         $formValidator = $formValidator;

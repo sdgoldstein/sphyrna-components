@@ -28,4 +28,16 @@
 {/snippet}
 
 <Story name="Default" />
+<Story name="With Error">
+    <Form onsubmit={()=>{}}>
+        <Label for="name_input_id">Name</Label>
+        <Input
+            id="name_input_id"
+            name="name_input_name"
+            placeholder="John Stevens"
+            schema={zExtended.requiredString("Name")}
+            error="Name is required"
+        />
+    </Form>
+</Story>
 

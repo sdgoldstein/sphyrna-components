@@ -14,7 +14,7 @@ const zExtended = Object.assign(zExtensionInstance, z);
 
 interface FormError
 {
-    getMessage(): string;
+    readonly message: string;
 }
 
 interface FormValidator
@@ -74,15 +74,20 @@ class DefaultZodFormValidator implements ZodFormValidator
     }
 }
 
+class SimpleFormError implements FormError
+{
+    constructor(public readonly message: string) {}
+}
+
 class DefaultZodFormError implements FormError
 {
-    constructor(private _zodIssue: z.ZodIssue) {}
+    readonly message: string;
 
-    getMessage(): string
+    constructor(zodIssue: z.ZodIssue)
     {
-        return this._zodIssue.message;
+        this.message = zodIssue.message;
     }
 }
 
-export {zExtended, FORM_VALIDATOR_CONTEXT_KEY, DefaultZodFormValidator};
+export {zExtended, FORM_VALIDATOR_CONTEXT_KEY, SimpleFormError, DefaultZodFormValidator};
 export type{FormValidator, ZodFormValidator, FormError};
