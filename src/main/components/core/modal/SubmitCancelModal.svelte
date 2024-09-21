@@ -1,7 +1,7 @@
 <svelte:options runes={true} />
 
 <script module lang="ts">
-    import type { ParentComponentProps } from "../../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
 
     import SubmitButton from "../form/SubmitButton.svelte";
 
@@ -30,6 +30,8 @@
     }
 
     let {
+        id,
+        testid:testidProp, 
         open = $bindable(),
         title:titleStringOnly,
         description:descriptionStringOnly,
@@ -39,22 +41,24 @@
         children:providedChildren,
         onsubmit:providedSubmitHandler,
     }: SubmitCancelModalProps = $props();
+
+    let testId:string|undefined=$derived(buildTestId(id, testidProp));
 </script>
 
-<Modal bind:open>
+<Modal bind:open {id} testid={testId}>
     {#snippet title()}
         {titleStringOnly}
     {/snippet}
     {#snippet description()}
         {descriptionStringOnly}
     {/snippet}
-    <Form id="submit_cancel_form" class="w-full" onsubmit={providedSubmitHandler}>
-        {@render providedChildren()}
+    <Form id={`${id}_form`} class="w-full" onsubmit={providedSubmitHandler}>
+        {@render providedChildren(id, testId)}
     </Form>
-    {#snippet footer()}
+    {#snippet footer(id, testId)}
         <div class="flex justify-end w-full py-2 gap-x-2">
-            <SubmitButton form="submit_cancel_form" {colorVariant} {dynamicColorTheme}>{actionButtonText}</SubmitButton>
-            <CancelButton oncancel={close} />
+            <SubmitButton id={id ? `${id}_submit_button_el_id` : undefined} form={`${id}_form`} {colorVariant} {dynamicColorTheme}>{actionButtonText}</SubmitButton>
+            <CancelButton id={id ? `${id}_cancel_button_el_id`: undefined} oncancel={close} />
         </div>
     {/snippet}  
 </Modal>

@@ -19,9 +19,11 @@
     import type { Writable } from "svelte/store";
     import type { InputProps } from "./input.js";
     import FormElementErrorMessage from "./FormElementErrorMessage.svelte";
+    import { buildTestId } from "../../component.js";
 
     let {
         id,
+        testid: testidProp,
         name,
         placeholder,
         schema,
@@ -53,6 +55,8 @@
     );
     /**************/
 
+    let testId = $derived(buildTestId(id, testidProp));
+
     let styleClass = $derived(
         themedTWMerge(
             "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
@@ -69,6 +73,7 @@
 <FormElementErrorMessage {errors} />
 <input
     {id}
+    data-testid={testId}
     {name}
     {placeholder}
     class={styleClass}

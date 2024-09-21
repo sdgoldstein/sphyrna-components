@@ -3,7 +3,7 @@
 <script module lang="ts">
     import { Select as SelectPrimitive } from "bits-ui";
     import ChevronDown from "lucide-svelte/icons/chevron-down";
-    import type { ParentComponentProps } from "../../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
     import { DEFAULT_COLOR_CATEGORY_VARIANT, getBaseColorClassesForColorCategoryStyleVariant, getDynamicColorTheme, themedTWMerge } from "../../../theme/theme.js";
     import { getContext } from "svelte";
     import type { Writable } from "svelte/store";
@@ -25,6 +25,7 @@
 
     let {
         id,
+        testid:testidProp,
         selected = $bindable(),
         name,
         placeholder,
@@ -33,7 +34,7 @@
         dynamicColorTheme,
         error:errorProp,
         onchange=()=>{},
-        children,
+        children:providedChildren,
         ...restProps
     }: SelectProps = $props();
 
@@ -65,11 +66,15 @@
            errors.length > 0 && "bg-error-lightest border-error text-error-text"
     ));
 
+    let testId=$derived(buildTestId(id, testidProp));
+    
     let style:string=$state.raw("");
 </script>
 
 <FormElementErrorMessage {errors} />
 <SelectPrimitive.Root 
+    {id}
+    data-testid={testId}
     bind:selected={selected}
     {...restProps}
     onSelectedChange={(event)=>{
@@ -89,7 +94,7 @@
     </SelectPrimitive.Trigger>
     <SelectPrimitive.Content class={themedTWMerge(styleClass, "relative z-50 overflow-hidden shadow-md")}>
         <div class="w-full p-1">
-            {@render children()}
+            {@render providedChildren(id, testId)}
         </div>
     </SelectPrimitive.Content>
     <SelectPrimitive.Input {name}/>

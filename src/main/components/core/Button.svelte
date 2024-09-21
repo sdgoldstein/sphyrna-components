@@ -15,10 +15,12 @@ Category -> NamedVariant -> Feature -> Element - -> State
 <script lang="ts">
  
     import { Button as ButtonPrimitive } from "bits-ui";
-    import type {ParentComponentProps} from "../component.js"
+    import {buildTestId, type ParentComponentProps} from "../component.js"
     import {DEFAULT_COLOR_CATEGORY_VARIANT, themedTWMerge, getBaseColorClassesForColorCategoryStyleVariant, getBaseColorStyleForDynamicColorTheme} from "../../theme/theme.js"
 
-    let { colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, classOverride="", children, ...restProps }: ButtonProps = $props();
+    let { id, testid:testidProp, colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, classOverride="", children:providedChildren, ...restProps }: ButtonProps = $props();
+
+    let testId=$derived(buildTestId(id, testidProp));
 
     const styleClass = themedTWMerge("m-0 rounded-lg py-2 px-4 transition-all active:scale-[95%]",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
@@ -28,11 +30,13 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 
 <ButtonPrimitive.Root
+    id={id}
+    data-testid={testId}
 	type="button"
     class={styleClass}
     style={dynamicColorTheme ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : ""}
 	{...restProps}
     on:click={onclick}>
-    {@render children()}
+    {@render providedChildren(id, testId)}
 </ButtonPrimitive.Root>
 

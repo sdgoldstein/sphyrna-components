@@ -12,7 +12,9 @@
     import RadioGroupOption from "../../../main/components/core/form/RadioGroupOption.svelte";
     import RadioGroup from "../../../main/components/core/form/RadioGroup.svelte";
 
-    const { Story } = defineMeta({});
+    const { Story } = defineMeta({
+        component: SubmitCancelModal,
+    });
 
     const dynamicColorTheme = {
         colorThemes: new Map([

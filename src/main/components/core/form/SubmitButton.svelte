@@ -1,7 +1,7 @@
 <svelte:options runes={true} />
 
 <script module lang="ts">
-    import type { ParentComponentProps } from "../../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
 
     export interface SubmitButtonProps extends ParentComponentProps {
     }
@@ -10,7 +10,9 @@
 <script lang="ts">
     import Button from "../Button.svelte";
 
-    let { colorVariant, dynamicColorTheme, children, ...restProps }: SubmitButtonProps = $props();
+    let { id, testid:testidProp, colorVariant, dynamicColorTheme, children:providedChildren, ...restProps }: SubmitButtonProps = $props();
+
+    let testId:string|undefined=$derived(buildTestId(id, testidProp));
 </script>
 
-<Button type="submit" {colorVariant} {dynamicColorTheme} {...restProps}>{@render children()}</Button>
+<Button id={id} testid={testId} type="submit" {colorVariant} {dynamicColorTheme} {...restProps}>{@render providedChildren(id, testId)}</Button>

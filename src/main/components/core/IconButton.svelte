@@ -11,7 +11,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
 <script lang="ts">
     import { Button as ButtonPrimitive } from "bits-ui";
-    import type { ParentComponentProps } from "../component.js";
+    import { buildTestId, type ParentComponentProps } from "../component.js";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         themedTWMerge,
@@ -20,11 +20,15 @@ Category -> NamedVariant -> Feature -> Element - -> State
     } from "../../theme/theme.js";
 
     let {
+        id, 
+        testid:testidProp, 
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
         children,
         ...restProps
     }: IconButtonProps = $props();
+
+    let testId=$derived(buildTestId(id, testidProp));
 
     const styleClass = themedTWMerge(
         "flex justify-center items-center w-8 h-8 rounded-full mb-1 p-2 transition-all active:scale-[95%]",
@@ -34,6 +38,8 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 
 <ButtonPrimitive.Root
+    id={id}
+    data-testid={testId}
     type="button"
     class={styleClass}
     style={dynamicColorTheme

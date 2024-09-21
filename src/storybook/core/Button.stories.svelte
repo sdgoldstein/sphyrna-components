@@ -34,4 +34,8 @@
 <Story name="Primary Color Variant" args={{ colorVariant: "primary" }} />
 <Story name="Secondary Color Variant" args={{ colorVariant: "secondary" }} />
 <Story name="Dynamic Color Theme" args={{ colorVariant: "foo", dynamicColorTheme:dynamicColorTheme  }} />
+<Story name="With ID" args={{ id:"button"  }} />
+<Story name="With ID Ending in Id" args={{ id:"button_el_id"  }} />
+<Story name="With TestID" args={{ testid:"button_testid_foo"  }} />
+<Story name="With ID and TestId" args={{ id:"button_el_id", testid:"button_testid_foo"  }} />
 

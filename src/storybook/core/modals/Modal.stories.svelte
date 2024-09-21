@@ -6,7 +6,9 @@
  
   import { defineMeta } from "@storybook/addon-svelte-csf";
 
-  const { Story } = defineMeta({});
+  const { Story } = defineMeta({
+    component:Modal
+  });
 
   const dynamicColorTheme = {
     colorThemes: new Map([

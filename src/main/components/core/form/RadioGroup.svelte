@@ -2,7 +2,7 @@
 
 <script module lang="ts">
     import { RadioGroup as RadioGroupPrimitive } from "bits-ui";
-    import type { ParentComponentProps } from "../../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
     import { DEFAULT_COLOR_CATEGORY_VARIANT, getBaseColorClassesForColorCategoryStyleVariant, themedTWMerge } from "../../../theme/theme.js";
     import { getContext } from "svelte";
     import type { Writable } from "svelte/store";
@@ -23,6 +23,7 @@
 
     let {
         id,
+        testid:testidProp,
         value = $bindable(),
         name,
         schema,
@@ -55,6 +56,8 @@
     );
     /**************/
 
+    let testId=$derived(buildTestId(id, testidProp));
+    
     let styleClass = $derived(themedTWMerge("rounded-md w-full p-2 mb-2 border-2 border-surface-dark",
         getBaseColorClassesForColorCategoryStyleVariant("surface"),
            errors.length > 0 && "bg-error-lightest border-error text-error-text"
@@ -67,6 +70,8 @@
 <FormElementErrorMessage {errors} />
 <RadioGroupPrimitive.Root 
     bind:value
+    {id}
+    data-testid={testId}
     {...restProps}
     class={styleClass}
     style={style}
@@ -77,6 +82,6 @@
      // FIXME - force update
      $formValidator = $formValidator;
 }}>
-    {@render children()}
+    {@render children(id, testId)}
     <RadioGroupPrimitive.Input name={name} />
 </RadioGroupPrimitive.Root>

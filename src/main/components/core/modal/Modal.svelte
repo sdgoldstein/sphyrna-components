@@ -1,7 +1,7 @@
 <svelte:options runes={true} />
 
 <script lang="ts">
-    import type {ParentComponentProps} from "../../component.js"
+    import {buildTestId, type ParentComponentProps} from "../../component.js"
     import type { Snippet } from "svelte";
     import FlexModal from "./FlexModal.svelte";
 
@@ -9,19 +9,23 @@
         open: boolean;
         title:Snippet;
         description:Snippet;
-        footer?:Snippet;
+        footer?:Snippet<[string|undefined, string|undefined]>;
     }
 
     let {
+        id,
+        testid:testidProp, 
         open = $bindable(),
         title,
         description,
         children:providedChildren,
         footer:providedFooter,
     }: ModalProps = $props();
+
+    let testId:string|undefined=$derived(buildTestId(id, testidProp));
 </script>
 
-<FlexModal bind:open>
+<FlexModal bind:open {id} testid={testId}>
     {#snippet header()}
         <div class="flex w-full py-2 items-center justify-start text-lg font-bold">
             {@render title()}
@@ -32,12 +36,12 @@
             {@render description()}
         </div>
         <div class="flex py-2 w-full">
-            {@render providedChildren()}
+            {@render providedChildren(id, testId)}
         </div>
     </div>
     {#snippet footer()}
         <div class="flex w-full">
-            {@render providedFooter?.()}
+            {@render providedFooter?.(id, testId)}
         </div>
     {/snippet}
 </FlexModal>

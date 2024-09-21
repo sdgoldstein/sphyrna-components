@@ -4,7 +4,9 @@
  
   import { defineMeta } from "@storybook/addon-svelte-csf";
 
-  const { Story } = defineMeta({});
+  const { Story } = defineMeta({
+    component:FlexModal
+  });
 
   const dynamicColorTheme = {
     colorThemes: new Map([
@@ -22,6 +24,7 @@
     }}>Open Modal</Button
   >
   <FlexModal
+    id="flex_modal_el_id"
     bind:open={defaultOpen}>
     {#snippet header()}
     Header
