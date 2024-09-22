@@ -89,7 +89,7 @@
         style={style}   
         onfocus={() => { if (dynamicColorTheme) { style=`border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`}}}
         onblur={() => { if (dynamicColorTheme) { style=""}}}>
-        <SelectPrimitive.Value placeholder={placeholder}/>
+        <SelectPrimitive.Value placeholder={placeholder} class="data_placeholder:text-surface-text-placeholder"/>
         <ChevronDown class="h-4 w-4 opacity-50" />
     </SelectPrimitive.Trigger>
     <SelectPrimitive.Content class={themedTWMerge(styleClass, "relative z-50 overflow-hidden shadow-md")}>

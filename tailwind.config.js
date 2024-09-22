@@ -49,9 +49,9 @@ export default {
                 lightest: "#FCFCFC",
                 light: "#F9F9F9",
                 DEFAULT: "#F9F9F9",
-                dark: "#F2F3F3",
-                darkest: "#ECECEE",
-                text: colors.black
+                dark: "#F3F3F3",
+                darkest: "#ECECEC",
+                text: {DEFAULT: colors.black, placeholder: "#BFBFBF"}
             },
             success: {DEFAULT: "#C1DD97", text: colors.black},
             warning: {DEFAULT: "#E4C25E", text: colors.black},
@@ -68,5 +68,6 @@ export default {
     },
     plugins: [ plugin(function({addVariant}) {
         addVariant("data_checked", "&[data-state='checked']");
+        addVariant("data_placeholder", "&[data-placeholder]");
     }) ],
 }

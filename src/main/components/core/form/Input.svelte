@@ -59,7 +59,7 @@
 
     let styleClass = $derived(
         themedTWMerge(
-            "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
+            "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none placeholder:text-surface-text-placeholder",
             getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
             `focus:border-${colorVariant}`,
             errors.length > 0 &&

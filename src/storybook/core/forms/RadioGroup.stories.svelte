@@ -16,7 +16,7 @@
         ]),
     };
 
-    let value="three"
+    let value="three";
 </script>
 
 <script lang="ts">
@@ -28,9 +28,9 @@
 {#snippet template({ ...args }: Args<typeof Story>, context: StoryContext<typeof Story>)}
     <Form onsubmit={()=>{}}>
         <RadioGroup {...args}>
-            <RadioGroupOption value="one">One</RadioGroupOption>
-            <RadioGroupOption value="two">Two</RadioGroupOption>
-            <RadioGroupOption value="three">Three</RadioGroupOption>
+            <RadioGroupOption value="one" dynamicColorTheme={args.dynamicColorTheme} colorVariant={args.colorVariant}>One</RadioGroupOption>
+            <RadioGroupOption value="two" dynamicColorTheme={args.dynamicColorTheme} colorVariant={args.colorVariant}>Two</RadioGroupOption>
+            <RadioGroupOption value="three" dynamicColorTheme={args.dynamicColorTheme} colorVariant={args.colorVariant}>Three</RadioGroupOption>
         </RadioGroup>
     </Form>
 {/snippet}
