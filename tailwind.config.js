@@ -7,7 +7,7 @@ export default {
     safelist:
         [
             {pattern : /bg.*/, variants : [ "hover", "focus", "data_checked" ]}, {pattern : /text.*/},
-            {pattern : /border.*/, variants : [ "hover", "focus", "data_checked" ]}
+            {pattern : /border.*/, variants : [ "hover", "focus", "data_checked", "data_active" ]}
         ],
     theme: {
         fontFamily: {
@@ -68,6 +68,7 @@ export default {
     },
     plugins: [ plugin(function({addVariant}) {
         addVariant("data_checked", "&[data-state='checked']");
+        addVariant("data_active", "&[data-state='active']");
         addVariant("data_placeholder", "&[data-placeholder]");
     }) ],
 }
