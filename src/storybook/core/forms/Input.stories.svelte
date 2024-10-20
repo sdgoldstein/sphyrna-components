@@ -35,6 +35,7 @@
 <Story name="Primary Color Variant" args={{ colorVariant: "primary" }} />
 <Story name="Secondary Color Variant" args={{ colorVariant: "secondary" }} />
 <Story name="Dynamic Color Theme" args={{ colorVariant: "foo", dynamicColorTheme:dynamicColorTheme  }} />
+<Story name="With Value" args={{ value: "My Value" }} />
 <Story name="With Error" args={{ error:"You messed up!"  }} />
 
 <!-- FIXME - Cannot test error messages.  See Form.stories.svelte-->

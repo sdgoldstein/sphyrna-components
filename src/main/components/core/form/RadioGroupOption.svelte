@@ -8,7 +8,7 @@
 
     export interface RadioGroupOptionProps extends ParentComponentProps {
         value: any;
-
+        disabled?:boolean;
     }
 </script>
 
@@ -16,6 +16,7 @@
     let {         id,
         testid:testidProp,
         value, 
+        disabled=false,
         colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,children:providedChildren, ...restProps }: RadioGroupOptionProps = $props();
 
@@ -58,7 +59,7 @@
 </script>
 
 <div class="flex items-center gap-1">
-    <RadioGroupPrimitive.Item {value} bind:el={boundElement} class={styleClass} {style} {...restProps}>
+    <RadioGroupPrimitive.Item {value} {disabled} bind:el={boundElement} class={styleClass} {style} {...restProps}>
 
         <!-- The indicator and fetcher is used to set fetchedChecked to set the style.  A mutation observer cannot be used alone, as on load it doesn't get called -->
         <RadioGroupPrimitive.ItemIndicator let:checked>

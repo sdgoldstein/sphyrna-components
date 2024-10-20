@@ -6,4 +6,5 @@ export interface InputProps extends BaseComponentProps {
     placeholder?: string;
     schema?: ZodType;
     error?: string;
+    value?: string;
 }

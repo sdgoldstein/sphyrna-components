@@ -14,8 +14,10 @@
         name:string;
         value?:string;
         schema?: ZodType;
+        disabled?:boolean;
         error?: string;
         onchange?:(e: Event) => void;
+       
     }
 </script>
 
@@ -29,6 +31,7 @@
         schema,
         colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
+        disabled=false,
         error:errorProp,
         onchange=()=>{},
         children,
@@ -77,6 +80,7 @@
     style={style}
     onValueChange={() => {
     $formValidator.clearErrors(name);
+    {disabled}
     errorProp = undefined;
     
      // FIXME - force update

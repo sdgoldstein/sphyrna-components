@@ -57,8 +57,8 @@
     </Form>
     {#snippet footer(id, testId)}
         <div class="flex justify-end w-full py-2 gap-x-2">
-            <SubmitButton id={id ? `${id}_submit_button_el_id` : undefined} form={`${id}_form`} {colorVariant} {dynamicColorTheme}>{actionButtonText}</SubmitButton>
-            <CancelButton id={id ? `${id}_cancel_button_el_id`: undefined} oncancel={()=>{close()}} />
+            <SubmitButton id={id ? `${id}_submit_button_id` : undefined} form={`${id}_form`} {colorVariant} {dynamicColorTheme}>{actionButtonText}</SubmitButton>
+            <CancelButton id={id ? `${id}_cancel_button_id`: undefined} oncancel={()=>{close()}} />
         </div>
     {/snippet}  
 </Modal>

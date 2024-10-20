@@ -85,7 +85,9 @@
         $formValidator = $formValidator;
   
     }}>
-    <SelectPrimitive.Trigger class={themedTWMerge(styleClass, "flex items-center justify-between")}  
+    <SelectPrimitive.Trigger class={themedTWMerge(styleClass, "flex items-center justify-between")} 
+        {id}
+        data-testid={testId} 
         style={style}   
         onfocus={() => { if (dynamicColorTheme) { style=`border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`}}}
         onblur={() => { if (dynamicColorTheme) { style=""}}}>

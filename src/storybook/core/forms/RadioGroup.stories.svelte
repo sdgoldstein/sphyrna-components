@@ -41,3 +41,12 @@
 <Story name="Dynamic Color Theme" args={{ colorVariant: "foo", dynamicColorTheme:dynamicColorTheme  }} />
 <Story name="Selected Value" args={{value:value}}/>
 <Story name="With Error" args={{ error:"You messed up!"  }} />
+<Story name="Disabled">
+    <Form onsubmit={()=>{}}>
+        <RadioGroup name="radio_name" disabled={true} {value}>
+            <RadioGroupOption disabled={true} value="one"  colorVariant="primary">One</RadioGroupOption>
+            <RadioGroupOption disabled={true} value="two"  colorVariant="primary">Two</RadioGroupOption>
+            <RadioGroupOption disabled={true} value="three"  colorVariant="primary">Three</RadioGroupOption>
+        </RadioGroup>
+    </Form>
+</Story>

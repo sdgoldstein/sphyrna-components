@@ -26,6 +26,7 @@
         testid: testidProp,
         name,
         placeholder,
+        value,
         schema,
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
@@ -76,6 +77,7 @@
     data-testid={testId}
     {name}
     {placeholder}
+    {value}
     class={styleClass}
     {style}
     onfocus={() => {
