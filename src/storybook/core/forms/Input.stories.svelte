@@ -2,7 +2,7 @@
     import { defineMeta, setTemplate, type Args, type StoryContext  } from "@storybook/addon-svelte-csf";
     import Input from "../../../main/components/core/form/Input.svelte";
     import Form from "../../../main/components/core/form/Form.svelte";
-    import { zExtended } from "../../../main/components/core/form/form";
+    import { zExtended } from "../../../main/components/core/form/form.js";
     
     const { Story } = defineMeta({
         component: Input,

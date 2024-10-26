@@ -4,6 +4,7 @@ import Button from "./components/core/Button.svelte";
 import type ButtonProps from "./components/core/Button.svelte";
 import Form from "./components/core/form/Form.svelte";
 import type FormProps from "./components/core/form/Form.svelte";
+
 import Input from "./components/core/form/Input.svelte";
 import type InputProps from "./components/core/form/Input.svelte";
 import Label from "./components/core/form/Label.svelte";
@@ -41,6 +42,7 @@ import {
     type DynamicTheme,
     type ThemeableComponentProps
 } from "./theme/theme.js";
+import {zExtended} from "./components/core/form/form.js";
 
 export {
     Button,
@@ -65,7 +67,8 @@ export {
     DesignTokenColorCategoryStyleVariant,
     DesignTokenElementState,
     SubmitCancelModal,
-    DEFAULT_COLOR_CATEGORY_VARIANT
+    DEFAULT_COLOR_CATEGORY_VARIANT,
+    zExtended
 };
 export type{
     ThemeableComponentProps,
@@ -90,5 +93,5 @@ export type{
     NavBarBrandLogoProps,
     NavBarBrandTitleProps,
     NavMenuProps,
-    NavMenuItemProps,
+    NavMenuItemProps
 };

@@ -6,12 +6,12 @@
     export interface NavBarBrandLogoProps extends BaseComponentProps {
         src: string;
         alt: string;
-        aspectRatio:number;
+        aspectRatio?:number;
     }
 </script>
 
 <script lang="ts">
-    let { id, testid:testidProp, src, alt, aspectRatio, colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, ...restProps }: NavBarLogoProps = $props();
+    let { id, testid:testidProp, src, alt, aspectRatio=1, colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, ...restProps }: NavBarLogoProps = $props();
 
     let testId=$derived(buildTestId(id, testidProp));
 
