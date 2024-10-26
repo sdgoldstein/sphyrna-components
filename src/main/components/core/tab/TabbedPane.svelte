@@ -4,7 +4,7 @@
     interface TabbedPaneProps extends ParentComponentProps {
     }
 
-    export type {tabbedPaneProps};
+    export type {TabbedPaneProps};
 </script>
 
 <script lang="ts">

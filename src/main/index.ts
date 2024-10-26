@@ -20,6 +20,16 @@ import IconButton from "./components/core/IconButton.svelte";
 import type IconButtonProps from "./components/core/IconButton.svelte";
 import SubmitCancelModal from "./components/core/modal/SubmitCancelModal.svelte"
 import type SubmitCancelModalProps from "./components/core/modal/SubmitCancelModal.svelte"
+import TabbedPane from "./components/core/tab/TabbedPane.svelte";
+import type TabbedPaneProps from "./components/core/tab/TabbedPane.svelte";
+import Tab from "./components/core/tab/Tab.svelte";
+import type TabProps from "./components/core/tab/Tab.svelte";
+import NavBar, {type NavBarProps} from "./components/NavBar/NavBar.svelte";
+import NavMenu, {type NavMenuProps} from "./components/NavBar/NavMenu.svelte";
+import NavMenuItem, {type NavMenuItemProps} from "./components/NavBar/NavMenuItem.svelte";
+import NavBarBrand, {type NavBarBrandProps} from "./components/NavBar/NavBarBrand.svelte";
+import NavBarBrandLogo, {type NavBarBrandLogoProps} from "./components/NavBar/NavBarBrandLogo.svelte";
+import NavBarBrandTitle, {type NavBarBrandTitleProps} from "./components/NavBar/NavBarBrandTitle.svelte";
 
 import {
     DEFAULT_COLOR_CATEGORY_VARIANT,
@@ -43,6 +53,14 @@ export {
     Label,
     IconButton,
     ButtonBar,
+    TabbedPane,
+    Tab,
+    NavBar,
+    NavBarBrand,
+    NavBarBrandLogo,
+    NavBarBrandTitle,
+    NavMenu,
+    NavMenuItem,
     DesignTokenCategory,
     DesignTokenColorCategoryStyleVariant,
     DesignTokenElementState,
@@ -64,5 +82,13 @@ export type{
     RadioGroupOptionProps,
     LabelProps,
     IconButtonProps,
-    SubmitCancelModalProps
+    SubmitCancelModalProps,
+    TabbedPaneProps,
+    TabProps,
+    NavBarProps,
+    NavBarBrandProps,
+    NavBarBrandLogoProps,
+    NavBarBrandTitleProps,
+    NavMenuProps,
+    NavMenuItemProps,
 };

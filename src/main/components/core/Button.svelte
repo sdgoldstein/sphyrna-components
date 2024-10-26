@@ -27,6 +27,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
         `hover:bg-${colorVariant}-dark`,
         classOverride
     );
+    const style=(dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : "";
 </script>
 
 <ButtonPrimitive.Root
@@ -34,7 +35,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
     data-testid={testId}
 	type="button"
     class={styleClass}
-    style={dynamicColorTheme ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : ""}
+    style={style}
 	{...restProps}
     on:click={onclick}>
     {@render providedChildren(id, testId)}
