@@ -1,7 +1,6 @@
-<svelte:options runes={true} />
+
 
 <script module lang="ts">
-    import { on } from "svelte/events";
     import { type BaseComponentProps } from "../../component.js";
 
     export interface CancelButtonProps

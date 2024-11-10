@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+
 
 <script module lang="ts">
     import { Select as SelectPrimitive } from "bits-ui";
@@ -37,6 +37,8 @@
         children:providedChildren,
         ...restProps
     }: SelectProps = $props();
+    
+    let testId=$derived(buildTestId(id, testidProp));
 
     /**************/
     /*
@@ -60,15 +62,17 @@
     );
     /**************/
 
-    let styleClass = $derived(themedTWMerge("rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
+    let baseStyleClass = $derived(themedTWMerge("rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
         getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
         `focus:border-${colorVariant}`,
            errors.length > 0 && "bg-error-lightest border-error text-error-text"
     ));
 
-    let testId=$derived(buildTestId(id, testidProp));
-    
+  let triggerStyleClass = $derived(themedTWMerge(baseStyleClass, "flex items-center justify-between"));
+    let contentStyleClass = $derived(themedTWMerge(baseStyleClass, "relative z-50 overflow-hidden shadow-md"));
+
     let style:string=$state.raw("");
+    let onFocusStyle = $derived(dynamicColorTheme ? `border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`:"");
 </script>
 
 <FormElementErrorMessage {errors} />
@@ -85,16 +89,16 @@
         $formValidator = $formValidator;
   
     }}>
-    <SelectPrimitive.Trigger class={themedTWMerge(styleClass, "flex items-center justify-between")} 
+    <SelectPrimitive.Trigger class={triggerStyleClass} 
         {id}
         data-testid={testId} 
         style={style}   
-        onfocus={() => { if (dynamicColorTheme) { style=`border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`}}}
-        onblur={() => { if (dynamicColorTheme) { style=""}}}>
+        onfocus={() => { style=onFocusStyle }}
+        onblur={() => { style=""}}>
         <SelectPrimitive.Value placeholder={placeholder} class="data_placeholder:text-surface-text-placeholder"/>
         <ChevronDown class="h-4 w-4 opacity-50" />
     </SelectPrimitive.Trigger>
-    <SelectPrimitive.Content class={themedTWMerge(styleClass, "relative z-50 overflow-hidden shadow-md")}>
+    <SelectPrimitive.Content class={contentStyleClass}>
         <div class="w-full p-1">
             {@render providedChildren(id, testId)}
         </div>

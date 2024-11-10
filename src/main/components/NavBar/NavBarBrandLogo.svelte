@@ -15,10 +15,10 @@
 
     let testId=$derived(buildTestId(id, testidProp));
 
-    const styleClass = themedTWMerge("h-[1lh]",
+    const styleClass = $derived(themedTWMerge("h-[1lh]",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
-    );
-    const style = `width:${aspectRatio}lh; ${(dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : ""}`;
+    ));
+    const style = $derived(`width:${aspectRatio}lh; ${(dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : ""}`);
 </script>
 
 <!-- Using the w-[*lh] tailwind class did not save space for the image, leading to the layout redrawing after the logo image was loaded.  Therefore, moved it to the style attribute-->

@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+
 
 <script module lang="ts">
     interface TabbedPaneProps extends ParentComponentProps {
@@ -21,10 +21,10 @@
         getBaseColorClassesForColorCategoryStyleVariant("surface")
     );
 
-    let tabStyleClass = themedTWMerge("data_active:border-b-2 p-2",
+    let tabStyleClass = $derived(themedTWMerge("data_active:border-b-2 px-2 py-1",
         `data_active:border-${colorVariant}`,
         getBaseColorClassesForColorCategoryStyleVariant("surface"),
-    );
+    ));
     
     const childTabs = $state([]);
     setContext("foo", childTabs);

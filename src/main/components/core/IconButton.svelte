@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+
 
 <!--
 Category -> NamedVariant -> Feature -> Element - -> State
@@ -24,17 +24,21 @@ Category -> NamedVariant -> Feature -> Element - -> State
         testid:testidProp, 
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
-        children,
+        children:providedChildren,
         ...restProps
     }: IconButtonProps = $props();
 
     let testId=$derived(buildTestId(id, testidProp));
 
-    const styleClass = themedTWMerge(
+    const styleClass = $derived(themedTWMerge(
         "flex justify-center items-center w-8 h-8 rounded-full mb-1 p-2 transition-all active:scale-[95%]",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
         `hover:bg-${colorVariant}-dark`,
-    );
+    ));
+
+    const style=$derived(dynamicColorTheme
+        ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant)
+        : "");
 </script>
 
 <ButtonPrimitive.Root
@@ -42,11 +46,9 @@ Category -> NamedVariant -> Feature -> Element - -> State
     data-testid={testId}
     type="button"
     class={styleClass}
-    style={dynamicColorTheme
-        ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant)
-        : ""}
+    {style}
     {...restProps}
     on:click={onclick}
 >
-    {@render children()}
+{@render providedChildren(id, testId)}
 </ButtonPrimitive.Root>

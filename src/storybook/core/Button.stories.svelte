@@ -1,6 +1,6 @@
 <script module>
   import { fn } from "@storybook/test";
-  import Button from "./../../main/components/core/Button.svelte";
+  import Button from "../../main/components/core/Button.svelte";
   import {
     defineMeta,
     setTemplate,

@@ -27,8 +27,8 @@
   
   {#snippet template({ children, ...args }: Args<typeof Story>, context: StoryContext<typeof Story>)}
     <TabbedPane {...args}>
-      <Tab id="one" label="One"></Tab>
-      <Tab id="two" label="Two"></Tab>
+      <Tab id="one" label="One">This is content inside tab one</Tab>
+      <Tab id="two" label="Two">This is content inside tab two</Tab>
     </TabbedPane>
   {/snippet}
   

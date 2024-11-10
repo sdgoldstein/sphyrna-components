@@ -1,7 +1,7 @@
-<svelte:options runes={true} />
+
 
 <script module lang="ts">
-    import type { ParentComponentProps } from "../../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
     import {Select as SelectPrimitive} from "bits-ui"
     import {Check} from "lucide-svelte"
 
@@ -11,13 +11,14 @@
 </script>
 
 <script lang="ts">
-    let { value, children, ...restProps }: SelectOptionProps = $props();
+    let { id, testid:testidProp, value, children:providedChildren, ...restProps }: SelectOptionProps = $props();
+    let testId=$derived(buildTestId(id, testidProp));
 </script>
 
 <SelectPrimitive.Item class="flex w-full select-none rounded-sm px-2 py-1 items-center justify-between"
 {value} 
 {...restProps}>
-    {@render children()}
+     {@render providedChildren(id, testId)}
     <SelectPrimitive.ItemIndicator>
         <Check class="h-4 w-4" />
     </SelectPrimitive.ItemIndicator>

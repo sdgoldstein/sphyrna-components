@@ -15,11 +15,11 @@
     let testId=$derived(buildTestId(id, testidProp));
 
     let size:number = getContext(SIZE_CONTEXT_NAME);
-    const styleClass = themedTWMerge("text-center whitespace-nowrap font-medium cursor-pointer",
+    const styleClass = $derived(themedTWMerge("text-center whitespace-nowrap font-medium cursor-pointer",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
-    );
+    ));
 
-    const style = `font-size:${.25+size*.25}rem; ${(dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : ""}`;
+    const style = $derived(`font-size:${.25+size*.25}rem; ${(dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : ""}`);
 </script>
 
 <!-- Calcualted arbitrary tailwind classes don't work, so need to use style for text size-->

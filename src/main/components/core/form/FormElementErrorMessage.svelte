@@ -1,7 +1,7 @@
-<svelte:options runes={true} />
+
 
 <script module lang="ts">
-    import type { BaseComponentProps } from "../../component.js";
+    import { buildTestId, type BaseComponentProps } from "../../component.js";
     import type { FormError } from "./form.js";
 
     export interface FormElementErrorMessageProps extends BaseComponentProps {
@@ -10,7 +10,8 @@
 </script>
 
 <script lang="ts">
-    let { errors, ...restProps }: FormElementErrorMessageProps = $props();
+    let { id, testid:testidProp, errors, ...restProps }: FormElementErrorMessageProps = $props();
+    let testId=$derived(buildTestId(id, testidProp));
 </script>
 
 {#if errors.length > 0}

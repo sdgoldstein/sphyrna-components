@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+
 
 <script module lang="ts">
     import { RadioGroup as RadioGroupPrimitive } from "bits-ui";
@@ -34,7 +34,7 @@
         disabled=false,
         error:errorProp,
         onchange=()=>{},
-        children,
+        children:providedChildren,
         ...restProps
     }: RadioGroupProps = $props();
     /**************/
@@ -77,7 +77,7 @@
     data-testid={testId}
     {...restProps}
     class={styleClass}
-    style={style}
+    {style}
     onValueChange={() => {
     $formValidator.clearErrors(name);
     {disabled}
@@ -86,6 +86,6 @@
      // FIXME - force update
      $formValidator = $formValidator;
 }}>
-    {@render children(id, testId)}
+    {@render providedChildren(id, testId)}
     <RadioGroupPrimitive.Input name={name} />
 </RadioGroupPrimitive.Root>

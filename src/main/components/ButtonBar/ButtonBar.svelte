@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+
 
 <!--
 Category -> NamedVariant -> Feature -> Element - -> State
@@ -9,21 +9,25 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 <script lang="ts">
     import { Toolbar as ToolbarPrimitive } from "bits-ui";
-    import type {ParentComponentProps} from "../component.js"
+    import {buildTestId, type ParentComponentProps} from "../component.js"
     import {DEFAULT_COLOR_CATEGORY_VARIANT, themedTWMerge, getBaseColorClassesForColorCategoryStyleVariant, getBaseColorStyleForDynamicColorTheme} from "../../theme/theme.js"
 
-    let { colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, children, ...restProps }: ButtonBarProps = $props();
+    let { id, testid:testidProp, colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT, dynamicColorTheme, children:providedChildren, ...restProps }: ButtonBarProps = $props();
+    
+    let testId=$derived(buildTestId(id, testidProp));
 
-    const styleClass = themedTWMerge("fixed z-30 mt-1 ml-1",
+    const styleClass = $derived(themedTWMerge("fixed z-30 mt-1 ml-1",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
-    );
+    ));
+
+    const style = $derived((dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : "");
 </script>
 
 <ToolbarPrimitive.Root
 	orientation="vertical"
     class={styleClass}
-    style={dynamicColorTheme ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : ""}
+    {style}
 	{...restProps}>
-    {@render children()}
+    {@render providedChildren(id, testId)}
 </ToolbarPrimitive.Root>
 

@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+
 
 <!--
 Category -> NamedVariant -> Feature -> Element - -> State
@@ -22,12 +22,12 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
     let testId=$derived(buildTestId(id, testidProp));
 
-    const styleClass = themedTWMerge("m-0 rounded-lg py-2 px-4 transition-all active:scale-[95%]",
+    const styleClass = $derived(themedTWMerge("m-0 rounded-lg py-2 px-4 transition-all active:scale-[95%]",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
         `hover:bg-${colorVariant}-dark`,
         classOverride
-    );
-    const style=(dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : "";
+    ));
+    const style=$derived((dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : "");
 </script>
 
 <ButtonPrimitive.Root

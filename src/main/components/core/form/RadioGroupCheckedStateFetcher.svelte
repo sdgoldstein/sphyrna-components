@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+
 
 <script module lang="ts">
     import type { BaseComponentProps } from "../../component.js";

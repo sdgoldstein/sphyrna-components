@@ -14,13 +14,13 @@
     let testId=$derived(buildTestId(id, testidProp));
 
     let size = getContext(SIZE_CONTEXT_NAME);
-    const titleStyleClass = themedTWMerge("text-center whitespace-nowrap",
+    const titleStyleClass = $derived(themedTWMerge("text-center whitespace-nowrap",
         `text-${size}xl`, 
         "font-semibold",
         "h-[1lh]",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
-    );
-    const style=(dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : "";
+    ));
+    const style=$derived((dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : "");
 </script>
 
 <div class={titleStyleClass} {style}>

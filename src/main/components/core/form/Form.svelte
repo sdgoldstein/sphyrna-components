@@ -1,4 +1,4 @@
-<svelte:options runes={true} />
+
 
 <!-- Overall form CSS inspired by:
   https://www.creative-tim.com/twcomponents/component/simple-registersign-up-form
@@ -7,7 +7,7 @@
 <script module lang="ts">
     import { DefaultZodFormValidator, FORM_VALIDATOR_CONTEXT_KEY } from "./form";
 
-    import type { ParentComponentProps } from "../../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
 
     export type FormSubmissionHandler = (formData:FormData) => void;
 
@@ -41,10 +41,13 @@
 
     let {
         id,
-        children,
+        testid:testidProp,
+        children:providedChildren,
         onsubmit:providedSubmitHandler,
         ...restProps
     }: FormProps = $props();
+    
+    let testId=$derived(buildTestId(id, testidProp));
 </script>
 
 
@@ -57,6 +60,6 @@
 
     cancel();
 }}>
-    {@render children()}
+     {@render providedChildren(id, testId)}
 </form>
 

@@ -1,5 +1,3 @@
-<svelte:options runes={true} />
-
 <script lang="ts">
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
@@ -69,6 +67,11 @@
     );
 
     let style: string = $state.raw("");
+    let onFocusStyle: string = $derived(
+        dynamicColorTheme
+            ? `border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`
+            : "",
+    );
 </script>
 
 <FormElementErrorMessage {errors} />
@@ -81,14 +84,10 @@
     class={styleClass}
     {style}
     onfocus={() => {
-        if (dynamicColorTheme) {
-            style = `border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`;
-        }
+        style = onFocusStyle;
     }}
     onblur={() => {
-        if (dynamicColorTheme) {
-            style = "";
-        }
+        style = "";
     }}
     {...restProps}
     oninput={() => {

@@ -14,12 +14,12 @@
     let testId=$derived(buildTestId(id, testidProp));
 
     let size = getContext(SIZE_CONTEXT_NAME);
-    const styleClass = themedTWMerge("flex items-stretch space-x-2",
+    const styleClass = $derived(themedTWMerge("flex items-stretch space-x-2",
         `text-${size}xl`, 
         "font-semibold",
         getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
-    );
-    const style=(dynamicColorTheme) ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : "";
+    ));
+    const style=$derived(dynamicColorTheme ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant) : "");
 </script>
 
 <a href="/" {...restProps}>
