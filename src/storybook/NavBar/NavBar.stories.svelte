@@ -1,10 +1,9 @@
 <script module>
-    import { fn } from "@storybook/test";
-    import {
+        import {
       defineMeta,
       setTemplate,
-      type Args,
       type StoryContext,
+      type Args,
     } from "@storybook/addon-svelte-csf";
   
     const { Story } = defineMeta({

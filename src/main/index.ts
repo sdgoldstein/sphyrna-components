@@ -4,9 +4,10 @@ import Button from "./components/core/Button.svelte";
 import type ButtonProps from "./components/core/Button.svelte";
 import Form from "./components/core/form/Form.svelte";
 import type FormProps from "./components/core/form/Form.svelte";
-
 import Input from "./components/core/form/Input.svelte";
 import type InputProps from "./components/core/form/Input.svelte";
+import Checkbox from "./components/core/form/Checkbox.svelte";
+import type CheckboxProps from "./components/core/form/Checkbox.svelte";
 import Label from "./components/core/form/Label.svelte";
 import type LabelProps from "./components/core/form/Label.svelte";
 import RadioGroup from "./components/core/form/RadioGroup.svelte";
@@ -48,6 +49,7 @@ export {
     Button,
     Form,
     Input,
+    Checkbox,
     Select,
     SelectOption,
     RadioGroup,
@@ -79,6 +81,7 @@ export type{
     ButtonBarProps,
     FormProps,
     InputProps,
+    CheckboxProps,
     SelectProps,
     SelectOptionProps,
     RadioGroupProps,
