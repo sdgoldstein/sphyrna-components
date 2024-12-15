@@ -1,44 +1,52 @@
-
-
+<!-- FIXME - Need to look at object type of onSelectedChange parameter -->
 <script module lang="ts">
     import { Select as SelectPrimitive } from "bits-ui";
-    import ChevronDown from "lucide-svelte/icons/chevron-down";
     import { buildTestId, type ParentComponentProps } from "../../component.js";
-    import { DEFAULT_COLOR_CATEGORY_VARIANT, getBaseColorClassesForColorCategoryStyleVariant, getDynamicColorTheme, themedTWMerge } from "../../../theme/theme.js";
+    import {
+        DEFAULT_COLOR_CATEGORY_VARIANT,
+        getBaseColorClassesForColorCategoryStyleVariant,
+        getDynamicColorTheme,
+        themedTWMerge,
+    } from "../../../theme/theme.js";
     import { getContext } from "svelte";
     import type { Writable } from "svelte/store";
-    import { type FormError, type ZodFormValidator, FORM_VALIDATOR_CONTEXT_KEY, SimpleFormError } from "./form.js";
+    import {
+        type FormError,
+        type ZodFormValidator,
+        FORM_VALIDATOR_CONTEXT_KEY,
+        SimpleFormError,
+    } from "./form.js";
     import type { ZodType } from "zod";
     import FormElementErrorMessage from "./FormElementErrorMessage.svelte";
+    import { ChevronDown } from "lucide-svelte";
 
     export interface SelectProps extends ParentComponentProps {
-        name:string;
-        selected?: {value:any,label:string};
-        placeholder:string;
+        name: string;
+        selected?: { value: any; label: string };
+        placeholder: string;
         schema?: ZodType;
         error?: string;
-        onchange?:(e: Event) => void;
+        onSelectedChange?: (selected: unknown) => void;
     }
 </script>
 
 <script lang="ts">
-
     let {
         id,
-        testid:testidProp,
+        testid: testidProp,
         selected = $bindable(),
         name,
         placeholder,
         schema,
-        colorVariant=DEFAULT_COLOR_CATEGORY_VARIANT,
+        colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
-        error:errorProp,
-        onchange=()=>{},
-        children:providedChildren,
+        error: errorProp,
+        onSelectedChange = () => {},
+        children: providedChildren,
         ...restProps
     }: SelectProps = $props();
-    
-    let testId=$derived(buildTestId(id, testidProp));
+
+    let testId = $derived(buildTestId(id, testidProp));
 
     /**************/
     /*
@@ -62,40 +70,68 @@
     );
     /**************/
 
-    let baseStyleClass = $derived(themedTWMerge("rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
-        getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
-        `focus:border-${colorVariant}`,
-           errors.length > 0 && "bg-error-lightest border-error text-error-text"
-    ));
+    let baseStyleClass = $derived(
+        themedTWMerge(
+            "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
+            getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
+            `focus:border-${colorVariant}`,
+            errors.length > 0 &&
+                "bg-error-lightest border-error text-error-text",
+        ),
+    );
 
-  let triggerStyleClass = $derived(themedTWMerge(baseStyleClass, "flex items-center justify-between"));
-    let contentStyleClass = $derived(themedTWMerge(baseStyleClass, "relative z-50 overflow-hidden shadow-md"));
+    let triggerStyleClass = $derived(
+        themedTWMerge(baseStyleClass, "flex items-center justify-between"),
+    );
+    let contentStyleClass = $derived(
+        themedTWMerge(
+            baseStyleClass,
+            "relative z-50 overflow-hidden shadow-md",
+        ),
+    );
 
-    let style:string=$state.raw("");
-    let onFocusStyle = $derived(dynamicColorTheme ? `border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`:"");
+    let style: string = $state.raw("");
+    let onFocusStyle = $derived(
+        dynamicColorTheme
+            ? `border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`
+            : "",
+    );
 </script>
 
 <FormElementErrorMessage {errors} />
-<SelectPrimitive.Root 
+<SelectPrimitive.Root
     {id}
     data-testid={testId}
-    bind:selected={selected}
+    bind:selected
     {...restProps}
-    onSelectedChange={(event)=>{
+    onSelectedChange={(selected: unknown | undefined) => {
         $formValidator.clearErrors(name);
         errorProp = undefined;
-      
+
         // FIXME - force update
         $formValidator = $formValidator;
-  
-    }}>
-    <SelectPrimitive.Trigger class={triggerStyleClass} 
+
+        if (selected != undefined) {
+            onSelectedChange(selected);
+        }
+    }}
+>
+    <SelectPrimitive.Trigger
+        class={triggerStyleClass}
         {id}
-        data-testid={testId} 
-        style={style}   
-        onfocus={() => { style=onFocusStyle }}
-        onblur={() => { style=""}}>
-        <SelectPrimitive.Value placeholder={placeholder} class="data_placeholder:text-surface-text-placeholder"/>
+        data-testid={testId}
+        {style}
+        onfocus={() => {
+            style = onFocusStyle;
+        }}
+        onblur={() => {
+            style = "";
+        }}
+    >
+        <SelectPrimitive.Value
+            {placeholder}
+            class="data_placeholder:text-surface-text-placeholder"
+        />
         <ChevronDown class="h-4 w-4 opacity-50" />
     </SelectPrimitive.Trigger>
     <SelectPrimitive.Content class={contentStyleClass}>
@@ -103,5 +139,5 @@
             {@render providedChildren(id, testId)}
         </div>
     </SelectPrimitive.Content>
-    <SelectPrimitive.Input {name}/>
+    <SelectPrimitive.Input {name} />
 </SelectPrimitive.Root>

@@ -1,4 +1,3 @@
-import type {GuardedMap} from "@kameleon/tscore/jscore";
 import {z, ZodError} from "zod";
 
 const FORM_VALIDATOR_CONTEXT_KEY: string = "FORM_VALIDATOR_CONTEXT_KEY";
@@ -32,9 +31,9 @@ interface ZodFormValidator extends FormValidator
 class DefaultZodFormValidator implements ZodFormValidator
 {
 
-    private readonly _registeredScehema: GuardedMap<string, z.ZodType<any, z.ZodTypeDef, any>> =
+    private readonly _registeredScehema: Map<string, z.ZodType<any, z.ZodTypeDef, any>> =
         new Map<string, z.ZodType<any, z.ZodTypeDef, any>>();
-    private readonly _errorMap: GuardedMap<string, FormError[]> = new Map<string, FormError[]>();
+    private readonly _errorMap: Map<string, FormError[]> = new Map<string, FormError[]>();
 
     register(key: string, schema: z.ZodType<any, z.ZodTypeDef, any>): void
     {

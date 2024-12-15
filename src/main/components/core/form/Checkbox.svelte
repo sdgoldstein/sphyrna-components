@@ -10,8 +10,6 @@
 <script lang="ts">
     import { Checkbox as CheckboxPrimitive } from "bits-ui";
     import { buildTestId, type ParentComponentProps } from "../../component.js";
-    import Check from "lucide-svelte/icons/check";
-    import Minus from "lucide-svelte/icons/minus";
     import Label from "./Label.svelte";
 
     let {
@@ -22,7 +20,6 @@
         disabled,
         checked,
         children: providedChildren,
-        ...restProps
     }: CheckboxProps = $props();
 
     let testId = $derived(buildTestId(id, testidProp));
@@ -40,9 +37,7 @@
         {disabled}
         class={styleClass}
     >
-        <CheckboxPrimitive.Indicator
-            class={"flex h-[.65lh] w-[.65lh] items-center justify-center text-current"}
-        ></CheckboxPrimitive.Indicator>
+        <CheckboxPrimitive.Indicator></CheckboxPrimitive.Indicator>
         <CheckboxPrimitive.Input />
     </CheckboxPrimitive.Root>
     <Label for={`${id}_label_id`}>{@render providedChildren(id, testId)}</Label>

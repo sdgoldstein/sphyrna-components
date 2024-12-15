@@ -16,7 +16,6 @@
  * https://m3.material.io/foundations/design-tokens
  */
 import {extendTailwindMerge} from "tailwind-merge";
-import {type GuardedMap} from "@sphyrna/tscore"
 
 type ColorHex = `#${string}`;
 
@@ -38,7 +37,7 @@ interface DynamicColorTheme
 
 interface DynamicTheme
 {
-    colorThemes: GuardedMap<string, DynamicColorTheme>;
+    colorThemes: Map<string, DynamicColorTheme>;
 }
 
 interface ThemeableComponentProps
