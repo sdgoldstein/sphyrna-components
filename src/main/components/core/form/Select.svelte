@@ -1,4 +1,4 @@
-<!-- FIXME - Need to look at object type of onSelectedChange parameter -->
+<!-- FIXME - Need to look at object type of onValueChange parameter -->
 <script module lang="ts">
     import { Select as SelectPrimitive } from "bits-ui";
     import { buildTestId, type ParentComponentProps } from "../../component.js";
@@ -26,7 +26,7 @@
         placeholder: string;
         schema?: ZodType;
         error?: string;
-        onSelectedChange?: (selected: unknown) => void;
+        onValueChange?: (newValue: unknown) => void;
     }
 </script>
 
@@ -41,7 +41,7 @@
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
         error: errorProp,
-        onSelectedChange = () => {},
+        onValueChange = () => {},
         children: providedChildren,
         ...restProps
     }: SelectProps = $props();
@@ -104,7 +104,7 @@
     data-testid={testId}
     bind:selected
     {...restProps}
-    onSelectedChange={(selected: unknown | undefined) => {
+    onValueChange={(selected: unknown | undefined) => {
         $formValidator.clearErrors(name);
         errorProp = undefined;
 
@@ -112,7 +112,7 @@
         $formValidator = $formValidator;
 
         if (selected != undefined) {
-            onSelectedChange(selected);
+            onValueChange(selected);
         }
     }}
 >

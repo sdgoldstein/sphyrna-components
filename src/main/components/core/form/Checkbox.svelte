@@ -4,6 +4,7 @@
         value?: string;
         disabled?: boolean;
         checked?: boolean;
+        onValueChange?: (checked: boolean) => void;
     }
 </script>
 
@@ -19,6 +20,7 @@
         value,
         disabled,
         checked,
+        onValueChange = (checked: boolean) => {},
         children: providedChildren,
     }: CheckboxProps = $props();
 
@@ -36,6 +38,11 @@
         {checked}
         {disabled}
         class={styleClass}
+        onCheckedChange={(checked: boolean | "indeterminate") => {
+            if (checked != "indeterminate") {
+                onValueChange(checked);
+            }
+        }}
     >
         <CheckboxPrimitive.Indicator></CheckboxPrimitive.Indicator>
         <CheckboxPrimitive.Input />
