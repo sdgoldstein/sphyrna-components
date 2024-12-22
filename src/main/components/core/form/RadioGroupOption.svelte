@@ -31,7 +31,7 @@
         themedTWMerge(
             "shrink-0 h-[.65lh] w-[.65lh] rounded-full border data_checked:border-4",
             getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
-            `data_checked:border-primary`,
+            `data_checked:border-${colorVariant}`,
         ),
     );
 
