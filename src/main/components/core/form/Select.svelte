@@ -86,7 +86,7 @@
     let contentStyleClass = $derived(
         themedTWMerge(
             baseStyleClass,
-            "relative z-50 overflow-hidden shadow-md",
+            "relative z-50 overflow-hidden shadow-md overflow-y-auto",
         ),
     );
 
@@ -104,7 +104,7 @@
     data-testid={testId}
     bind:selected
     {...restProps}
-    onValueChange={(selected: unknown | undefined) => {
+    onSelectedChange={(selected: unknown | undefined) => {
         $formValidator.clearErrors(name);
         errorProp = undefined;
 
@@ -134,7 +134,7 @@
         />
         <ChevronDown class="h-4 w-4 opacity-50" />
     </SelectPrimitive.Trigger>
-    <SelectPrimitive.Content class={contentStyleClass}>
+    <SelectPrimitive.Content class={contentStyleClass} fitViewport>
         <div class="w-full p-1">
             {@render providedChildren(id, testId)}
         </div>
