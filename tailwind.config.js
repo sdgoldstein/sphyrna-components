@@ -46,10 +46,10 @@ export default {
                 text: colors.black
             },
             surface: {
-                lightest: colors.neutral["50"],
-                light: colors.neutral["100"],
-                DEFAULT: colors.neutral["50"],
-                dark: colors.neutral["200"],
+                lightest: "#FFFFFF",
+                light: colors.neutral["50"],
+                DEFAULT: "#FFFFFF",
+                dark: colors.neutral["100"],
                 darkest: colors.neutral["300"],
                 text: {DEFAULT: colors.black, placeholder: "#BFBFBF"}
             },

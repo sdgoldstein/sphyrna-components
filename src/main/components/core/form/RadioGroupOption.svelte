@@ -69,7 +69,7 @@
 
     let fetchedChecked: boolean = $state(false);
     let style = $derived(
-        fetchedChecked && dynamicColorTheme
+        fetchedChecked && dynamicColorTheme && !disabled
             ? `border:4px solid ${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`
             : "",
     );
