@@ -32,6 +32,9 @@
             "shrink-0 h-[.65lh] w-[.65lh] rounded-full border data_checked:border-4",
             getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
             `data_checked:border-${colorVariant}`,
+            disabled
+                ? "border-surface-darkest bg-surface-darkest data_checked:border-surface-darkest data_checked:bg-surface-lightest"
+                : "",
         ),
     );
 
