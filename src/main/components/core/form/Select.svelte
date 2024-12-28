@@ -77,7 +77,7 @@
             "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
             getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
             `focus:border-${colorVariant}`,
-            disabled ? "bg-surface-darkest" : "",
+            disabled ? "bg-surface-dark text-surface-text-placeholder" : "",
             errors.length > 0 &&
                 "bg-error-lightest border-error text-error-text",
         ),

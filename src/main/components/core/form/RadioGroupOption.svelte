@@ -33,7 +33,7 @@
             getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
             `data_checked:border-${colorVariant}`,
             disabled
-                ? "border-surface-darkest bg-surface-darkest data_checked:border-surface-darkest data_checked:bg-surface-lightest"
+                ? "border-surface-dark bg-surface-dark data_checked:border-surface-darkest data_checked:bg-surface-lightest"
                 : "",
         ),
     );

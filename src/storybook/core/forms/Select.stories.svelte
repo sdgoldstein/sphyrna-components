@@ -54,7 +54,14 @@
 />
 <Story name="Selected Value" args={{ selected: selectedValue }} />
 <Story name="With Error" args={{ error: "You messed up!" }} />
-<Story name="Disabled" args={{ colorVariant: "secondary", disabled: true }} />
+<Story
+    name="Disabled"
+    args={{
+        colorVariant: "secondary",
+        disabled: true,
+        selected: selectedValue,
+    }}
+/>
 <Story
     name="Disabled with Dynamic Color Theme"
     args={{
