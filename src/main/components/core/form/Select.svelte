@@ -25,6 +25,7 @@
         selected?: { value: any; label: string };
         placeholder: string;
         schema?: ZodType;
+        disabled?: boolean;
         error?: string;
         onValueChange?: (newValue: unknown) => void;
     }
@@ -38,6 +39,7 @@
         name,
         placeholder,
         schema,
+        disabled = false,
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
         error: errorProp,
@@ -75,6 +77,7 @@
             "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
             getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
             `focus:border-${colorVariant}`,
+            disabled ? "bg-surface-darkest" : "",
             errors.length > 0 &&
                 "bg-error-lightest border-error text-error-text",
         ),
@@ -104,6 +107,7 @@
     data-testid={testId}
     bind:selected
     {...restProps}
+    {disabled}
     onSelectedChange={(selected: unknown | undefined) => {
         $formValidator.clearErrors(name);
         errorProp = undefined;
