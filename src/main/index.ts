@@ -32,7 +32,14 @@ import NavMenuItem, {type NavMenuItemProps} from "./components/NavBar/NavMenuIte
 import NavBarBrand, {type NavBarBrandProps} from "./components/NavBar/NavBarBrand.svelte";
 import NavBarBrandLogo, {type NavBarBrandLogoProps} from "./components/NavBar/NavBarBrandLogo.svelte";
 import NavBarBrandTitle, {type NavBarBrandTitleProps} from "./components/NavBar/NavBarBrandTitle.svelte";
-
+import type {AccordionPanelItemContentProps} from "./components/Accordian/AccordionPanelItemContent.svelte";
+import type {AccordionPanelItemHeaderProps} from "./components/Accordian/AccordionPanelItemHeader.svelte";
+import type {AccordionPanelItemProps} from "./components/Accordian/AccordionPanelItem.svelte";
+import type {AccordionPanelProps} from "./components/Accordian/AccordionPanel.svelte";
+import AccordionPanel from "./components/Accordian/AccordionPanel.svelte";
+import AccordionPanelItem from "./components/Accordian/AccordionPanelItem.svelte";
+import AccordionPanelItemHeader from "./components/Accordian/AccordionPanelItemHeader.svelte";
+import AccordionPanelItemContent from "./components/Accordian/AccordionPanelItemContent.svelte";
 import {
     DEFAULT_COLOR_CATEGORY_VARIANT,
     DesignTokenCategory,
@@ -69,6 +76,10 @@ export {
     DesignTokenColorCategoryStyleVariant,
     DesignTokenElementState,
     SubmitCancelModal,
+    AccordionPanel,
+    AccordionPanelItem,
+    AccordionPanelItemHeader,
+    AccordionPanelItemContent,
     DEFAULT_COLOR_CATEGORY_VARIANT,
     zExtended
 };
@@ -96,5 +107,9 @@ export type{
     NavBarBrandLogoProps,
     NavBarBrandTitleProps,
     NavMenuProps,
-    NavMenuItemProps
+    NavMenuItemProps,
+    AccordionPanelProps,
+    AccordionPanelItemProps,
+    AccordionPanelItemHeaderProps,
+    AccordionPanelItemContentProps
 };

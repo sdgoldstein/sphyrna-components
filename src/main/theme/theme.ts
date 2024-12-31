@@ -79,12 +79,13 @@ function getBaseColorClassesForColorCategoryStyleVariant(styleVariant: string): 
 
 function getDynamicColorTheme(dynamicTheme: DynamicTheme, styleVariant: string): DynamicColorTheme
 {
-    if (!dynamicTheme.colorThemes.has(styleVariant))
+    const dynamicColorThemeToReturn = dynamicTheme.colorThemes.get(styleVariant);
+    if (dynamicColorThemeToReturn === undefined)
     {
         throw new Error("Dynamic Color Theme does not contain provided color variant");
     }
 
-    return dynamicTheme.colorThemes.get(styleVariant);
+    return dynamicColorThemeToReturn
 }
 
 function getBaseColorStyleForDynamicColorTheme(dynamicTheme: DynamicTheme, styleVariant: string): string
