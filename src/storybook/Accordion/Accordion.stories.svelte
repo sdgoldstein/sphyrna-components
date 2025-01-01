@@ -32,13 +32,13 @@
   context: StoryContext<typeof Story>,
 )}
   <AccordionPanel {...args}>
-    <AccordionPanelItem value="one">
+    <AccordionPanelItem name="one">
       <AccordionPanelItemHeader {...args}>One</AccordionPanelItemHeader>
       <AccordionPanelItemContent
         >This is the content from the first drawer</AccordionPanelItemContent
       >
     </AccordionPanelItem>
-    <AccordionPanelItem value="two">
+    <AccordionPanelItem name="two">
       <AccordionPanelItemHeader {...args}>Two</AccordionPanelItemHeader>
       <AccordionPanelItemContent
         >This is the content from the second drawer</AccordionPanelItemContent
