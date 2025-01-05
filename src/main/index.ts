@@ -2,6 +2,8 @@ import ButtonBar from "./components/ButtonBar/ButtonBar.svelte";
 import type ButtonBarProps from "./components/ButtonBar/ButtonBar.svelte";
 import Button from "./components/core/Button.svelte";
 import type ButtonProps from "./components/core/Button.svelte";
+import Image from "./components/core/Image.svelte";
+import type {ImageProps} from "lucide-svelte/icons/image";
 import Form from "./components/core/form/Form.svelte";
 import type FormProps from "./components/core/form/Form.svelte";
 import Input from "./components/core/form/Input.svelte";
@@ -40,6 +42,9 @@ import AccordionPanel from "./components/Accordian/AccordionPanel.svelte";
 import AccordionPanelItem from "./components/Accordian/AccordionPanelItem.svelte";
 import AccordionPanelItemHeader from "./components/Accordian/AccordionPanelItemHeader.svelte";
 import AccordionPanelItemContent from "./components/Accordian/AccordionPanelItemContent.svelte";
+import type {ColumnDefinition, DataRow, TableDataSource} from "./components/Datatable/datatableModel";
+import Datatable from "./components/Datatable/Datatable.svelte";
+import type {DatatableProps} from "./components/Datatable/Datatable.svelte";
 import {
     DEFAULT_COLOR_CATEGORY_VARIANT,
     DesignTokenCategory,
@@ -80,8 +85,10 @@ export {
     AccordionPanelItem,
     AccordionPanelItemHeader,
     AccordionPanelItemContent,
+    Datatable,
     DEFAULT_COLOR_CATEGORY_VARIANT,
-    zExtended
+    zExtended,
+    Image
 };
 export type{
     ThemeableComponentProps,
@@ -111,5 +118,10 @@ export type{
     AccordionPanelProps,
     AccordionPanelItemProps,
     AccordionPanelItemHeaderProps,
-    AccordionPanelItemContentProps
+    AccordionPanelItemContentProps,
+    DatatableProps,
+    ColumnDefinition,
+    DataRow,
+    TableDataSource,
+    ImageProps
 };
