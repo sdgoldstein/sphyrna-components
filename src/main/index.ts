@@ -8,6 +8,8 @@ import Form from "./components/core/form/Form.svelte";
 import type FormProps from "./components/core/form/Form.svelte";
 import Input from "./components/core/form/Input.svelte";
 import type InputProps from "./components/core/form/Input.svelte";
+import FileInput from "./components/core/form/FileInput.svelte";
+import type FileInputProps from "./components/core/form/FileInput.svelte";
 import Checkbox from "./components/core/form/Checkbox.svelte";
 import type CheckboxProps from "./components/core/form/Checkbox.svelte";
 import Label from "./components/core/form/Label.svelte";
@@ -61,6 +63,7 @@ export {
     Button,
     Form,
     Input,
+    FileInput,
     Checkbox,
     Select,
     SelectOption,
@@ -99,6 +102,7 @@ export type{
     ButtonBarProps,
     FormProps,
     InputProps,
+    FileInputProps,
     CheckboxProps,
     SelectProps,
     SelectOptionProps,
