@@ -23,7 +23,7 @@
         SimpleFormError,
     } from "./form.js";
 
-    import { getContext } from "svelte";
+    import { getContext, onMount } from "svelte";
     import type { Writable } from "svelte/store";
 
     import FormElementErrorMessage from "./FormElementErrorMessage.svelte";
@@ -68,6 +68,21 @@
     );
     /**************/
 
+    onMount(() => {
+        const fileInput = document.getElementById(id);
+        if (fileInput === null) {
+            throw new Error("Could not find file element");
+        }
+
+        const form = fileInput.closest("form");
+        if (form === null) {
+            throw new Error("Could not find parent form element");
+        }
+
+        form.method = "POST";
+        form.enctype = "multipart/form-data";
+    });
+
     let testId = $derived(buildTestId(id, testidProp));
 
     let styleClass = $derived(
@@ -83,9 +98,7 @@
 <FormElementErrorMessage {errors} />
 <div class="flex gap-2 items-center">
     <input
-        {id}
         data-testid={testId}
-        {name}
         {placeholder}
         {value}
         class={styleClass}
@@ -99,16 +112,14 @@
         }}
         readonly
     />
-    <Label {colorVariant} {dynamicColorTheme} for="hidden_file_input_id"
+    <Label {colorVariant} {dynamicColorTheme} for={id}
         ><div class="flex flex-col">
             <Button
                 {colorVariant}
                 {dynamicColorTheme}
                 onclick={() => {
                     // FIXME - only allows one file input on page
-                    const fileInput = document.getElementById(
-                        "hidden_file_input_id",
-                    );
+                    const fileInput = document.getElementById(id);
                     if (fileInput === null) {
                         throw new Error("Could not find file element");
                     }
@@ -119,12 +130,19 @@
     >
 </div>
 <input
+    {id}
+    {name}
     class="hidden"
-    id="hidden_file_input_id"
     type="file"
     onchange={() => {
+        $formValidator.clearErrors(name);
+        errorProp = undefined;
+
+        // FIXME - force update
+        $formValidator = $formValidator;
+
         // FIXME - only allows one file input on page
-        const fileInput = document.getElementById("hidden_file_input_id");
+        const fileInput = document.getElementById(id);
         if (fileInput === null) {
             throw new Error("Could not find file element");
         }
