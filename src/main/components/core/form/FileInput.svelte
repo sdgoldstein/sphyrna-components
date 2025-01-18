@@ -1,3 +1,12 @@
+<script lang="ts" module>
+    export interface FileInputProps extends BaseComponentProps {
+        name: string;
+        placeholder?: string;
+        schema?: ZodType;
+        error?: string;
+        value?: string;
+    }
+</script>
 
 <script lang="ts">
     import {
@@ -16,9 +25,13 @@
 
     import { getContext } from "svelte";
     import type { Writable } from "svelte/store";
-    import type { InputProps } from "./input.js";
+
     import FormElementErrorMessage from "./FormElementErrorMessage.svelte";
-    import { buildTestId } from "../../component.js";
+    import { buildTestId, type BaseComponentProps } from "../../component.js";
+    import type { ZodType } from "zod";
+    import type { InputProps } from "./input.js";
+    import Label from "./Label.svelte";
+    import Button from "../Button.svelte";
 
     let {
         id,
@@ -61,41 +74,60 @@
         themedTWMerge(
             "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none placeholder:text-surface-text-placeholder",
             getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
-            `focus:border-${colorVariant}`,
             errors.length > 0 &&
                 "bg-error-lightest border-error text-error-text",
         ),
     );
-
-    let style: string = $state.raw("");
-    let onFocusStyle: string = $derived(
-        dynamicColorTheme
-            ? `border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`
-            : "",
-    );
 </script>
 
 <FormElementErrorMessage {errors} />
-<input
-    {id}
-    data-testid={testId}
-    {name}
-    {placeholder}
-    {value}
-    class={styleClass}
-    {style}
-    onfocus={() => {
-        style = onFocusStyle;
-    }}
-    onblur={() => {
-        style = "";
-    }}
-    {...restProps}
-    oninput={() => {
-        $formValidator.clearErrors(name);
-        errorProp = undefined;
+<div class="flex gap-2 items-center">
+    <input
+        {id}
+        data-testid={testId}
+        {name}
+        {placeholder}
+        {value}
+        class={styleClass}
+        {...restProps}
+        oninput={() => {
+            $formValidator.clearErrors(name);
+            errorProp = undefined;
 
-        // FIXME - force update
-        $formValidator = $formValidator;
+            // FIXME - force update
+            $formValidator = $formValidator;
+        }}
+        readonly
+    />
+    <Label {colorVariant} {dynamicColorTheme} for="hidden_file_input_id"
+        ><div class="flex flex-col">
+            <Button
+                {colorVariant}
+                {dynamicColorTheme}
+                onclick={() => {
+                    // FIXME - only allows one file input on page
+                    const fileInput = document.getElementById(
+                        "hidden_file_input_id",
+                    );
+                    if (fileInput === null) {
+                        throw new Error("Could not find file element");
+                    }
+                    fileInput.click();
+                }}>Choose File</Button
+            ><span class="mb-2"></span>
+        </div></Label
+    >
+</div>
+<input
+    class="hidden"
+    id="hidden_file_input_id"
+    type="file"
+    onchange={() => {
+        // FIXME - only allows one file input on page
+        const fileInput = document.getElementById("hidden_file_input_id");
+        if (fileInput === null) {
+            throw new Error("Could not find file element");
+        }
+        value = fileInput.files[0].name;
     }}
 />
