@@ -44,7 +44,7 @@
       <NavBarBrandLogo
         src="/logo.png"
         alt="alt"
-        aspectRatio="2.5"
+        aspectRatio={2.5}
         {colorVariant}
         {dynamicColorTheme}
       />

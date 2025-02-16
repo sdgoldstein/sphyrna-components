@@ -25,7 +25,7 @@
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
         ...restProps
-    }: NavBarLogoProps = $props();
+    }: NavBarBrandLogoProps = $props();
 
     let testId = $derived(buildTestId(id, testidProp));
 
@@ -41,6 +41,6 @@
 </script>
 
 <!-- Using the w-[*lh] tailwind class did not save space for the image, leading to the layout redrawing after the logo image was loaded.  Therefore, moved it to the style attribute-->
-<div data-testid={testId} class={styleClass} {style}>
+<div data-testid={testId} class={styleClass} {style} {...restProps}>
     <Image {src} {alt} class="h-full w-full" />
 </div>

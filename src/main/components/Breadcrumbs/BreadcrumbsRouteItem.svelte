@@ -11,10 +11,9 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 
 <script lang="ts">
-    import { ChevronLast, ChevronRight } from "lucide-svelte";
+    import { ChevronRight } from "lucide-svelte";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
-        getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
         themedTWMerge,
     } from "../../theme/theme.js";
@@ -43,7 +42,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
     );
 </script>
 
-<li class={styleClass} {style}>
+<li class={styleClass} {style} {...restProps}>
     {@render providedChildren(id, testId)}
 </li>
 <li class={styleClass} {style}>

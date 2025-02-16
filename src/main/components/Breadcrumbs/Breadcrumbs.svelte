@@ -23,7 +23,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
     const styleClass = "list-none";
 </script>
 
-<nav>
+<nav {id} data-testid={testId} {...restProps}>
     <ul class={styleClass}>
         {@render providedChildren(id, testId)}
     </ul>

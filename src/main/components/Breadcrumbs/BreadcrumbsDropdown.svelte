@@ -9,10 +9,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 
 <script lang="ts">
-    import {
-        DEFAULT_COLOR_CATEGORY_VARIANT,
-        themedTWMerge,
-    } from "../../theme/theme.js";
+    import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../theme/theme.js";
 
     import { buildTestId, type ParentComponentProps } from "../component.js";
 
@@ -28,13 +25,10 @@ Category -> NamedVariant -> Feature -> Element - -> State
     }: BreadcrumbsDropdownProps = $props();
 
     let testId = $derived(buildTestId(id, testidProp));
-
-    let selectedValue: { value: any; label: string } | undefined =
-        $state(undefined);
 </script>
 
-<li class={styleClass} {style}>
-    <Select {id} testid={testId} {name}>
+<li {id} data-testid={testId} {...restProps}>
+    <Select name="" placeholder="">
         {@render providedChildren(id, testId)}
     </Select>
 </li>

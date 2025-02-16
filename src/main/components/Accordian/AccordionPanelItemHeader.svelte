@@ -28,12 +28,6 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
     let testId = $derived(buildTestId(id, testidProp));
 
-    const styleClass = $derived(
-        themedTWMerge(
-            getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
-        ),
-    );
-
     const style = $derived(
         dynamicColorTheme
             ? getBaseColorStyleForDynamicColorTheme(
