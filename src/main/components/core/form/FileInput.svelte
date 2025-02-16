@@ -12,7 +12,6 @@
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
-        getDynamicColorTheme,
         themedTWMerge,
     } from "../../../theme/theme.js";
 

@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts"     >
   import BreadcrumbsDropdown from "../../main/components/Breadcrumbs/BreadcrumbsDropdown.svelte";
   import BreadcrumbsDropdownRouteItem from "../../main/components/Breadcrumbs/BreadcrumbsDropdownRouteItem.svelte";
   import BreadcrumbsRouteItem from "../../main/components/Breadcrumbs/BreadcrumbsRouteItem.svelte";

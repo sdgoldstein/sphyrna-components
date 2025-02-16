@@ -1,5 +1,3 @@
-
-
 <!--
 Category -> NamedVariant -> Feature -> Element - -> State
 -->
@@ -20,35 +18,43 @@ Category -> NamedVariant -> Feature -> Element - -> State
     } from "../../theme/theme.js";
 
     let {
-        id, 
-        testid:testidProp, 
+        id,
+        testid: testidProp,
+        onclick = (e: MouseEvent) => {},
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
-        children:providedChildren,
+        children: providedChildren,
         ...restProps
     }: IconButtonProps = $props();
 
-    let testId=$derived(buildTestId(id, testidProp));
+    let testId = $derived(buildTestId(id, testidProp));
 
-    const styleClass = $derived(themedTWMerge(
-        "flex justify-center items-center w-8 h-8 rounded-full mb-1 p-2 transition-all active:scale-[95%]",
-        getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
-        `hover:bg-${colorVariant}-dark`,
-    ));
+    const styleClass = $derived(
+        themedTWMerge(
+            "flex justify-center items-center w-8 h-8 rounded-full mb-1 p-2 transition-all active:scale-[95%]",
+            getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
+            `hover:bg-${colorVariant}-dark`,
+        ),
+    );
 
-    const style=$derived(dynamicColorTheme
-        ? getBaseColorStyleForDynamicColorTheme(dynamicColorTheme, colorVariant)
-        : "");
+    const style = $derived(
+        dynamicColorTheme
+            ? getBaseColorStyleForDynamicColorTheme(
+                  dynamicColorTheme,
+                  colorVariant,
+              )
+            : "",
+    );
 </script>
 
 <ButtonPrimitive.Root
-    id={id}
+    {id}
     data-testid={testId}
     type="button"
     class={styleClass}
     {style}
     {...restProps}
-    on:click={onclick}
+    {onclick}
 >
-{@render providedChildren(id, testId)}
+    {@render providedChildren(id, testId)}
 </ButtonPrimitive.Root>

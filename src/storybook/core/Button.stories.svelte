@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import Button from "../../main/components/core/Button.svelte";
   import {
     defineMeta,

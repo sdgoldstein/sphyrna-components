@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import TabbedPane from "./../../../main/components/core/tab/TabbedPane.svelte";
   import Tab from "./../../../main/components/core/tab/Tab.svelte";
 
@@ -33,8 +33,8 @@
   context: StoryContext<typeof Story>,
 )}
   <TabbedPane {...args}>
-    <Tab id="one" label="One">This is content inside tab one</Tab>
-    <Tab id="two" label="Two">This is content inside tab two</Tab>
+    <Tab name="one" label="One">This is content inside tab one</Tab>
+    <Tab name="two" label="Two">This is content inside tab two</Tab>
   </TabbedPane>
 {/snippet}
 

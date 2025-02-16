@@ -1,5 +1,6 @@
 <script module lang="ts">
     interface TabProps extends ParentComponentProps {
+        name: string;
         label: string;
     }
 
@@ -11,10 +12,12 @@
     import { Tabs as TabsPrimitive } from "bits-ui";
     import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../../theme/theme.js";
     import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import type { TabDescriptor } from "./TabbedPane.svelte";
 
     let {
         id,
         testid: testidProp,
+        name,
         label,
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
@@ -24,9 +27,12 @@
 
     let testId = $derived(buildTestId(id, testidProp));
 
-    getContext("foo").push({ id: id, label: label });
+    getContext<TabDescriptor[]>("foo").push({
+        name: name,
+        label: label,
+    } as TabDescriptor);
 </script>
 
-<TabsPrimitive.Content value={id} class="p-2" {...restProps}>
+<TabsPrimitive.Content value={name} class="p-2" {...restProps}>
     {@render providedChildren(id, testId)}
 </TabsPrimitive.Content>
