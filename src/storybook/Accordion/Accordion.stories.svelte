@@ -1,5 +1,4 @@
 <script module>
-  import { fn } from "@storybook/test";
   import {
     defineMeta,
     setTemplate,
@@ -10,6 +9,7 @@
   import AccordionPanelItem from "../../main/components/Accordian/AccordionPanelItem.svelte";
   import AccordionPanelItemHeader from "../../main/components/Accordian/AccordionPanelItemHeader.svelte";
   import AccordionPanelItemContent from "../../main/components/Accordian/AccordionPanelItemContent.svelte";
+  import type { DynamicColorTheme } from "../../main/theme/theme";
 
   const { Story } = defineMeta({
     component: AccordionPanel,
@@ -18,7 +18,10 @@
 
   const dynamicColorTheme = {
     colorThemes: new Map([
-      ["foo", { coreColor: "#900000", textColor: "#000020" }],
+      [
+        "foo",
+        { coreColor: "#900000", textColor: "#000020" } as DynamicColorTheme,
+      ],
     ]),
   };
 </script>

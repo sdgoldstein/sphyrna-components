@@ -10,15 +10,18 @@
 
     const { Story } = defineMeta({
         component: Select,
-        args: {
-            name: "select_name",
-            placeholder: "Select an Item",
-        },
+        args: {},
     });
 
     const dynamicColorTheme = {
         colorThemes: new Map([
-            ["foo", { coreColor: "#900000", textColor: "#000020" }],
+            [
+                "foo",
+                {
+                    coreColor: "#900000",
+                    textColor: "#000020",
+                } as DynamicColorTheme,
+            ],
         ]),
     };
 
@@ -27,6 +30,7 @@
 
 <script lang="ts">
     import SelectOption from "../../../main/components/core/form/SelectOption.svelte";
+    import type { DynamicColorTheme } from "../../../main";
 
     setTemplate(template);
 </script>
@@ -36,7 +40,7 @@
     context: StoryContext<typeof Story>,
 )}
     <Form onsubmit={() => {}}>
-        <Select {...args}>
+        <Select name="select_name" placeholder="Select an Item" {...args}>
             <SelectOption value="one">One</SelectOption>
             <SelectOption value="two">Two</SelectOption>
             <SelectOption value="three">Three</SelectOption>

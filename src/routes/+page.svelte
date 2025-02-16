@@ -31,6 +31,7 @@
     actionButtonText="Save It!"
     onsubmit={handleSubmit}
     title="Submit Modal Default Story"
+    description="Please submit this model.  Please!"
 >
     <Label for="name_input_id">Name</Label>
     <Input

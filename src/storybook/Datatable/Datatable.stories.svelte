@@ -1,5 +1,4 @@
 <script module>
-  import { fn } from "@storybook/test";
   import {
     defineMeta,
     setTemplate,
@@ -8,6 +7,7 @@
   } from "@storybook/addon-svelte-csf";
   import Datatable from "../../main/components/Datatable/Datatable.svelte";
   import { ArrayDataRowIterable } from "../../main/components/Datatable/datatableModel";
+  import type { DynamicColorTheme } from "../../main/theme/theme";
 
   const data = [
     { name: "John", age: 25 },
@@ -16,18 +16,15 @@
 
   const { Story } = defineMeta({
     component: Datatable,
-    args: {
-      columnDefinitions: [
-        { columnName: "name", columnLabel: "Name" },
-        { columnName: "age", columnLabel: "Age" },
-      ],
-      rowData: new ArrayDataRowIterable(data),
-    },
+    args: {},
   });
 
   const dynamicColorTheme = {
     colorThemes: new Map([
-      ["foo", { coreColor: "#900000", textColor: "#000020" }],
+      [
+        "foo",
+        { coreColor: "#900000", textColor: "#000020" } as DynamicColorTheme,
+      ],
     ]),
   };
 </script>
@@ -40,7 +37,13 @@
   { ...args }: Args<typeof Story>,
   context: StoryContext<typeof Story>,
 )}
-  <Datatable {...args} />
+  <Datatable
+    columnDefinitions={[
+      { columnName: "name", columnLabel: "Name" },
+      { columnName: "age", columnLabel: "Age" },
+    ]}
+    rowData={new ArrayDataRowIterable(data)}
+  />
 {/snippet}
 
 <Story name="Default" />

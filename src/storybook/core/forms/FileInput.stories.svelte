@@ -8,20 +8,22 @@
     import FileInput from "../../../main/components/core/form/FileInput.svelte";
     import Form from "../../../main/components/core/form/Form.svelte";
     import { zExtended } from "../../../main/components/core/form/form.js";
+    import type { DynamicColorTheme } from "../../../main/theme/theme";
 
     const { Story } = defineMeta({
         component: FileInput,
-        args: {
-            placeholder: "",
-            id: "name_file_input_id",
-            name: "name_file_input_name",
-            schema: zExtended.requiredString("file"),
-        },
+        args: {},
     });
 
     const dynamicColorTheme = {
         colorThemes: new Map([
-            ["foo", { coreColor: "#900000", textColor: "#000020" }],
+            [
+                "foo",
+                {
+                    coreColor: "#900000",
+                    textColor: "#000020",
+                } as DynamicColorTheme,
+            ],
         ]),
     };
 </script>
@@ -35,7 +37,13 @@
     context: StoryContext<typeof Story>,
 )}
     <Form onsubmit={() => {}}>
-        <FileInput {...args} />
+        <FileInput
+            placeholder=""
+            id="name_file_input_id"
+            name="name_file_input_name"
+            schema={zExtended.requiredString("file")}
+            {...args}
+        />
     </Form>
 {/snippet}
 

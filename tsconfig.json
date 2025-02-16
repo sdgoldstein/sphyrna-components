@@ -20,6 +20,8 @@
 		"noUnusedLocals": true,
 		"sourceMap": true,
 		"declaration": true,
-		"noErrorTruncation": true
+		"noErrorTruncation": true,
+		"isolatedModules": true,
+		"verbatimModuleSyntax": true
 	}
 }

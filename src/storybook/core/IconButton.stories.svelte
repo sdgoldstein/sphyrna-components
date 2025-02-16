@@ -1,12 +1,16 @@
-<script module>
+<script module lang="ts">
   import IconButton from "../../main/components/core/IconButton.svelte";
   import { defineMeta } from "@storybook/addon-svelte-csf";
+  import type { DynamicColorTheme } from "../../main/theme/theme";
 
   const { Story } = defineMeta({});
 
   const dynamicColorTheme = {
     colorThemes: new Map([
-      ["foo", { coreColor: "#900000", textColor: "#000020" }],
+      [
+        "foo",
+        { coreColor: "#900000", textColor: "#000020" } as DynamicColorTheme,
+      ],
     ]),
   };
 </script>

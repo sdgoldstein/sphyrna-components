@@ -47,6 +47,14 @@ import AccordionPanelItemContent from "./components/Accordian/AccordionPanelItem
 import type {ColumnDefinition, DataRow, TableDataSource} from "./components/Datatable/datatableModel";
 import Datatable from "./components/Datatable/Datatable.svelte";
 import type {DatatableProps} from "./components/Datatable/Datatable.svelte";
+import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs.svelte";
+import type {BreadcrumbsProps} from "./components/Breadcrumbs/Breadcrumbs.svelte";
+import BreadcrumbsRouteItem,
+{type BreadcrumbsRouteItemProps} from "./components/Breadcrumbs/BreadcrumbsRouteItem.svelte";
+import BreadcrumbsDropdown, {type BreadcrumbsDropdownProps} from "./components/Breadcrumbs/BreadcrumbsDropdown.svelte";
+import BreadcrumbsDropdownRouteItem,
+{type BreadcrumbsDropdownRouteItemProps} from "./components/Breadcrumbs/BreadcrumbsDropdownRouteItem.svelte";
+
 import {
     DEFAULT_COLOR_CATEGORY_VARIANT,
     DesignTokenCategory,
@@ -91,7 +99,11 @@ export {
     Datatable,
     DEFAULT_COLOR_CATEGORY_VARIANT,
     zExtended,
-    Image
+    Image,
+    Breadcrumbs,
+    BreadcrumbsRouteItem,
+    BreadcrumbsDropdown,
+    BreadcrumbsDropdownRouteItem
 };
 export type{
     ThemeableComponentProps,
@@ -127,5 +139,9 @@ export type{
     ColumnDefinition,
     DataRow,
     TableDataSource,
-    ImageProps
+    ImageProps,
+    BreadcrumbsProps,
+    BreadcrumbsRouteItemProps,
+    BreadcrumbsDropdownProps,
+    BreadcrumbsDropdownRouteItemProps
 };

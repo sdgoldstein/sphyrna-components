@@ -62,7 +62,7 @@ class DefaultZodFormValidator implements ZodFormValidator
 
     getErrors(key: string): FormError[]
     {
-        const valueToReturn: FormError[] = this._errorMap.has(key) ? this._errorMap.get(key) : [];
+        const valueToReturn: FormError[] = this._errorMap.get(key) ?? [];
 
         return valueToReturn;
     }

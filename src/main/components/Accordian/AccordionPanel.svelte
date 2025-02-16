@@ -3,7 +3,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 -->
 <script module lang="ts">
     export interface AccordionPanelProps extends ParentComponentProps {
-        activeItemName: string;
+        activeItemName?: string;
     }
 </script>
 
@@ -27,6 +27,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 <AccordionPrimitive.Root
     {id}
     data-testid={testId}
+    type="single"
     value={activeItemName}
     class={styleClass}
     {...restProps}

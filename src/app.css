@@ -1,17 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
-@layer components {
-    .rounded-container {
-        @apply !rounded-md;
-    }
-
-    .rounded-component {
-        @apply !rounded-lg;
-    }
-}
+@import 'tailwindcss'
 
 body {
     @apply bg-surface;

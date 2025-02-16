@@ -16,12 +16,6 @@
         component: SubmitCancelModal,
     });
 
-    const dynamicColorTheme = {
-        colorThemes: new Map([
-            ["foo", { coreColor: "#900000", textColor: "#000020" }],
-        ]),
-    };
-
     let defaultOpen = false;
 
     function handleSubmit(formData: FormData): void {}

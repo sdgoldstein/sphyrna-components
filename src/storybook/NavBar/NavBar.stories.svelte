@@ -13,7 +13,10 @@
 
   const dynamicColorTheme = {
     colorThemes: new Map([
-      ["foo", { coreColor: "#900000", textColor: "#000020" }],
+      [
+        "foo",
+        { coreColor: "#900000", textColor: "#000020" } as DynamicColorTheme,
+      ],
     ]),
   };
 </script>
@@ -27,6 +30,7 @@
   import NavBarBrand from "../../main/components/NavBar/NavBarBrand.svelte";
   import NavBarBrandLogo from "../../main/components/NavBar/NavBarBrandLogo.svelte";
   import NavBarBrandTitle from "../../main/components/NavBar/NavBarBrandTitle.svelte";
+  import type { DynamicColorTheme } from "../../main/theme/theme";
 
   setTemplate(template);
 </script>
@@ -49,34 +53,10 @@
       >
     </NavBarBrand>
     <NavMenu {colorVariant} {dynamicColorTheme}>
-      <NavMenuItem
-        {colorVariant}
-        {dynamicColorTheme}
-        onclick={() => {
-          alert("first");
-        }}>First</NavMenuItem
-      >
-      <NavMenuItem
-        {colorVariant}
-        {dynamicColorTheme}
-        onclick={() => {
-          alert("second");
-        }}>Second</NavMenuItem
-      >
-      <NavMenuItem
-        {colorVariant}
-        {dynamicColorTheme}
-        onclick={() => {
-          alert("third");
-        }}>Third</NavMenuItem
-      >
-      <NavMenuItem
-        {colorVariant}
-        {dynamicColorTheme}
-        onclick={() => {
-          alert("fourth");
-        }}>Fourth</NavMenuItem
-      >
+      <NavMenuItem {colorVariant} {dynamicColorTheme}>First</NavMenuItem>
+      <NavMenuItem {colorVariant} {dynamicColorTheme}>Second</NavMenuItem>
+      <NavMenuItem {colorVariant} {dynamicColorTheme}>Third</NavMenuItem>
+      <NavMenuItem {colorVariant} {dynamicColorTheme}>Fourth</NavMenuItem>
     </NavMenu>
   </NavBar>
 {/snippet}
@@ -88,4 +68,4 @@
   name="Dynamic Color Theme"
   args={{ colorVariant: "foo", dynamicColorTheme: dynamicColorTheme }}
 />
-<Story name="Size 5" args={{ size: "5" }} />
+<Story name="Size 5" args={{ size: 5 }} />

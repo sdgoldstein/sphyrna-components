@@ -10,14 +10,18 @@
 
     const { Story } = defineMeta({
         component: RadioGroup,
-        args: {
-            name: "radio_name",
-        },
+        args: {},
     });
 
     const dynamicColorTheme = {
         colorThemes: new Map([
-            ["foo", { coreColor: "#900000", textColor: "#000020" }],
+            [
+                "foo",
+                {
+                    coreColor: "#900000",
+                    textColor: "#000020",
+                } as DynamicColorTheme,
+            ],
         ]),
     };
 
@@ -26,6 +30,7 @@
 
 <script lang="ts">
     import RadioGroupOption from "../../../main/components/core/form/RadioGroupOption.svelte";
+    import type { DynamicColorTheme } from "../../../main/theme/theme";
 
     setTemplate(template);
 </script>
@@ -35,7 +40,7 @@
     context: StoryContext<typeof Story>,
 )}
     <Form onsubmit={() => {}}>
-        <RadioGroup {...args}>
+        <RadioGroup name="radio_name" {...args}>
             <RadioGroupOption
                 value="one"
                 dynamicColorTheme={args.dynamicColorTheme}
