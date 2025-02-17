@@ -58,6 +58,13 @@ enum DesignTokenElementState
     DISABLED = "disabled"
 }
 
+const COLOR_VARIANTS_TO_BASE_CLASSES: Map<string, string> = new Map<string, string>([
+    [ "primary", "bg-primary text-primary-text" ], [ "secondary", "bg-secondary text-secondary-text" ],
+    [ "tertiary", "bg-tertiary text-tertiary-text" ], [ "warning", "bg-warning text-warning-text" ],
+    [ "success", "bg-success text-success-text" ], [ "error", "bg-error text-error-text" ],
+    [ "surface", "bg-surface text-surface-text" ]
+]);
+
 /**
  * Get the base CSS class for the provided style variant.  These include
  * background and font colors
@@ -74,7 +81,7 @@ function getBaseColorClassesForColorCategoryStyleVariant(styleVariant: string): 
         throw new Error(`styleVariant specified is invalid: ${styleVariant}`)
     }
 
-    return `bg-${styleVariant} text-${styleVariantBase[0]}-text`;
+    return COLOR_VARIANTS_TO_BASE_CLASSES.get(styleVariantBase[0]) ?? "";
 }
 
 function getDynamicColorTheme(dynamicTheme: DynamicTheme, styleVariant: string): DynamicColorTheme

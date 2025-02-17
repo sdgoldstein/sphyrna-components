@@ -1,1 +1,0 @@
-import{h as l}from"./hydration-C_mtSyjW.js";function c(s,e){var t=s.__className,a=n(e);(t!==a||l)&&(e==null?s.removeAttribute("class"):s.className=a,s.__className=a)}function n(s){return s??""}export{c as s};
