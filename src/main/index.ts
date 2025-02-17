@@ -1,35 +1,31 @@
-import ButtonBar from "./components/ButtonBar/ButtonBar.svelte";
-import type ButtonBarProps from "./components/ButtonBar/ButtonBar.svelte";
-import Button from "./components/core/Button.svelte";
-import type ButtonProps from "./components/core/Button.svelte";
-import Image from "./components/core/Image.svelte";
-import type {ImageProps} from "lucide-svelte/icons/image";
-import Form from "./components/core/form/Form.svelte";
-import type FormProps from "./components/core/form/Form.svelte";
-import Input from "./components/core/form/Input.svelte";
-import type InputProps from "./components/core/form/Input.svelte";
-import FileInput from "./components/core/form/FileInput.svelte";
-import type FileInputProps from "./components/core/form/FileInput.svelte";
-import Checkbox from "./components/core/form/Checkbox.svelte";
-import type CheckboxProps from "./components/core/form/Checkbox.svelte";
-import Label from "./components/core/form/Label.svelte";
-import type LabelProps from "./components/core/form/Label.svelte";
-import RadioGroup from "./components/core/form/RadioGroup.svelte";
-import type RadioGroupProps from "./components/core/form/RadioGroup.svelte";
-import RadioGroupOption from "./components/core/form/RadioGroupOption.svelte";
-import type RadioGroupOptionProps from "./components/core/form/RadioGroupOption.svelte";
-import Select from "./components/core/form/Select.svelte";
-import type SelectProps from "./components/core/form/Select.svelte";
-import SelectOption from "./components/core/form/SelectOption.svelte";
-import type SelectOptionProps from "./components/core/form/SelectOption.svelte";
-import IconButton from "./components/core/IconButton.svelte";
-import type IconButtonProps from "./components/core/IconButton.svelte";
-import SubmitCancelModal from "./components/core/modal/SubmitCancelModal.svelte"
-import type SubmitCancelModalProps from "./components/core/modal/SubmitCancelModal.svelte"
-import TabbedPane from "./components/core/tab/TabbedPane.svelte";
-import type TabbedPaneProps from "./components/core/tab/TabbedPane.svelte";
-import Tab from "./components/core/tab/Tab.svelte";
-import type TabProps from "./components/core/tab/Tab.svelte";
+import ButtonBar from "./components/navigation/ButtonBar/ButtonBar.svelte";
+import type ButtonBarProps from "./components/navigation/ButtonBar/ButtonBar.svelte";
+
+import Form from "./components/form/Form.svelte";
+import type FormProps from "./components/form/Form.svelte";
+import Input from "./components/form/Input.svelte";
+import type InputProps from "./components/form/Input.svelte";
+import FileInput from "./components/form/FileInput.svelte";
+import type FileInputProps from "./components/form/FileInput.svelte";
+import Checkbox from "./components/form/Checkbox.svelte";
+import type CheckboxProps from "./components/form/Checkbox.svelte";
+import Label from "./components/form/Label.svelte";
+import type LabelProps from "./components/form/Label.svelte";
+import RadioGroup from "./components/form/RadioGroup.svelte";
+import type RadioGroupProps from "./components/form/RadioGroup.svelte";
+import RadioGroupOption from "./components/form/RadioGroupOption.svelte";
+import type RadioGroupOptionProps from "./components/form/RadioGroupOption.svelte";
+import Select from "./components/form/Select.svelte";
+import type SelectProps from "./components/form/Select.svelte";
+import SelectOption from "./components/form/SelectOption.svelte";
+import type SelectOptionProps from "./components/form/SelectOption.svelte";
+
+import SubmitCancelModal from "./components/modal/SubmitCancelModal.svelte"
+import type SubmitCancelModalProps from "./components/modal/SubmitCancelModal.svelte"
+import TabbedPane from "./components/navigation/tab/TabbedPane.svelte";
+import type TabbedPaneProps from "./components/navigation/tab/TabbedPane.svelte";
+import Tab from "./components/navigation/tab/Tab.svelte";
+import type TabProps from "./components/navigation/tab/Tab.svelte";
 import NavBar, {type NavBarProps} from "./components/NavBar/NavBar.svelte";
 import NavMenu, {type NavMenuProps} from "./components/NavBar/NavMenu.svelte";
 import NavMenuItem, {type NavMenuItemProps} from "./components/NavBar/NavMenuItem.svelte";
@@ -44,9 +40,9 @@ import AccordionPanel from "./components/Accordian/AccordionPanel.svelte";
 import AccordionPanelItem from "./components/Accordian/AccordionPanelItem.svelte";
 import AccordionPanelItemHeader from "./components/Accordian/AccordionPanelItemHeader.svelte";
 import AccordionPanelItemContent from "./components/Accordian/AccordionPanelItemContent.svelte";
-import type {ColumnDefinition, DataRow, TableDataSource} from "./components/Datatable/datatableModel";
-import Datatable from "./components/Datatable/Datatable.svelte";
-import type {DatatableProps} from "./components/Datatable/Datatable.svelte";
+import type {ColumnDefinition, DataRow, TableDataSource} from "./components/data/Datatable/datatableModel";
+import Datatable from "./components/data/Datatable/Datatable.svelte";
+import type {DatatableProps} from "./components/data/Datatable/Datatable.svelte";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs.svelte";
 import type {BreadcrumbsProps} from "./components/Breadcrumbs/Breadcrumbs.svelte";
 import BreadcrumbsRouteItem,
@@ -65,10 +61,12 @@ import {
     type DynamicTheme,
     type ThemeableComponentProps
 } from "./theme/theme.js";
-import {zExtended} from "./components/core/form/form.js";
+import {zExtended} from "./components/form/form.js";
+
+export * from "./components/core/index";
 
 export {
-    Button,
+
     Form,
     Input,
     FileInput,
@@ -78,7 +76,7 @@ export {
     RadioGroup,
     RadioGroupOption,
     Label,
-    IconButton,
+
     ButtonBar,
     TabbedPane,
     Tab,
@@ -99,7 +97,7 @@ export {
     Datatable,
     DEFAULT_COLOR_CATEGORY_VARIANT,
     zExtended,
-    Image,
+
     Breadcrumbs,
     BreadcrumbsRouteItem,
     BreadcrumbsDropdown,
@@ -110,7 +108,7 @@ export type{
     DynamicColorTheme,
     ColorHex,
     DynamicTheme,
-    ButtonProps,
+
     ButtonBarProps,
     FormProps,
     InputProps,
@@ -121,7 +119,7 @@ export type{
     RadioGroupProps,
     RadioGroupOptionProps,
     LabelProps,
-    IconButtonProps,
+
     SubmitCancelModalProps,
     TabbedPaneProps,
     TabProps,
@@ -139,7 +137,7 @@ export type{
     ColumnDefinition,
     DataRow,
     TableDataSource,
-    ImageProps,
+
     BreadcrumbsProps,
     BreadcrumbsRouteItemProps,
     BreadcrumbsDropdownProps,

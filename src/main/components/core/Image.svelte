@@ -1,12 +1,5 @@
 <script lang="ts">
-  import type { BaseComponentProps } from "../component.js";
-
-  interface ImageProps extends BaseComponentProps {
-    src: string;
-    alt: string;
-    width?: number;
-    height?: number;
-  }
+  import type { ImageProps } from "./image.js";
 
   let { src, alt, width, height, ...restProps }: ImageProps = $props();
 </script>

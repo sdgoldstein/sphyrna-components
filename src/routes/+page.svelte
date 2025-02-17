@@ -1,8 +1,8 @@
 <script lang="ts">
     import "../app.css";
-    import { zExtended } from "../main/components/core/form/form.js";
-    import Input from "../main/components/core/form/Input.svelte";
-    import Label from "../main/components/core/form/Label.svelte";
+    import { zExtended } from "../main/components/form/form.js";
+    import Input from "../main/components/form/Input.svelte";
+    import Label from "../main/components/form/Label.svelte";
     import { Button } from "../main/index";
     import { SubmitCancelModal } from "../main/index.js";
 

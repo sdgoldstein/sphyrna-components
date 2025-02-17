@@ -1,35 +1,35 @@
 <!--
 Category -> NamedVariant -> Feature -> Element - -> State
 -->
+<script module lang="ts">
+    export interface ButtonBarProps extends ParentComponentProps {}
+</script>
 
 <script lang="ts">
-    import { Button as ButtonPrimitive } from "bits-ui";
-    import { buildTestId } from "../component.js";
+    import { Toolbar as ToolbarPrimitive } from "bits-ui";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         themedTWMerge,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
-    } from "../../theme/theme.js";
-    import type { IconButtonProps } from "./iconButton.js";
+    } from "../../../theme/theme.js";
 
     let {
         id,
         testid: testidProp,
-        onclick = (e: MouseEvent) => {},
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
         children: providedChildren,
         ...restProps
-    }: IconButtonProps = $props();
+    }: ButtonBarProps = $props();
 
     let testId = $derived(buildTestId(id, testidProp));
 
     const styleClass = $derived(
         themedTWMerge(
-            "flex justify-center items-center w-8 h-8 rounded-full mb-1 p-2 transition-all active:scale-[95%]",
+            "fixed z-30 mt-1 ml-1",
             getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
-            `hover:bg-${colorVariant}-dark`,
         ),
     );
 
@@ -43,14 +43,11 @@ Category -> NamedVariant -> Feature -> Element - -> State
     );
 </script>
 
-<ButtonPrimitive.Root
-    {id}
-    data-testid={testId}
-    type="button"
+<ToolbarPrimitive.Root
+    orientation="vertical"
     class={styleClass}
     {style}
     {...restProps}
-    {onclick}
 >
     {@render providedChildren(id, testId)}
-</ButtonPrimitive.Root>
+</ToolbarPrimitive.Root>
