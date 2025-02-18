@@ -51,6 +51,16 @@
     --color-error-text: var(--color-black);
 }
 
+@layer components {
+    .rounded-container {
+        @apply !rounded-md;
+    }
+
+    .rounded-component {
+        @apply !rounded-lg;
+    }
+}
+
 body {
     @apply bg-surface;
     @apply font-sans;

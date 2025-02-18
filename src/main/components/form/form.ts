@@ -1,6 +1,19 @@
 import {z, ZodError} from "zod";
+import type {ParentComponentProps} from "../component";
 
 const FORM_VALIDATOR_CONTEXT_KEY: string = "FORM_VALIDATOR_CONTEXT_KEY";
+
+type FormSubmissionHandler = (formData: FormData) => void;
+
+type FormSubmitEvent = SubmitEvent&
+{
+    currentTarget: EventTarget&HTMLFormElement;
+};
+
+interface FormProps extends ParentComponentProps
+{
+    onsubmit: FormSubmissionHandler;
+}
 
 class ZExtension
 {
@@ -44,7 +57,7 @@ class DefaultZodFormValidator implements ZodFormValidator
         let valueToReturn: boolean = true;
 
         this._registeredScehema.forEach((schema, key) => {
-            let valueToValidate = formData.get(key);
+            const valueToValidate = formData.get(key);
             const validationResult = schema.safeParse(valueToValidate);
             if (!validationResult.success)
             {
@@ -89,4 +102,4 @@ class DefaultZodFormError implements FormError
 }
 
 export {zExtended, FORM_VALIDATOR_CONTEXT_KEY, SimpleFormError, DefaultZodFormValidator};
-export type{FormValidator, ZodFormValidator, FormError};
+export type{FormValidator, ZodFormValidator, FormError, FormProps, FormSubmissionHandler, FormSubmitEvent};

@@ -10,6 +10,8 @@ Category -> NamedVariant -> Feature -> Element - -> State
         themedTWMerge,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
+        type DesignTokenColorVariantLookup,
+        isValidDesignTokenColorVariant,
     } from "../../theme/theme.js";
     import type { ButtonProps } from "./button.js";
 
@@ -25,14 +27,25 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
     let testId = $derived(buildTestId(id, testidProp));
 
+    const buttonClassFromColorVariant: DesignTokenColorVariantLookup = {
+        primary: "hover:bg-primary-dark",
+        secondary: "hover:bg-secondary-dark",
+        tertiary: "hover:bg-tertiary-dark",
+    };
+
     const styleClass = $derived(
         themedTWMerge(
             "m-0 rounded-lg py-2 px-4 transition-all active:scale-[95%] text-nowrap",
-            getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
-            `hover:bg-${colorVariant}-dark`,
+            isValidDesignTokenColorVariant(colorVariant)
+                ? getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
+                : "",
+            isValidDesignTokenColorVariant(colorVariant)
+                ? buttonClassFromColorVariant[colorVariant]
+                : "",
             classOverride,
         ),
     );
+
     const style = $derived(
         dynamicColorTheme
             ? getBaseColorStyleForDynamicColorTheme(

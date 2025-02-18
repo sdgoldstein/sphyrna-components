@@ -1,13 +1,3 @@
-<script lang="ts" module>
-    export interface FileInputProps extends BaseComponentProps {
-        name: string;
-        placeholder?: string;
-        schema?: ZodType;
-        error?: string;
-        value?: string;
-    }
-</script>
-
 <script lang="ts">
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
@@ -26,8 +16,8 @@
     import type { Writable } from "svelte/store";
 
     import FormElementErrorMessage from "./FormElementErrorMessage.svelte";
-    import { buildTestId, type BaseComponentProps } from "../component.js";
-    import type { ZodType } from "zod";
+    import { buildTestId } from "../component.js";
+
     import type { InputProps } from "./input.js";
     import Label from "./Label.svelte";
     import Button from "../core/Button.svelte";

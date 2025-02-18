@@ -19,15 +19,16 @@ import {extendTailwindMerge} from "tailwind-merge";
 
 type ColorHex = `#${string}`;
 
-enum DesignTokenColorCategoryStyleVariant {
-    PRIMARY = "primary",
-    SECONDARY = "secondary",
-    TERTIARY = "tertiary",
-    WARNING = "warning",
-    SUCCESS = "success",
-    ERROR = "error",
-    SURFACE = "surface",
+type DesignTokenColorVariant = "primary"|"secondary"|"tertiary"|"warning"|"success"|"error"|"surface";
+const validDesignTokensColorVariant = [ "primary", "secondary", "tertiary", "warning", "success", "error", "surface" ];
+function isValidDesignTokenColorVariant(value: string): value is DesignTokenColorVariant
+{
+    return validDesignTokensColorVariant.includes(value as DesignTokenColorVariant);
 }
+
+type DesignTokenColorVariantLookup = {
+    [key in DesignTokenColorVariant]?: string;
+};
 
 interface DynamicColorTheme
 {
@@ -58,12 +59,26 @@ enum DesignTokenElementState
     DISABLED = "disabled"
 }
 
-const COLOR_VARIANTS_TO_BASE_CLASSES: Map<string, string> = new Map<string, string>([
-    [ "primary", "bg-primary text-primary-text" ], [ "secondary", "bg-secondary text-secondary-text" ],
-    [ "tertiary", "bg-tertiary text-tertiary-text" ], [ "warning", "bg-warning text-warning-text" ],
-    [ "success", "bg-success text-success-text" ], [ "error", "bg-error text-error-text" ],
-    [ "surface", "bg-surface text-surface-text" ]
-]);
+// The following is a hack to get tailwindcss to include classes
+const COLOR_VARIANTS_TO_BASE_CLASSES: DesignTokenColorVariantLookup = {
+    "primary" : "bg-primary text-primary-text",
+    "secondary" : "bg-secondary text-secondary-text",
+    "tertiary" : "bg-tertiary text-tertiary-text",
+    "warning" : "bg-warning text-warning-text",
+    "success" : "bg-success text-success-text",
+    "error" : "bg-error text-error-text",
+    "surface" : "bg-surface text-surface-text"
+};
+
+const COLOR_VARIANTS_TO_BORDER_CLASSES: DesignTokenColorVariantLookup = {
+    "primary" : "border-primary",
+    "secondary" : "border-secondary",
+    "tertiary" : "border-tertiary",
+    "warning" : "border-warning",
+    "success" : "border-success",
+    "error" : "border-error",
+    "surface" : "border-surface"
+};
 
 /**
  * Get the base CSS class for the provided style variant.  These include
@@ -75,13 +90,22 @@ const COLOR_VARIANTS_TO_BASE_CLASSES: Map<string, string> = new Map<string, stri
  */
 function getBaseColorClassesForColorCategoryStyleVariant(styleVariant: string): string
 {
-    const styleVariantBase = styleVariant.split("-");
-    if (styleVariantBase.length <= 0)
+    if (!isValidDesignTokenColorVariant(styleVariant))
     {
-        throw new Error(`styleVariant specified is invalid: ${styleVariant}`)
+        throw new Error(`Invalid color variant: ${styleVariant}`);
     }
 
-    return COLOR_VARIANTS_TO_BASE_CLASSES.get(styleVariantBase[0]) ?? "";
+    return COLOR_VARIANTS_TO_BASE_CLASSES[styleVariant];
+}
+
+function getBorderColorClassesForColorCategoryStyleVariant(styleVariant: string): string
+{
+    if (!isValidDesignTokenColorVariant(styleVariant))
+    {
+        throw new Error(`Invalid color variant: ${styleVariant}`);
+    }
+
+    return COLOR_VARIANTS_TO_BORDER_CLASSES[styleVariant];
 }
 
 function getDynamicColorTheme(dynamicTheme: DynamicTheme, styleVariant: string): DynamicColorTheme
@@ -110,14 +134,22 @@ const themedTWMerge = extendTailwindMerge({
     },
 })
 
-export type{ThemeableComponentProps, DynamicColorTheme, ColorHex, DynamicTheme};
+export type{
+    ThemeableComponentProps,
+    DynamicColorTheme,
+    ColorHex,
+    DynamicTheme,
+    DesignTokenColorVariant,
+    DesignTokenColorVariantLookup
+};
 export {
     DesignTokenCategory,
-    DesignTokenColorCategoryStyleVariant,
     DesignTokenElementState,
     themedTWMerge,
     DEFAULT_COLOR_CATEGORY_VARIANT,
+    isValidDesignTokenColorVariant,
     getBaseColorClassesForColorCategoryStyleVariant,
+    getBorderColorClassesForColorCategoryStyleVariant,
     getBaseColorStyleForDynamicColorTheme,
     getDynamicColorTheme
 }

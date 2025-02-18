@@ -1,7 +1,7 @@
 import type {ZodType} from "zod";
-import type {BaseComponentProps} from "../component.js";
+import type {BaseComponentProps} from "../component";
 
-interface InputProps extends BaseComponentProps
+interface FileInputProps extends BaseComponentProps
 {
     name: string;
     placeholder?: string;
@@ -10,4 +10,4 @@ interface InputProps extends BaseComponentProps
     value?: string;
 }
 
-export type{InputProps};
+export type{FileInputProps};
