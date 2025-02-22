@@ -10,6 +10,8 @@ Category -> NamedVariant -> Feature -> Element - -> State
         themedTWMerge,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
+        type DesignTokenColorVariantLookup,
+        isValidDesignTokenColorVariant,
     } from "../../theme/theme.js";
     import type { IconButtonProps } from "./iconButton.js";
 
@@ -25,11 +27,21 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
     let testId = $derived(buildTestId(id, testidProp));
 
+    const buttonClassFromColorVariant: DesignTokenColorVariantLookup = {
+        primary: "hover:bg-primary-dark",
+        secondary: "hover:bg-secondary-dark",
+        tertiary: "hover:bg-tertiary-dark",
+    };
+
     const styleClass = $derived(
         themedTWMerge(
             "flex justify-center items-center w-8 h-8 rounded-full mb-1 p-2 transition-all active:scale-[95%]",
-            getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
-            `hover:bg-${colorVariant}-dark`,
+            isValidDesignTokenColorVariant(colorVariant)
+                ? getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
+                : "",
+            isValidDesignTokenColorVariant(colorVariant)
+                ? buttonClassFromColorVariant[colorVariant]
+                : "",
         ),
     );
 
@@ -50,7 +62,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
     class={styleClass}
     {style}
     {...restProps}
-    {onclick}
+    on:click={onclick}
 >
     {@render providedChildren(id, testId)}
 </ButtonPrimitive.Root>
