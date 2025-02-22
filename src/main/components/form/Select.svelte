@@ -4,9 +4,10 @@
     import { buildTestId, type ParentComponentProps } from "../component.js";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
-        getBaseColorClassesForColorCategoryStyleVariant,
         getDynamicColorTheme,
+        isValidDesignTokenColorVariant,
         themedTWMerge,
+        type DesignTokenColorVariantLookup,
     } from "../../theme/theme.js";
     import { getContext } from "svelte";
     import type { Writable } from "svelte/store";
@@ -72,11 +73,18 @@
     );
     /**************/
 
+    const selectClassFromColorVariant: DesignTokenColorVariantLookup = {
+        primary: "focus:border-primary",
+        secondary: "focus:border-secondary",
+        tertiary: "focus:border-tertiary",
+    };
+
     let baseStyleClass = $derived(
         themedTWMerge(
-            "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none",
-            getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
-            `focus:border-${colorVariant}`,
+            "rounded-md w-full p-2 mb-2 border-2 border-surface-dark bg-surface-lightest text-surface-text outline-none",
+            isValidDesignTokenColorVariant(colorVariant)
+                ? selectClassFromColorVariant[colorVariant]
+                : "",
             disabled ? "bg-surface-dark text-surface-text-placeholder" : "",
             errors.length > 0 &&
                 "bg-error-lightest border-error text-error-text",

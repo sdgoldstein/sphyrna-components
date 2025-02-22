@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-    import Button from "../Button.svelte";
+    import Button from "../core/Button.svelte";
 
     let {
         id,

@@ -3,7 +3,9 @@
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
         getDynamicColorTheme,
+        isValidDesignTokenColorVariant,
         themedTWMerge,
+        type DesignTokenColorVariantLookup,
     } from "../../theme/theme.js";
 
     import {
@@ -56,11 +58,18 @@
 
     let testId = $derived(buildTestId(id, testidProp));
 
+    const inputClassFromColorVariant: DesignTokenColorVariantLookup = {
+        primary: "focus:border-primary",
+        secondary: "focus:border-secondary",
+        tertiary: "focus:border-tertiary",
+    };
+
     let styleClass = $derived(
         themedTWMerge(
-            "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none placeholder:text-surface-text-placeholder",
-            getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
-            `focus:border-${colorVariant}`,
+            "rounded-md w-full p-2 mb-2 border-2 border-surface-dark bg-surface-lightest text-surface-text outline-none placeholder:text-surface-text-placeholder",
+            isValidDesignTokenColorVariant(colorVariant)
+                ? inputClassFromColorVariant[colorVariant]
+                : "",
             errors.length > 0 &&
                 "bg-error-lightest border-error text-error-text",
         ),

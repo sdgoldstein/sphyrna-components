@@ -3,7 +3,9 @@
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
         getDynamicColorTheme,
+        isValidDesignTokenColorVariant,
         themedTWMerge,
+        type DesignTokenColorVariantLookup,
     } from "../../theme/theme.js";
     import { buildTestId, type ParentComponentProps } from "../component.js";
     import { RadioGroup as RadioGroupPrimitive } from "bits-ui";
@@ -27,11 +29,19 @@
         ...restProps
     }: RadioGroupOptionProps = $props();
 
+    const radioGroupOptionClassFromColorVariant: DesignTokenColorVariantLookup =
+        {
+            primary: "data_checked:border-primary",
+            secondary: "data_checked:border-secondary",
+            tertiary: "data_checked:border-tertiary",
+        };
+
     let styleClass = $derived(
         themedTWMerge(
-            "shrink-0 h-[.65lh] w-[.65lh] rounded-full border data_checked:border-4",
-            getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
-            `data_checked:border-${colorVariant}`,
+            "shrink-0 h-[.65lh] w-[.65lh] rounded-full border data_checked:border-4 bg-surface-lightest text-surface-text",
+            isValidDesignTokenColorVariant(colorVariant)
+                ? radioGroupOptionClassFromColorVariant[colorVariant]
+                : "",
             disabled
                 ? "border-surface-dark bg-surface-dark data_checked:border-surface-darkest data_checked:bg-surface-lightest"
                 : "",
