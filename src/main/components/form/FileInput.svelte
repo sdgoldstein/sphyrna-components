@@ -2,6 +2,7 @@
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
+        isValidDesignTokenColorVariant,
         themedTWMerge,
     } from "../../theme/theme.js";
 
@@ -58,6 +59,10 @@
     /**************/
 
     onMount(() => {
+        if (id == undefined) {
+            throw new Error("id is required for FileInput");
+        }
+
         const fileInput = document.getElementById(id);
         if (fileInput === null) {
             throw new Error("Could not find file element");
@@ -76,8 +81,7 @@
 
     let styleClass = $derived(
         themedTWMerge(
-            "rounded-md w-full p-2 mb-2 border-2 border-surface-dark outline-none placeholder:text-surface-text-placeholder",
-            getBaseColorClassesForColorCategoryStyleVariant("surface-lightest"),
+            "rounded-md w-full p-2 mb-2 border-2 border-surface-dark bg-surface-lightest text-surface-text outline-none placeholder:text-surface-text-placeholder",
             errors.length > 0 &&
                 "bg-error-lightest border-error text-error-text",
         ),
@@ -131,10 +135,13 @@
         $formValidator = $formValidator;
 
         // FIXME - only allows one file input on page
-        const fileInput = document.getElementById(id);
+        const fileInput = document.getElementById(id) as HTMLInputElement;
         if (fileInput === null) {
             throw new Error("Could not find file element");
         }
-        value = fileInput.files[0].name;
+        const selectedFiles = fileInput.files;
+        if (selectedFiles != null && selectedFiles.length > 0) {
+            value = selectedFiles[0].name;
+        }
     }}
 />
