@@ -19,7 +19,8 @@
 <script lang="ts">
     import Modal from "./Modal.svelte";
     import CancelButton from "./CancelButton.svelte";
-    import Form, { type FormSubmissionHandler } from "../form/Form.svelte";
+    import type { FormSubmissionHandler } from "../form/form.js";
+    import Form from "../form/Form.svelte";
 
     function close() {
         open = false;
