@@ -28,7 +28,9 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
     let testId = $derived(buildTestId(id, testidProp));
 
-    const styleClass = $derived(themedTWMerge("inline text-lg font-semibold"));
+    const styleClass = $derived(
+        themedTWMerge("inline text-lg font-semibold last:hidden"),
+    );
     const style = $derived(
         dynamicColorTheme
             ? getBaseColorStyleForDynamicColorTheme(
