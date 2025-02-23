@@ -1,7 +1,6 @@
 <script module lang="ts">
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
-        getBaseColorClassesForColorCategoryStyleVariant,
         getDynamicColorTheme,
         isValidDesignTokenColorVariant,
         themedTWMerge,
@@ -31,19 +30,19 @@
 
     const radioGroupOptionClassFromColorVariant: DesignTokenColorVariantLookup =
         {
-            primary: "data_checked:border-primary",
-            secondary: "data_checked:border-secondary",
-            tertiary: "data_checked:border-tertiary",
+            primary: "data-[state=checked]:border-primary",
+            secondary: "data-[state=checked]:border-secondary",
+            tertiary: "data-[state=checked]:border-tertiary",
         };
 
     let styleClass = $derived(
         themedTWMerge(
-            "shrink-0 h-[.65lh] w-[.65lh] rounded-full border data_checked:border-4 bg-surface-lightest text-surface-text",
+            "shrink-0 h-[.65lh] w-[.65lh] rounded-full border data-[state=checked]:border-4 bg-surface-lightest text-surface-text",
             isValidDesignTokenColorVariant(colorVariant)
                 ? radioGroupOptionClassFromColorVariant[colorVariant]
                 : "",
             disabled
-                ? "border-surface-dark bg-surface-dark data_checked:border-surface-darkest data_checked:bg-surface-lightest"
+                ? "border-surface-dark bg-surface-dark data-[state=checked]:border-surface-darkest data-[state=checked]:bg-surface-lightest"
                 : "",
         ),
     );
@@ -62,13 +61,15 @@
                     mutation.target.getAttribute("data-state") === "unchecked"
                 ) {
                     fetchedChecked = false;
+                } else {
+                    fetchedChecked = true;
                 }
             }
         }
     }
     const observer = new MutationObserver(mutationCallback);
 
-    let boundElement: HTMLButtonElement | undefined = $state();
+    let boundElement: HTMLButtonElement | null = $state(null);
     $effect(() => {
         if (boundElement) {
             observer.observe(boundElement, { attributes: true });
@@ -89,15 +90,15 @@
     <RadioGroupPrimitive.Item
         {value}
         {disabled}
-        bind:el={boundElement}
+        bind:ref={boundElement}
         class={styleClass}
         {style}
         {...restProps}
     >
         <!-- The indicator and fetcher is used to set fetchedChecked to set the style.  A mutation observer cannot be used alone, as on load it doesn't get called -->
-        <RadioGroupPrimitive.ItemIndicator let:checked>
+        {#snippet children({ checked })}
             <RadioGroupCheckedStateFetcher bind:fetchedChecked {checked} />
-        </RadioGroupPrimitive.ItemIndicator>
+        {/snippet}
     </RadioGroupPrimitive.Item>
     {@render providedChildren(id, testId)}
 </div>

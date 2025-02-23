@@ -40,7 +40,7 @@
     context: StoryContext<typeof Story>,
 )}
     <Form onsubmit={() => {}}>
-        <RadioGroup name="radio_name" {...args}>
+        <RadioGroup name="radio_name" bind:value {...args}>
             <RadioGroupOption
                 value="one"
                 dynamicColorTheme={args.dynamicColorTheme}

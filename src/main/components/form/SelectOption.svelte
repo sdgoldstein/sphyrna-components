@@ -25,7 +25,6 @@
     {...restProps}
 >
     {@render providedChildren(id, testId)}
-    <SelectPrimitive.ItemIndicator>
-        <Check class="h-4 w-4" />
-    </SelectPrimitive.ItemIndicator>
+
+    <!--    <Check class="h-4 w-4" /> -->
 </SelectPrimitive.Item>

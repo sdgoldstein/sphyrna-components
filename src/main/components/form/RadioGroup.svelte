@@ -80,14 +80,17 @@
 
 <FormElementErrorMessage {errors} />
 <RadioGroupPrimitive.Root
-    bind:value
     {id}
     data-testid={testId}
+    {value}
+    {name}
     {...restProps}
     class={styleClass}
     {style}
     {disabled}
     onValueChange={(newValue: string) => {
+        value = newValue;
+
         $formValidator.clearErrors(name);
         errorProp = undefined;
 
@@ -99,5 +102,4 @@
     }}
 >
     {@render providedChildren(id, testId)}
-    <RadioGroupPrimitive.Input {name} />
 </RadioGroupPrimitive.Root>
