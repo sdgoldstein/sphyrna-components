@@ -3,7 +3,9 @@
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
         getDynamicColorTheme,
+        isValidDesignTokenColorVariant,
         themedTWMerge,
+        type DesignTokenColorVariantLookup,
     } from "../../../theme/theme.js";
     import { setContext } from "svelte";
     import { Tabs as TabsPrimitive } from "bits-ui";
@@ -13,6 +15,7 @@
     let {
         id,
         testid: testidProp,
+        selectedTab = $bindable(),
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
         children: providedChildren,
@@ -21,6 +24,12 @@
 
     let testId = $derived(buildTestId(id, testidProp));
 
+    const tabbedPaneClassFromColorVariant: DesignTokenColorVariantLookup = {
+        primary: "data-[state=active]:border-primary",
+        secondary: "data-[state=active]:border-secondary",
+        tertiary: "data-[state=active]:border-tertiary",
+    };
+
     let listStyleClass = themedTWMerge(
         "flex border-b w-full border-surface-dark",
         getBaseColorClassesForColorCategoryStyleVariant("surface"),
@@ -28,34 +37,29 @@
 
     let tabStyleClass = $derived(
         themedTWMerge(
-            "data_active:border-b-2 px-2 py-1",
-            `data_active:border-${colorVariant}`,
-            getBaseColorClassesForColorCategoryStyleVariant("surface"),
+            "data-[state=active]:border-b-2 px-2 py-1 bg-surface text-surface-text",
+            isValidDesignTokenColorVariant(colorVariant)
+                ? tabbedPaneClassFromColorVariant[colorVariant]
+                : "",
         ),
     );
 
     const childTabs: TabDescriptor[] = $state([]);
     setContext("foo", childTabs);
-
-    let selectedTabId = $state();
 </script>
 
 <TabsPrimitive.Root
     {id}
     data-testid={testId}
     {...restProps}
-    onValueChange={(newValue: string | undefined) => {
-        if (newValue) {
-            selectedTabId = newValue;
-        }
-    }}
+    bind:value={selectedTab}
 >
     <TabsPrimitive.List class={listStyleClass}>
         {#each childTabs as nextChildTab}
             <TabsPrimitive.Trigger
                 value={nextChildTab.name}
                 class={tabStyleClass}
-                style={nextChildTab.name == selectedTabId && dynamicColorTheme
+                style={nextChildTab.name == selectedTab && dynamicColorTheme
                     ? `border-bottom:2px solid ${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`
                     : ""}
             >

@@ -5,6 +5,7 @@
         themedTWMerge,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
+        isValidDesignTokenColorVariant,
     } from "../../../theme/theme.js";
     import { buildTestId } from "../../component.js";
     import { SIZE_CONTEXT_NAME, type NavBarBrandProps } from "./navBar.js";
@@ -26,7 +27,9 @@
             "flex items-stretch space-x-2",
             `text-${size}xl`,
             "font-semibold",
-            getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
+            isValidDesignTokenColorVariant(colorVariant)
+                ? getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
+                : "",
         ),
     );
     const style = $derived(

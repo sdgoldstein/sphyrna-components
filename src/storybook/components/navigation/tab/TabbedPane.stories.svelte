@@ -32,7 +32,7 @@
   { children, ...args }: Args<typeof Story>,
   context: StoryContext<typeof Story>,
 )}
-  <TabbedPane {...args}>
+  <TabbedPane selectedTab="one" {...args}>
     <Tab name="one" label="One">This is content inside tab one</Tab>
     <Tab name="two" label="Two">This is content inside tab two</Tab>
   </TabbedPane>

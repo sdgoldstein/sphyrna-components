@@ -1,6 +1,4 @@
 <script module lang="ts">
-  import Breadcrumbs from "./../../../../../build/dist/components/Breadcrumbs/Breadcrumbs.svelte";
-
   import type { DynamicColorTheme } from "../../../../main/theme/theme";
 
   import {
@@ -11,6 +9,7 @@
   } from "@storybook/addon-svelte-csf";
   import BreadcrumbsRouteItem from "../../../../main/components/navigation/Breadcrumbs/BreadcrumbsRouteItem.svelte";
   import {
+    Breadcrumbs,
     BreadcrumbsDropdown,
     BreadcrumbsDropdownRouteItem,
   } from "../../../../main";

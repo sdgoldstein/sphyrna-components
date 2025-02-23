@@ -4,6 +4,7 @@
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
+        isValidDesignTokenColorVariant,
         themedTWMerge,
     } from "../../../theme/theme.js";
     import { buildTestId } from "../../component.js";
@@ -25,7 +26,9 @@
     const styleClass = $derived(
         themedTWMerge(
             "text-center whitespace-nowrap font-medium cursor-pointer",
-            getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
+            isValidDesignTokenColorVariant(colorVariant)
+                ? getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
+                : "",
         ),
     );
 

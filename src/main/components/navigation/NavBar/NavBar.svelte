@@ -6,6 +6,7 @@
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
         getDynamicColorTheme,
+        isValidDesignTokenColorVariant,
     } from "../../../theme/theme.js";
     import { buildTestId } from "../../component.js";
     import { SIZE_CONTEXT_NAME, type NavBarProps } from "./navBar.js";
@@ -28,7 +29,9 @@
         themedTWMerge(
             "px-4 py-3.5 border-b-2 w-full flex justify-start items-center",
             `border-${colorVariant}-text`,
-            getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
+            isValidDesignTokenColorVariant(colorVariant)
+                ? getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
+                : "",
         ),
     );
 

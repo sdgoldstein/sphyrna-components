@@ -8,6 +8,7 @@ interface TabProps extends ParentComponentProps
 
 interface TabbedPaneProps extends ParentComponentProps
 {
+    selectedTab: string;
 }
 
 interface TabDescriptor

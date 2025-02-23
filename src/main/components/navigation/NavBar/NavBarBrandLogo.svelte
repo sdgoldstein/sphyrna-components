@@ -3,6 +3,7 @@
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
+        isValidDesignTokenColorVariant,
         themedTWMerge,
     } from "../../../theme/theme.js";
     import { buildTestId } from "../../component.js";
@@ -25,7 +26,9 @@
     const styleClass = $derived(
         themedTWMerge(
             "h-[1lh]",
-            getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
+            isValidDesignTokenColorVariant(colorVariant)
+                ? getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
+                : "",
         ),
     );
     const style = $derived(
