@@ -7,7 +7,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
 <script lang="ts">
     import { buildTestId } from "../../component.js";
-    import SelectOption from "../../form/SelectOption.svelte";
+    import { Select as SelectPrimitive } from "bits-ui";
     import type { BreadcrumbsDropdownRouteItemProps } from "./breadcrumbs.js";
 
     let {
@@ -21,6 +21,10 @@ Category -> NamedVariant -> Feature -> Element - -> State
     let testId = $derived(buildTestId(id, testidProp));
 </script>
 
-<SelectOption {id} testid={testId} value={route} {...restProps}>
+<SelectPrimitive.Item
+    class="flex w-full select-none rounded-sm px-2 py-1 items-center justify-between"
+    value={route}
+    {...restProps}
+>
     {@render providedChildren(id, testId)}
-</SelectOption>
+</SelectPrimitive.Item>
