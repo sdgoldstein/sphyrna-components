@@ -19,6 +19,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
     let {
         id,
         testid: testidProp,
+        label,
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
         children: providedChildren,
@@ -41,7 +42,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 
 <li class={styleClass} {style} {...restProps}>
-    {@render providedChildren(id, testId)}
+    {label}
 </li>
 <li class={styleClass} {style}>
     <ChevronRight class="inline" />

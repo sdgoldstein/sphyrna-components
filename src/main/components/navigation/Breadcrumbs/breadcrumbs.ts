@@ -1,18 +1,33 @@
-import type {ParentComponentProps} from "../../component";
+import type {BaseComponentProps, ParentComponentProps} from "../../component";
 
 interface BreadcrumbsProps extends ParentComponentProps
 {
 }
 interface BreadcrumbsDropdownProps extends ParentComponentProps
 {
-}
-interface BreadcrumbsDropdownRouteItemProps extends ParentComponentProps
-{
     route: string;
 }
-interface BreadcrumbsRouteItemProps extends ParentComponentProps
+interface BreadcrumbsDropdownRouteItemProps extends BaseComponentProps
 {
     route: string;
+    label: string;
+}
+interface BreadcrumbsRouteItemProps extends BaseComponentProps
+{
+    route: string;
+    label: string;
 }
 
-export type{BreadcrumbsRouteItemProps, BreadcrumbsDropdownRouteItemProps, BreadcrumbsDropdownProps, BreadcrumbsProps};
+interface BreadcrumbsDropdownRouteItemDescriptor
+{
+    route: string;
+    label: string;
+}
+
+export type{
+    BreadcrumbsRouteItemProps,
+    BreadcrumbsDropdownRouteItemProps,
+    BreadcrumbsDropdownRouteItemDescriptor,
+    BreadcrumbsDropdownProps,
+    BreadcrumbsProps
+};

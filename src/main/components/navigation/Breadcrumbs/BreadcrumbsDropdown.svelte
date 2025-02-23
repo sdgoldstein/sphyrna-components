@@ -14,12 +14,17 @@ Category -> NamedVariant -> Feature -> Element - -> State
     import Form from "../../form/Form.svelte";
 
     import { Select as SelectPrimitive } from "bits-ui";
-    import type { BreadcrumbsDropdownProps } from "./breadcrumbs.js";
+    import type {
+        BreadcrumbsDropdownProps,
+        BreadcrumbsDropdownRouteItemDescriptor,
+    } from "./breadcrumbs.js";
     import { ChevronDown, ChevronRight } from "lucide-svelte";
+    import { onMount, setContext } from "svelte";
 
     let {
         id,
         testid: testidProp,
+        route = $bindable(),
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
         children: providedChildren,
@@ -55,7 +60,29 @@ Category -> NamedVariant -> Feature -> Element - -> State
         ),
     );
 
-    const selectedLabel = $derived("sdfsdf");
+    const breadcrumbDropdownItems: BreadcrumbsDropdownRouteItemDescriptor[] =
+        $state([]);
+    setContext("foo", breadcrumbDropdownItems);
+
+    const selectedBreadcrumb = $derived(
+        breadcrumbDropdownItems.find((item) => item.route === route)?.label,
+    );
+
+    onMount(() => {
+        if (breadcrumbDropdownItems.length > 0) {
+            route = breadcrumbDropdownItems[0].route;
+        }
+    });
+
+    function addHiddenStyleIfClosed(
+        wrapperProps: Record<string, unknown>,
+        open: boolean,
+    ) {
+        if (!open) {
+            wrapperProps.style = "display: none";
+        }
+        return wrapperProps;
+    }
 </script>
 
 <li {id} data-testid={testId} class={styleClass} {...restProps}>
@@ -63,6 +90,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
         {id}
         data-testid={testId}
         type="single"
+        bind:value={route}
         {...restProps}
     >
         <SelectPrimitive.Trigger
@@ -70,12 +98,18 @@ Category -> NamedVariant -> Feature -> Element - -> State
             {id}
             data-testid={testId}
         >
-            {selectedLabel}
+            {selectedBreadcrumb}
             <ChevronDown class="h-4 w-4 opacity-50" />
         </SelectPrimitive.Trigger>
         <SelectPrimitive.Portal>
-            <SelectPrimitive.Content class={contentStyleClass}>
-                {@render providedChildren(id, testId)}
+            <SelectPrimitive.Content class={contentStyleClass} forceMount>
+                {#snippet child({ wrapperProps, props, open })}
+                    <div {...addHiddenStyleIfClosed(wrapperProps, open)}>
+                        <div {...props}>
+                            {@render providedChildren(id, testId)}
+                        </div>
+                    </div>
+                {/snippet}
             </SelectPrimitive.Content>
         </SelectPrimitive.Portal>
     </SelectPrimitive.Root>

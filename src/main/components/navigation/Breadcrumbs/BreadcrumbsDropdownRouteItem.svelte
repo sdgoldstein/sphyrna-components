@@ -8,17 +8,26 @@ Category -> NamedVariant -> Feature -> Element - -> State
 <script lang="ts">
     import { buildTestId } from "../../component.js";
     import { Select as SelectPrimitive } from "bits-ui";
-    import type { BreadcrumbsDropdownRouteItemProps } from "./breadcrumbs.js";
+    import type {
+        BreadcrumbsDropdownRouteItemDescriptor,
+        BreadcrumbsDropdownRouteItemProps,
+    } from "./breadcrumbs.js";
+    import { getContext, onMount } from "svelte";
 
     let {
         id,
         testid: testidProp,
         route,
-        children: providedChildren,
+        label,
         ...restProps
     }: BreadcrumbsDropdownRouteItemProps = $props();
 
     let testId = $derived(buildTestId(id, testidProp));
+
+    getContext<BreadcrumbsDropdownRouteItemDescriptor[]>("foo").push({
+        route: route,
+        label: label,
+    } as BreadcrumbsDropdownRouteItemDescriptor);
 </script>
 
 <SelectPrimitive.Item
@@ -26,5 +35,5 @@ Category -> NamedVariant -> Feature -> Element - -> State
     value={route}
     {...restProps}
 >
-    {@render providedChildren(id, testId)}
+    {label}
 </SelectPrimitive.Item>

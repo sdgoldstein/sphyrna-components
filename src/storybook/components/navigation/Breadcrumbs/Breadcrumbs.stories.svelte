@@ -37,20 +37,18 @@
   context: StoryContext<typeof Story>,
 )}
   <Breadcrumbs {...args}>
-    <BreadcrumbsRouteItem route="/">Home</BreadcrumbsRouteItem>
-    <BreadcrumbsRouteItem route="/">Before</BreadcrumbsRouteItem>
-    <BreadcrumbsDropdown>
-      <BreadcrumbsDropdownRouteItem route="/">A</BreadcrumbsDropdownRouteItem>
-      <BreadcrumbsDropdownRouteItem route="/">B</BreadcrumbsDropdownRouteItem>
-      <BreadcrumbsDropdownRouteItem route="/">C</BreadcrumbsDropdownRouteItem>
+    <BreadcrumbsRouteItem route="/H" label="Home" />
+    <BreadcrumbsRouteItem route="/B" label="Before" />
+    <BreadcrumbsDropdown route="/a">
+      <BreadcrumbsDropdownRouteItem route="/a" label="A" />
+      <BreadcrumbsDropdownRouteItem route="/b" label="B" />
+      <BreadcrumbsDropdownRouteItem route="/c" label="C" />
     </BreadcrumbsDropdown>
-    <BreadcrumbsRouteItem route="/">Road</BreadcrumbsRouteItem>
-    <BreadcrumbsDropdown>
-      <BreadcrumbsDropdownRouteItem route="/">One</BreadcrumbsDropdownRouteItem>
-      <BreadcrumbsDropdownRouteItem route="/">Two</BreadcrumbsDropdownRouteItem>
-      <BreadcrumbsDropdownRouteItem route="/"
-        >Three</BreadcrumbsDropdownRouteItem
-      >
+    <BreadcrumbsRouteItem route="/R" label="Road" />
+    <BreadcrumbsDropdown route="/1">
+      <BreadcrumbsDropdownRouteItem route="/1" label="One" />
+      <BreadcrumbsDropdownRouteItem route="/2" label="Two" />
+      <BreadcrumbsDropdownRouteItem route="/3" label="Three" />
     </BreadcrumbsDropdown>
   </Breadcrumbs>
 {/snippet}
