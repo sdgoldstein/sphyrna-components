@@ -38,7 +38,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
             : "",
     );
 
-    let baseStyleClass = $derived(themedTWMerge("p-2 mb-2 outline-none"));
+    let baseStyleClass = $derived(themedTWMerge("outline-none"));
 
     let triggerStyleClass = $derived(
         themedTWMerge(
