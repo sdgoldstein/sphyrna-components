@@ -1,21 +1,14 @@
-<script module lang="ts">
+<script lang="ts">
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
         themedTWMerge,
     } from "../../../theme/theme.js";
-    import { type BaseComponentProps, buildTestId } from "../../component.js";
+    import { buildTestId } from "../../component.js";
     import Image from "../../core/Image.svelte";
+    import type { NavBarBrandLogoProps } from "./navBar.js";
 
-    export interface NavBarBrandLogoProps extends BaseComponentProps {
-        src: string;
-        alt: string;
-        aspectRatio?: number;
-    }
-</script>
-
-<script lang="ts">
     let {
         id,
         testid: testidProp,

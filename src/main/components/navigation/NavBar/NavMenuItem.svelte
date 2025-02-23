@@ -1,20 +1,14 @@
-<script module lang="ts">
+<script lang="ts">
     import { getContext } from "svelte";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
         themedTWMerge,
-    } from "../../theme/theme.js";
-    import { type ParentComponentProps, buildTestId } from "../../component.js";
-    import { SIZE_CONTEXT_NAME } from "./NavBar.svelte";
+    } from "../../../theme/theme.js";
+    import { buildTestId } from "../../component.js";
+    import { SIZE_CONTEXT_NAME, type NavMenuItemProps } from "./navBar.js";
 
-    export interface NavMenuItemProps extends ParentComponentProps {
-        href?: string;
-    }
-</script>
-
-<script lang="ts">
     let {
         id,
         testid: testidProp,

@@ -1,18 +1,9 @@
-<script module lang="ts">
-    interface TabProps extends ParentComponentProps {
-        name: string;
-        label: string;
-    }
-
-    export type { TabProps };
-</script>
-
 <script lang="ts">
     import { getContext } from "svelte";
     import { Tabs as TabsPrimitive } from "bits-ui";
     import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../../theme/theme.js";
-    import { buildTestId, type ParentComponentProps } from "../../component.js";
-    import type { TabDescriptor } from "./TabbedPane.svelte";
+    import { buildTestId } from "../../component.js";
+    import type { TabDescriptor, TabProps } from "./tabbedPane.js";
 
     let {
         id,

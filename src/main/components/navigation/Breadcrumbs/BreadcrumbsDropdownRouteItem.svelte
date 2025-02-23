@@ -3,16 +3,12 @@ Category -> NamedVariant -> Feature -> Element - -> State
 -->
 
 <script module lang="ts">
-    interface BreadcrumbsDropdownRouteItemProps extends ParentComponentProps {
-        route: string;
-    }
-
-    export type { BreadcrumbsDropdownRouteItemProps };
 </script>
 
 <script lang="ts">
-    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import { buildTestId } from "../../component.js";
     import SelectOption from "../../form/SelectOption.svelte";
+    import type { BreadcrumbsDropdownRouteItemProps } from "./breadcrumbs.js";
 
     let {
         id,

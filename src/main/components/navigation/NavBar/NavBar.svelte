@@ -1,4 +1,4 @@
-<script module lang="ts">
+<script lang="ts">
     import { setContext } from "svelte";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
@@ -7,16 +7,9 @@
         getBaseColorStyleForDynamicColorTheme,
         getDynamicColorTheme,
     } from "../../../theme/theme.js";
-    import { type ParentComponentProps, buildTestId } from "../../component.js";
+    import { buildTestId } from "../../component.js";
+    import { SIZE_CONTEXT_NAME, type NavBarProps } from "./navBar.js";
 
-    export interface NavBarProps extends ParentComponentProps {
-        size?: number;
-    }
-
-    export const SIZE_CONTEXT_NAME: string = "SIZE_CONTEXT";
-</script>
-
-<script lang="ts">
     let {
         id,
         testid: testidProp,

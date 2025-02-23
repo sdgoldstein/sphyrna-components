@@ -1,11 +1,8 @@
-<script module lang="ts">
-    import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../../theme/theme.js";
-    import { type ParentComponentProps, buildTestId } from "../../component.js";
-
-    export interface NavMenuProps extends ParentComponentProps {}
-</script>
-
 <script lang="ts">
+    import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../../theme/theme.js";
+    import { buildTestId } from "../../component.js";
+    import type { NavMenuProps } from "./navBar.js";
+
     let {
         id,
         testid: testidProp,

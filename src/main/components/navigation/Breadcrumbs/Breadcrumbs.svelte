@@ -3,13 +3,11 @@ Category -> NamedVariant -> Feature -> Element - -> State
 -->
 
 <script module lang="ts">
-    interface BreadcrumbsProps extends ParentComponentProps {}
-
-    export type { BreadcrumbsProps };
 </script>
 
 <script lang="ts">
-    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import { buildTestId } from "../../component.js";
+    import type { BreadcrumbsProps } from "./breadcrumbs.js";
 
     let {
         id,

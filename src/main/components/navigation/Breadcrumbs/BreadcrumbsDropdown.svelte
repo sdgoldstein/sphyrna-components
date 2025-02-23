@@ -2,18 +2,13 @@
 Category -> NamedVariant -> Feature -> Element - -> State
 -->
 
-<script module lang="ts">
-    interface BreadcrumbsDropdownProps extends ParentComponentProps {}
-
-    export type { BreadcrumbsDropdownProps };
-</script>
-
 <script lang="ts">
     import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../../theme/theme.js";
 
-    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import { buildTestId } from "../../component.js";
 
     import Select from "../../form/Select.svelte";
+    import type { BreadcrumbsDropdownProps } from "./breadcrumbs.js";
 
     let {
         id,

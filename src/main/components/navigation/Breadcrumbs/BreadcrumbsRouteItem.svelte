@@ -3,11 +3,6 @@ Category -> NamedVariant -> Feature -> Element - -> State
 -->
 
 <script module lang="ts">
-    interface BreadcrumbsRouteItemProps extends ParentComponentProps {
-        route: string;
-    }
-
-    export type { BreadcrumbsRouteItemProps };
 </script>
 
 <script lang="ts">
@@ -18,7 +13,8 @@ Category -> NamedVariant -> Feature -> Element - -> State
         themedTWMerge,
     } from "../../../theme/theme.js";
 
-    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import { buildTestId } from "../../component.js";
+    import type { BreadcrumbsRouteItemProps } from "./breadcrumbs.js";
 
     let {
         id,
