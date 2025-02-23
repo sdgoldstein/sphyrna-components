@@ -41,10 +41,10 @@
 )}
     <Form onsubmit={() => {}}>
         <Select name="select_name" placeholder="Select an Item" {...args}>
-            <SelectOption value="one">One</SelectOption>
-            <SelectOption value="two">Two</SelectOption>
-            <SelectOption value="three">Three</SelectOption>
-            <SelectOption value="four">Fourth Option</SelectOption>
+            <SelectOption value="one" label="One" />
+            <SelectOption value="two" label="Two" />
+            <SelectOption value="three" label="Three" />
+            <SelectOption value="four" label="Fourth Option" />
         </Select>
     </Form>
 {/snippet}

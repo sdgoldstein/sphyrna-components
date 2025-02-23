@@ -1,7 +1,6 @@
-<!-- FIXME - Need to look at object type of onValueChange parameter -->
-<script module lang="ts">
+<script lang="ts">
     import { Select as SelectPrimitive } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../component.js";
+    import { buildTestId } from "../component.js";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getDynamicColorTheme,
@@ -9,7 +8,7 @@
         themedTWMerge,
         type DesignTokenColorVariantLookup,
     } from "../../theme/theme.js";
-    import { getContext } from "svelte";
+    import { getContext, setContext } from "svelte";
     import type { Writable } from "svelte/store";
     import {
         type FormError,
@@ -17,26 +16,15 @@
         FORM_VALIDATOR_CONTEXT_KEY,
         SimpleFormError,
     } from "./form.js";
-    import type { ZodType } from "zod";
+
     import FormElementErrorMessage from "./FormElementErrorMessage.svelte";
     import { ChevronDown } from "lucide-svelte";
+    import type { SelectOptionDescriptor, SelectProps } from "./select.js";
 
-    export interface SelectProps extends ParentComponentProps {
-        name: string;
-        selected?: { value: any; label: string };
-        placeholder: string;
-        schema?: ZodType;
-        disabled?: boolean;
-        error?: string;
-        onValueChange?: (newValue: unknown) => void;
-    }
-</script>
-
-<script lang="ts">
     let {
         id,
         testid: testidProp,
-        selected = $bindable(),
+        value = $bindable(),
         name,
         placeholder,
         schema,
@@ -92,12 +80,15 @@
     );
 
     let triggerStyleClass = $derived(
-        themedTWMerge(baseStyleClass, "flex items-center justify-between"),
+        themedTWMerge(
+            baseStyleClass,
+            "flex items-center justify-between data-placeholder:text-surface-text-placeholder",
+        ),
     );
     let contentStyleClass = $derived(
         themedTWMerge(
             baseStyleClass,
-            "relative z-50 overflow-hidden shadow-md overflow-y-auto",
+            "relative z-50 overflow-hidden shadow-md overflow-y-auto w-[var(--bits-select-anchor-width)] min-w-[var(--bits-select-anchor-width)]",
         ),
     );
 
@@ -107,31 +98,41 @@
             ? `border-color:${getDynamicColorTheme(dynamicColorTheme, colorVariant).coreColor} !important;`
             : "",
     );
+
+    const selectOptions: SelectOptionDescriptor[] = $state([]);
+    setContext("foo", selectOptions);
+
+    const selectedLabel = $derived(
+        selectOptions.find((item) => item.value === value)?.label,
+    );
 </script>
 
 <FormElementErrorMessage {errors} />
 <SelectPrimitive.Root
     {id}
     data-testid={testId}
-    bind:selected
+    type="single"
+    {name}
+    {value}
     {...restProps}
     {disabled}
-    onSelectedChange={(selected: unknown | undefined) => {
+    onValueChange={(newValue: string) => {
+        value = newValue;
+
         $formValidator.clearErrors(name);
         errorProp = undefined;
 
         // FIXME - force update
         $formValidator = $formValidator;
 
-        if (selected != undefined) {
-            onValueChange(selected);
-        }
+        onValueChange(newValue);
     }}
 >
     <SelectPrimitive.Trigger
         class={triggerStyleClass}
         {id}
         data-testid={testId}
+        {name}
         {style}
         onfocus={() => {
             style = onFocusStyle;
@@ -140,16 +141,14 @@
             style = "";
         }}
     >
-        <SelectPrimitive.Value
-            {placeholder}
-            class="data_placeholder:text-surface-text-placeholder"
-        />
+        {selectedLabel ? selectedLabel : placeholder}
         <ChevronDown class="h-4 w-4 opacity-50" />
     </SelectPrimitive.Trigger>
-    <SelectPrimitive.Content class={contentStyleClass} fitViewport>
-        <div class="w-full p-1">
-            {@render providedChildren(id, testId)}
-        </div>
-    </SelectPrimitive.Content>
-    <SelectPrimitive.Input {name} />
+    <SelectPrimitive.Portal>
+        <SelectPrimitive.Content class={contentStyleClass}>
+            <div class="w-full p-1">
+                {@render providedChildren(id, testId)}
+            </div>
+        </SelectPrimitive.Content>
+    </SelectPrimitive.Portal>
 </SelectPrimitive.Root>
