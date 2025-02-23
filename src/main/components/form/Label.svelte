@@ -1,13 +1,7 @@
-<script module lang="ts">
-    import { Label } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../component.js";
-
-    export interface LabelProps extends ParentComponentProps {
-        for: string;
-    }
-</script>
-
 <script lang="ts">
+    import { Label } from "bits-ui";
+    import { buildTestId } from "../component.js";
+    import type { LabelProps } from "./label.js";
     let {
         id,
         testid: testidProp,

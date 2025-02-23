@@ -1,14 +1,8 @@
 <script lang="ts">
-    import { buildTestId, type ParentComponentProps } from "../component.js";
-    import type { Snippet } from "svelte";
-    import FlexModal from "./FlexModal.svelte";
+    import { buildTestId } from "../component.js";
 
-    interface ModalProps extends ParentComponentProps {
-        open: boolean;
-        title: Snippet;
-        description: Snippet;
-        footer?: Snippet<[string | undefined, string | undefined]>;
-    }
+    import FlexModal from "./FlexModal.svelte";
+    import type { ModalProps } from "./modal.js";
 
     let {
         id,

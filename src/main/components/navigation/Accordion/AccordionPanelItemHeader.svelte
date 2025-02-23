@@ -1,21 +1,18 @@
 <!--
 Category -> NamedVariant -> Feature -> Element - -> State
 -->
-<script module lang="ts">
-    export interface AccordionPanelItemHeaderProps
-        extends ParentComponentProps {}
-</script>
-
 <script lang="ts">
     import { Accordion as AccordionPrimitive } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import { buildTestId } from "../../component.js";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         themedTWMerge,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
+        isValidDesignTokenColorVariant,
     } from "../../../theme/theme.js";
     import { ChevronDown } from "lucide-svelte";
+    import type { AccordionPanelItemHeaderProps } from "./accordion.js";
 
     let {
         id,
@@ -40,7 +37,9 @@ Category -> NamedVariant -> Feature -> Element - -> State
     let triggerStyleClass = $derived(
         themedTWMerge(
             "w-full p-1 flex items-center justify-between [&[data-state=open]>svg]:rotate-180 ",
-            getBaseColorClassesForColorCategoryStyleVariant(colorVariant),
+            isValidDesignTokenColorVariant(colorVariant)
+                ? getBaseColorClassesForColorCategoryStyleVariant(colorVariant)
+                : "",
         ),
     );
 </script>

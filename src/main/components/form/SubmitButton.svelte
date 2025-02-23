@@ -1,13 +1,7 @@
-<script module lang="ts">
-    import { buildTestId, type ParentComponentProps } from "../component.js";
-
-    export interface SubmitButtonProps extends ParentComponentProps {
-        form?: string;
-    }
-</script>
-
 <script lang="ts">
+    import { buildTestId } from "../component.js";
     import Button from "../core/Button.svelte";
+    import type { SubmitButtonProps } from "./submitButton.js";
 
     let {
         id,

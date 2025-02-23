@@ -1,5 +1,5 @@
 import type {ZodType} from "zod";
-import type {ParentComponentProps} from "../component";
+import type {BaseComponentProps, ParentComponentProps} from "../component";
 
 interface SelectProps extends ParentComponentProps
 {
@@ -12,9 +12,15 @@ interface SelectProps extends ParentComponentProps
     onValueChange?: (newValue: unknown) => void;
 }
 
+interface SelectOptionProps extends BaseComponentProps
+{
+    value: any;
+    label: string;
+}
+
 interface SelectOptionDescriptor
 {
     value: any;
     label: string;
 }
-export type{SelectProps, SelectOptionDescriptor};
+export type{SelectProps, SelectOptionProps, SelectOptionDescriptor};

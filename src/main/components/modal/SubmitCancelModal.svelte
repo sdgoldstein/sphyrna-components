@@ -1,26 +1,12 @@
-<script module lang="ts">
-    import { buildTestId, type ParentComponentProps } from "../component.js";
-
-    import SubmitButton from "../form/SubmitButton.svelte";
-
-    export type FormSubmitEvent = SubmitEvent & {
-        currentTarget: EventTarget & HTMLFormElement;
-    };
-
-    export interface SubmitCancelModalProps extends ParentComponentProps {
-        open: boolean;
-        title: string;
-        description: string;
-        actionButtonText: string;
-        onsubmit: FormSubmissionHandler;
-    }
-</script>
-
 <script lang="ts">
     import Modal from "./Modal.svelte";
     import CancelButton from "./CancelButton.svelte";
-    import type { FormSubmissionHandler } from "../form/form.js";
+    import { buildTestId } from "../component.js";
+
+    import SubmitButton from "../form/SubmitButton.svelte";
+
     import Form from "../form/Form.svelte";
+    import type { SubmitCancelModalProps } from "./submitCancelModal";
 
     function close() {
         open = false;

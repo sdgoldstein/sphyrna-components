@@ -1,14 +1,9 @@
 <script lang="ts">
     import { Dialog as DialogPrimitive } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../component.js";
-    import type { Snippet } from "svelte";
-    import { X } from "lucide-svelte";
+    import { buildTestId } from "../component.js";
 
-    interface FlexModalProps extends ParentComponentProps {
-        open: boolean;
-        header?: Snippet<[string | undefined, string | undefined]>;
-        footer?: Snippet<[string | undefined, string | undefined]>;
-    }
+    import { X } from "lucide-svelte";
+    import type { FlexModalProps } from "./flexModal.js";
 
     let {
         id,

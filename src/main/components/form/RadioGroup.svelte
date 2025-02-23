@@ -1,6 +1,6 @@
-<script module lang="ts">
+<script lang="ts">
     import { RadioGroup as RadioGroupPrimitive } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../component.js";
+    import { buildTestId } from "../component.js";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorClassesForColorCategoryStyleVariant,
@@ -14,20 +14,10 @@
         FORM_VALIDATOR_CONTEXT_KEY,
         SimpleFormError,
     } from "./form.js";
-    import type { ZodType } from "zod";
+
     import FormElementErrorMessage from "./FormElementErrorMessage.svelte";
+    import type { RadioGroupProps } from "./radioGroup.js";
 
-    export interface RadioGroupProps extends ParentComponentProps {
-        name: string;
-        value?: string;
-        schema?: ZodType;
-        disabled?: boolean;
-        error?: string;
-        onValueChange?: (newValue: string) => void;
-    }
-</script>
-
-<script lang="ts">
     let {
         id,
         testid: testidProp,

@@ -1,15 +1,8 @@
-<script module lang="ts">
-    import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../../theme/theme";
-    import { buildTestId, type BaseComponentProps } from "../../component";
-    import type { ColumnDefinition, TableDataSource } from "./datatableModel";
-
-    export interface DatatableProps extends BaseComponentProps {
-        columnDefinitions: ColumnDefinition[];
-        rowData: TableDataSource;
-    }
-</script>
-
 <script lang="ts">
+    import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../../theme/theme";
+    import { buildTestId } from "../../component";
+    import type { DatatableProps } from "./datatable";
+
     let {
         id,
         testid: testidProp,

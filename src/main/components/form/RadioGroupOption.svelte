@@ -1,4 +1,4 @@
-<script module lang="ts">
+<script lang="ts">
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getDynamicColorTheme,
@@ -6,17 +6,11 @@
         themedTWMerge,
         type DesignTokenColorVariantLookup,
     } from "../../theme/theme.js";
-    import { buildTestId, type ParentComponentProps } from "../component.js";
+    import { buildTestId } from "../component.js";
     import { RadioGroup as RadioGroupPrimitive } from "bits-ui";
     import RadioGroupCheckedStateFetcher from "./RadioGroupCheckedStateFetcher.svelte";
+    import type { RadioGroupOptionProps } from "./radioGroup.js";
 
-    export interface RadioGroupOptionProps extends ParentComponentProps {
-        value: string;
-        disabled?: boolean;
-    }
-</script>
-
-<script lang="ts">
     let {
         id,
         testid: testidProp,

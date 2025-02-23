@@ -1,15 +1,11 @@
 <!--
 Category -> NamedVariant -> Feature -> Element - -> State
 -->
-<script module lang="ts">
-    export interface AccordionPanelProps extends ParentComponentProps {
-        activeItemName?: string;
-    }
-</script>
 
 <script lang="ts">
     import { Accordion as AccordionPrimitive } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import { buildTestId } from "../../component.js";
+    import type { AccordionPanelProps } from "./accordion.js";
 
     let {
         id,
