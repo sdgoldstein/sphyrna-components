@@ -4,9 +4,9 @@
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
         themedTWMerge,
-    } from "../../theme/theme.js";
-    import { type BaseComponentProps, buildTestId } from "../component.js";
-    import Image from "../core/Image.svelte";
+    } from "../../../theme/theme.js";
+    import { type BaseComponentProps, buildTestId } from "../../component.js";
+    import Image from "../../core/Image.svelte";
 
     export interface NavBarBrandLogoProps extends BaseComponentProps {
         src: string;

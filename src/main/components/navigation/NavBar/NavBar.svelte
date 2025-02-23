@@ -6,8 +6,8 @@
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
         getDynamicColorTheme,
-    } from "../../theme/theme.js";
-    import { type ParentComponentProps, buildTestId } from "../component.js";
+    } from "../../../theme/theme.js";
+    import { type ParentComponentProps, buildTestId } from "../../component.js";
 
     export interface NavBarProps extends ParentComponentProps {
         size?: number;

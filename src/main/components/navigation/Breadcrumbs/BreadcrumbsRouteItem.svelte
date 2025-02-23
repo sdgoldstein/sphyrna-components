@@ -16,9 +16,9 @@ Category -> NamedVariant -> Feature -> Element - -> State
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorStyleForDynamicColorTheme,
         themedTWMerge,
-    } from "../../theme/theme.js";
+    } from "../../../theme/theme.js";
 
-    import { buildTestId, type ParentComponentProps } from "../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
 
     let {
         id,

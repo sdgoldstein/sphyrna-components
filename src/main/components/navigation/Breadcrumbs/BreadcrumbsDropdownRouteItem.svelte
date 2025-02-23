@@ -11,8 +11,8 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 
 <script lang="ts">
-    import { buildTestId, type ParentComponentProps } from "../component.js";
-    import SelectOption from "../form/SelectOption.svelte";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import SelectOption from "../../form/SelectOption.svelte";
 
     let {
         id,

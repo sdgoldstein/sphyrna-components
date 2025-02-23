@@ -22,15 +22,15 @@
 </script>
 
 <script lang="ts">
-  import NavBar from "../../main/components/NavBar/NavBar.svelte";
-
-  import NavMenu from "../../main/components/NavBar/NavMenu.svelte";
-  import NavMenuItem from "../../main/components/NavBar/NavMenuItem.svelte";
-
-  import NavBarBrand from "../../main/components/NavBar/NavBarBrand.svelte";
-  import NavBarBrandLogo from "../../main/components/NavBar/NavBarBrandLogo.svelte";
-  import NavBarBrandTitle from "../../main/components/NavBar/NavBarBrandTitle.svelte";
   import type { DynamicColorTheme } from "../../../../main/theme/theme";
+  import {
+    NavBar,
+    NavBarBrand,
+    NavBarBrandLogo,
+    NavBarBrandTitle,
+    NavMenu,
+    NavMenuItem,
+  } from "../../../../main";
 
   setTemplate(template);
 </script>

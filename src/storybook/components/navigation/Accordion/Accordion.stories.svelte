@@ -1,15 +1,15 @@
 <script module lang="ts">
+  import AccordionPanel from "./../../../../../build/dist/components/Accordian/AccordionPanel.svelte";
   import {
     defineMeta,
     setTemplate,
     type Args,
     type StoryContext,
   } from "@storybook/addon-svelte-csf";
-  import AccordionPanel from "../../main/components/Accordian/AccordionPanel.svelte";
-  import AccordionPanelItem from "../../main/components/Accordian/AccordionPanelItem.svelte";
-  import AccordionPanelItemHeader from "../../main/components/Accordian/AccordionPanelItemHeader.svelte";
-  import AccordionPanelItemContent from "../../main/components/Accordian/AccordionPanelItemContent.svelte";
   import type { DynamicColorTheme } from "../../../../main/theme/theme";
+  import AccordionPanelItem from "../../../../main/components/navigation/Accordian/AccordionPanelItem.svelte";
+  import AccordionPanelItemHeader from "../../../../main/components/navigation/Accordian/AccordionPanelItemHeader.svelte";
+  import AccordionPanelItemContent from "../../../../main/components/navigation/Accordian/AccordionPanelItemContent.svelte";
 
   const { Story } = defineMeta({
     component: AccordionPanel,

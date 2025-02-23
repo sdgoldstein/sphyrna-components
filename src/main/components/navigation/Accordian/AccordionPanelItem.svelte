@@ -9,8 +9,8 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
 <script lang="ts">
     import { Accordion as AccordionPrimitive } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../component.js";
-    import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../theme/theme.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../../theme/theme.js";
 
     let {
         id,

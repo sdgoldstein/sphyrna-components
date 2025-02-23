@@ -88,7 +88,7 @@
     let contentStyleClass = $derived(
         themedTWMerge(
             baseStyleClass,
-            "relative z-50 overflow-hidden shadow-md overflow-y-auto w-[var(--bits-select-anchor-width)] min-w-[var(--bits-select-anchor-width)]",
+            "relative z-50 overflow-hidden shadow-md overflow-y-auto w-[var(--bits-select-anchor-width)]",
         ),
     );
 

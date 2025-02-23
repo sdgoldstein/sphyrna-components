@@ -1,16 +1,19 @@
-<script module lang="ts"     >
-  import BreadcrumbsDropdown from "../../main/components/Breadcrumbs/BreadcrumbsDropdown.svelte";
-  import BreadcrumbsDropdownRouteItem from "../../main/components/Breadcrumbs/BreadcrumbsDropdownRouteItem.svelte";
-  import BreadcrumbsRouteItem from "../../main/components/Breadcrumbs/BreadcrumbsRouteItem.svelte";
+<script module lang="ts">
+  import Breadcrumbs from "./../../../../../build/dist/components/Breadcrumbs/Breadcrumbs.svelte";
 
   import type { DynamicColorTheme } from "../../../../main/theme/theme";
-  import Breadcrumbs from "./../../main/components/Breadcrumbs/Breadcrumbs.svelte";
+
   import {
     defineMeta,
     setTemplate,
     type Args,
     type StoryContext,
   } from "@storybook/addon-svelte-csf";
+  import BreadcrumbsRouteItem from "../../../../main/components/navigation/Breadcrumbs/BreadcrumbsRouteItem.svelte";
+  import {
+    BreadcrumbsDropdown,
+    BreadcrumbsDropdownRouteItem,
+  } from "../../../../main";
 
   const { Story } = defineMeta({
     component: Breadcrumbs,

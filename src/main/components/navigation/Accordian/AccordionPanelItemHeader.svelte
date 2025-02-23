@@ -8,13 +8,13 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
 <script lang="ts">
     import { Accordion as AccordionPrimitive } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         themedTWMerge,
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
-    } from "../../theme/theme.js";
+    } from "../../../theme/theme.js";
     import { ChevronDown } from "lucide-svelte";
 
     let {

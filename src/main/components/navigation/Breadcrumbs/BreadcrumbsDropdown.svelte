@@ -9,11 +9,11 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 
 <script lang="ts">
-    import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../theme/theme.js";
+    import { DEFAULT_COLOR_CATEGORY_VARIANT } from "../../../theme/theme.js";
 
-    import { buildTestId, type ParentComponentProps } from "../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
 
-    import Select from "../form/Select.svelte";
+    import Select from "../../form/Select.svelte";
 
     let {
         id,

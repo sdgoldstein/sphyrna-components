@@ -1,5 +1,5 @@
 <script module lang="ts">
-    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import { buildTestId, type ParentComponentProps } from "../component.js";
 
     import SubmitButton from "../form/SubmitButton.svelte";
 

@@ -5,8 +5,8 @@
         getBaseColorClassesForColorCategoryStyleVariant,
         getBaseColorStyleForDynamicColorTheme,
         themedTWMerge,
-    } from "../../theme/theme.js";
-    import { buildTestId, type ParentComponentProps } from "../component.js";
+    } from "../../../theme/theme.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
     import { SIZE_CONTEXT_NAME } from "./NavBar.svelte";
 
     export interface NavBarBrandTitleProps extends ParentComponentProps {}

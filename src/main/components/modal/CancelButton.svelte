@@ -1,5 +1,5 @@
 <script module lang="ts">
-    import { type BaseComponentProps } from "../../component.js";
+    import { type BaseComponentProps } from "../component.js";
 
     export interface CancelButtonProps extends BaseComponentProps {
         oncancel: (event: MouseEvent) => void;
@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-    import Button from "../Button.svelte";
+    import Button from "../core/Button.svelte";
 
     let {
         id,

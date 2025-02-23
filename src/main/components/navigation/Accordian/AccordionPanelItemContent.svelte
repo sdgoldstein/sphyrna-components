@@ -8,7 +8,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
 <script lang="ts">
     import { Accordion as AccordionPrimitive } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../component.js";
+    import { buildTestId, type ParentComponentProps } from "../../component.js";
 
     let {
         id,

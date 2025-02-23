@@ -1,36 +1,36 @@
-
-
 <script lang="ts">
-    import {buildTestId, type ParentComponentProps} from "../../component.js"
+    import { buildTestId, type ParentComponentProps } from "../component.js";
     import type { Snippet } from "svelte";
     import FlexModal from "./FlexModal.svelte";
 
     interface ModalProps extends ParentComponentProps {
         open: boolean;
-        title:Snippet;
-        description:Snippet;
-        footer?:Snippet<[string|undefined, string|undefined]>;
+        title: Snippet;
+        description: Snippet;
+        footer?: Snippet<[string | undefined, string | undefined]>;
     }
 
     let {
         id,
-        testid:testidProp, 
+        testid: testidProp,
         open = $bindable(),
         title,
         description,
-        children:providedChildren,
-        footer:providedFooter,
+        children: providedChildren,
+        footer: providedFooter,
     }: ModalProps = $props();
 
-    let testId:string|undefined=$derived(buildTestId(id, testidProp));
+    let testId: string | undefined = $derived(buildTestId(id, testidProp));
 </script>
 
 <FlexModal bind:open {id} testid={testId}>
     {#snippet header()}
-        <div class="flex w-full py-2 items-center justify-start text-lg font-bold">
+        <div
+            class="flex w-full py-2 items-center justify-start text-lg font-bold"
+        >
             {@render title()}
         </div>
-    {/snippet} 
+    {/snippet}
     <div class="flex flex-col justify-start w-full">
         <div class="flex py-2 w-full">
             {@render description()}
@@ -45,6 +45,3 @@
         </div>
     {/snippet}
 </FlexModal>
-
-
-
