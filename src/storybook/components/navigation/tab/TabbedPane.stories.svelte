@@ -8,7 +8,7 @@
     type Args,
     type StoryContext,
   } from "@storybook/addon-svelte-csf";
-  import type { DynamicColorTheme } from "../../../../main";
+  import type { DynamicColorTheme } from "../../../../main/theme/theme";
 
   const { Story } = defineMeta({
     component: TabbedPane,

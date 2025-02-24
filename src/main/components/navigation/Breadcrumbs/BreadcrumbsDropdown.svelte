@@ -6,12 +6,10 @@ Category -> NamedVariant -> Feature -> Element - -> State
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         getBaseColorStyleForDynamicColorTheme,
-        isValidDesignTokenColorVariant,
         themedTWMerge,
     } from "../../../theme/theme.js";
 
     import { buildTestId } from "../../component.js";
-    import Form from "../../form/Form.svelte";
 
     import { Select as SelectPrimitive } from "bits-ui";
     import type {
@@ -86,13 +84,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 
 <li {id} data-testid={testId} class={styleClass} {...restProps}>
-    <SelectPrimitive.Root
-        {id}
-        data-testid={testId}
-        type="single"
-        bind:value={route}
-        {...restProps}
-    >
+    <SelectPrimitive.Root type="single" bind:value={route} {...restProps}>
         <SelectPrimitive.Trigger
             class={triggerStyleClass}
             {id}

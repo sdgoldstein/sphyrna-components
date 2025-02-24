@@ -95,7 +95,13 @@ function getBaseColorClassesForColorCategoryStyleVariant(styleVariant: string): 
         throw new Error(`Invalid color variant: ${styleVariant}`);
     }
 
-    return COLOR_VARIANTS_TO_BASE_CLASSES[styleVariant];
+    const valueToReturn = COLOR_VARIANTS_TO_BASE_CLASSES[styleVariant];
+    if (valueToReturn === undefined)
+    {
+        throw new Error(`Color variant not found: ${styleVariant}`);
+    }
+
+    return valueToReturn;
 }
 
 function getBorderColorClassesForColorCategoryStyleVariant(styleVariant: string): string
@@ -105,7 +111,12 @@ function getBorderColorClassesForColorCategoryStyleVariant(styleVariant: string)
         throw new Error(`Invalid color variant: ${styleVariant}`);
     }
 
-    return COLOR_VARIANTS_TO_BORDER_CLASSES[styleVariant];
+    const valueToReturn = COLOR_VARIANTS_TO_BORDER_CLASSES[styleVariant];
+    if (valueToReturn === undefined)
+    {
+        throw new Error(`Color variant not found: ${styleVariant}`);
+    }
+    return valueToReturn;
 }
 
 function getDynamicColorTheme(dynamicTheme: DynamicTheme, styleVariant: string): DynamicColorTheme

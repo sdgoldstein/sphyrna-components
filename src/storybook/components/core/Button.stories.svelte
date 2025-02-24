@@ -1,5 +1,4 @@
 <script module lang="ts">
-  import Button from "../../../main/components/core/Button.svelte";
   import {
     defineMeta,
     setTemplate,
@@ -7,6 +6,7 @@
     type StoryContext,
   } from "@storybook/addon-svelte-csf";
   import type { DynamicColorTheme } from "../../../main/theme/theme";
+  import { Button } from "../../../main";
 
   const { Story } = defineMeta({
     component: Button,

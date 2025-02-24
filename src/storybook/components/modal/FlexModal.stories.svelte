@@ -1,5 +1,5 @@
 <script module>
-  import Button from "../../../main/components/core/Button.svelte";
+  import { Button } from "../../../main";
   import FlexModal from "./../../../main/components/modal/FlexModal.svelte";
 
   import { defineMeta } from "@storybook/addon-svelte-csf";

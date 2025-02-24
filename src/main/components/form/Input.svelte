@@ -1,7 +1,6 @@
 <script lang="ts">
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
-        getBaseColorClassesForColorCategoryStyleVariant,
         getDynamicColorTheme,
         isValidDesignTokenColorVariant,
         themedTWMerge,

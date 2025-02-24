@@ -109,8 +109,6 @@
 
 <FormElementErrorMessage {errors} />
 <SelectPrimitive.Root
-    {id}
-    data-testid={testId}
     type="single"
     {name}
     {value}

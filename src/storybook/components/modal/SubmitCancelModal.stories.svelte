@@ -4,13 +4,14 @@
     import Input from "../../../main/components/form/Input.svelte";
 
     import SubmitCancelModal from "../../../main/components/modal/SubmitCancelModal.svelte";
-    import Button from "../../../main/components/core/Button.svelte";
+
     import { zExtended } from "../../../main/components/form/form.js";
     import Select from "../../../main/components/form/Select.svelte";
     import SelectOption from "../../../main/components/form/SelectOption.svelte";
 
     import RadioGroupOption from "../../../main/components/form/RadioGroupOption.svelte";
     import RadioGroup from "../../../main/components/form/RadioGroup.svelte";
+    import { Button } from "../../../main";
 
     const { Story } = defineMeta({
         component: SubmitCancelModal,
@@ -48,10 +49,10 @@
             name="name_select_name"
             placeholder="Select an Item"
         >
-            <SelectOption value="one">One</SelectOption>
-            <SelectOption value="two">Two</SelectOption>
-            <SelectOption value="three">Three</SelectOption>
-            <SelectOption value="four">Fourth Option</SelectOption>
+            <SelectOption value="one" label="One" />
+            <SelectOption value="two" label="Two" />
+            <SelectOption value="three" label="Three" />
+            <SelectOption value="four" label="Fourth Option" />
         </Select>
 
         <Label for="name_radio_id">Select a Radio</Label>

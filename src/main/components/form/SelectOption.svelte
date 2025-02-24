@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { buildTestId } from "../component.js";
     import { Select as SelectPrimitive } from "bits-ui";
     import { Check } from "lucide-svelte";
     import type {
@@ -15,7 +14,6 @@
         label,
         ...restProps
     }: SelectOptionProps = $props();
-    let testId = $derived(buildTestId(id, testidProp));
 
     getContext<SelectOptionDescriptor[]>("foo").push({
         value: value,

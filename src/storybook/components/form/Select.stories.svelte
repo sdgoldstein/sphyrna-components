@@ -25,12 +25,12 @@
         ]),
     };
 
-    let selectedValue = { value: "three", label: "Three" };
+    let selectedValue = "three";
 </script>
 
 <script lang="ts">
     import SelectOption from "../../../main/components/form/SelectOption.svelte";
-    import type { DynamicColorTheme } from "../../../main";
+    import type { DynamicColorTheme } from "../../../main/theme/theme";
 
     setTemplate(template);
 </script>
@@ -56,14 +56,14 @@
     name="Dynamic Color Theme"
     args={{ colorVariant: "foo", dynamicColorTheme: dynamicColorTheme }}
 />
-<Story name="Selected Value" args={{ selected: selectedValue }} />
+<Story name="Selected Value" args={{ value: selectedValue }} />
 <Story name="With Error" args={{ error: "You messed up!" }} />
 <Story
     name="Disabled"
     args={{
         colorVariant: "secondary",
         disabled: true,
-        selected: selectedValue,
+        value: selectedValue,
     }}
 />
 <Story

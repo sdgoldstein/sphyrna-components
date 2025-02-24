@@ -1,8 +1,6 @@
 <script lang="ts">
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
-        getBaseColorClassesForColorCategoryStyleVariant,
-        isValidDesignTokenColorVariant,
         themedTWMerge,
     } from "../../theme/theme.js";
 
@@ -105,14 +103,14 @@
         }}
         readonly
     />
-    <Label {colorVariant} {dynamicColorTheme} for={id}
+    <Label {colorVariant} {dynamicColorTheme} for={id!}
         ><div class="flex flex-col">
             <Button
                 {colorVariant}
                 {dynamicColorTheme}
                 onclick={() => {
                     // FIXME - only allows one file input on page
-                    const fileInput = document.getElementById(id);
+                    const fileInput = document.getElementById(id!);
                     if (fileInput === null) {
                         throw new Error("Could not find file element");
                     }
@@ -135,7 +133,7 @@
         $formValidator = $formValidator;
 
         // FIXME - only allows one file input on page
-        const fileInput = document.getElementById(id) as HTMLInputElement;
+        const fileInput = document.getElementById(id!) as HTMLInputElement;
         if (fileInput === null) {
             throw new Error("Could not find file element");
         }

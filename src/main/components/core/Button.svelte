@@ -20,6 +20,8 @@ Category -> NamedVariant -> Feature -> Element - -> State
         testid: testidProp,
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
+        type = "button",
+        form,
         classOverride = "",
         children: providedChildren,
         ...restProps
@@ -59,7 +61,8 @@ Category -> NamedVariant -> Feature -> Element - -> State
 <ButtonPrimitive.Root
     {id}
     data-testid={testId}
-    type="button"
+    {type}
+    {form}
     class={styleClass}
     {style}
     {...restProps}

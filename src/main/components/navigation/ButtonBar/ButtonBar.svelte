@@ -4,7 +4,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
 <script lang="ts">
     import { Toolbar as ToolbarPrimitive } from "bits-ui";
-    import { buildTestId, type ParentComponentProps } from "../../component.js";
+    import { buildTestId } from "../../component.js";
     import {
         DEFAULT_COLOR_CATEGORY_VARIANT,
         themedTWMerge,

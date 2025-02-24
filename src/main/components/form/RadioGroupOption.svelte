@@ -45,14 +45,15 @@
      * This mutation listener is used in combination with the checked state fetcher to set and unset the style when a radio button is seleted and unselected.  Specifically, this function handles when the radio button is unselected and the fetcher handles it when it's selected
      * @param mutationsList
      */
-    function mutationCallback(mutationsList) {
+    function mutationCallback(mutationsList: MutationRecord[]) {
         for (const mutation of mutationsList) {
             if (
                 mutation.type === "attributes" &&
                 mutation.attributeName === "data-state"
             ) {
                 if (
-                    mutation.target.getAttribute("data-state") === "unchecked"
+                    (mutation.target as Element).getAttribute("data-state") ===
+                    "unchecked"
                 ) {
                     fetchedChecked = false;
                 } else {
