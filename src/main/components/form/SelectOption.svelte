@@ -6,29 +6,33 @@
         SelectOptionProps,
     } from "./select.js";
     import { getContext } from "svelte";
+    import { buildTestId } from "../component.js";
 
     let {
         id,
         testid: testidProp,
-        value,
-        label,
+        value: providedValue,
+        typeaheadIndex: label,
+        children: providedChildren,
         ...restProps
     }: SelectOptionProps = $props();
 
-    getContext<SelectOptionDescriptor[]>("foo").push({
-        value: value,
-        label: label,
+    let testId = $derived(buildTestId(id, testidProp));
+    getContext<SelectOptionDescriptor[]>("optionRegistration").push({
+        value: providedValue,
+        typeaheadIndex: label,
+        children: providedChildren,
     } as SelectOptionDescriptor);
 </script>
 
 <SelectPrimitive.Item
     class="flex w-full select-none rounded-sm px-2 py-1 items-center justify-between"
-    {value}
+    value={providedValue.toString()}
     {label}
     {...restProps}
 >
     {#snippet children({ selected })}
-        {label}
+        {@render providedChildren(id, testId)}
         {#if selected}
             <Check class="h-4 w-4" />
         {/if}

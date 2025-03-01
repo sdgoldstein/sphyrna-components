@@ -24,9 +24,9 @@
     let {
         id,
         testid: testidProp,
-        value = $bindable(),
+        value: providedValue = $bindable(),
         name,
-        placeholder,
+        placeholder = "Select an Option",
         schema,
         disabled = false,
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
@@ -88,7 +88,7 @@
     let contentStyleClass = $derived(
         themedTWMerge(
             baseStyleClass,
-            "relative z-50 overflow-hidden shadow-md overflow-y-auto w-[var(--bits-select-anchor-width)]",
+            "relative z-50 overflow-hidden shadow-md overflow-y-auto w-[var(--bits-select-anchor-width)] p-1",
         ),
     );
 
@@ -100,21 +100,18 @@
     );
 
     const selectOptions: SelectOptionDescriptor[] = $state([]);
-    setContext("foo", selectOptions);
+    setContext("optionRegistration", selectOptions);
 
-    const selectedLabel = $derived(
-        selectOptions.find((item) => item.value === value)?.label,
+    let value = $state(providedValue?.toString());
+    const selectedOption: SelectOptionDescriptor | undefined = $derived(
+        selectOptions.find((item) => item.value === value),
     );
-</script>
 
-<FormElementErrorMessage {errors} />
-<SelectPrimitive.Root
-    type="single"
-    {name}
-    {value}
-    {...restProps}
-    {disabled}
-    onValueChange={(newValue: string) => {
+    function getValue(): string {
+        return selectedOption ? selectedOption.value.toString() : "";
+    }
+
+    function setValue(newValue: string) {
         value = newValue;
 
         $formValidator.clearErrors(name);
@@ -123,8 +120,31 @@
         // FIXME - force update
         $formValidator = $formValidator;
 
-        onValueChange(newValue);
-    }}
+        if (selectedOption) {
+            // FIXME - Will this ever not be defined?
+            providedValue = selectedOption.value;
+            onValueChange(providedValue);
+        }
+    }
+
+    function addHiddenStyleIfClosed(
+        wrapperProps: Record<string, unknown>,
+        open: boolean,
+    ) {
+        if (!open) {
+            wrapperProps.style = "display: none";
+        }
+        return wrapperProps;
+    }
+</script>
+
+<FormElementErrorMessage {errors} />
+<SelectPrimitive.Root
+    type="single"
+    {name}
+    bind:value={getValue, setValue}
+    {...restProps}
+    {disabled}
 >
     <SelectPrimitive.Trigger
         class={triggerStyleClass}
@@ -139,14 +159,23 @@
             style = "";
         }}
     >
-        {selectedLabel ? selectedLabel : placeholder}
+        {#if selectedOption}
+            {@render selectedOption.children()}
+        {:else}
+            {placeholder}
+        {/if}
+
         <ChevronDown class="h-4 w-4 opacity-50" />
     </SelectPrimitive.Trigger>
     <SelectPrimitive.Portal>
-        <SelectPrimitive.Content class={contentStyleClass}>
-            <div class="w-full p-1">
-                {@render providedChildren(id, testId)}
-            </div>
+        <SelectPrimitive.Content class={contentStyleClass} forceMount>
+            {#snippet child({ wrapperProps, props, open })}
+                <div {...addHiddenStyleIfClosed(wrapperProps, open)}>
+                    <div {...props}>
+                        {@render providedChildren(id, testId)}
+                    </div>
+                </div>
+            {/snippet}
         </SelectPrimitive.Content>
     </SelectPrimitive.Portal>
 </SelectPrimitive.Root>

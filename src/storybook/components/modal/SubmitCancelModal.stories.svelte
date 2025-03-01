@@ -49,10 +49,14 @@
             name="name_select_name"
             placeholder="Select an Item"
         >
-            <SelectOption value="one" label="One" />
-            <SelectOption value="two" label="Two" />
-            <SelectOption value="three" label="Three" />
-            <SelectOption value="four" label="Fourth Option" />
+            <SelectOption value="one" typeaheadIndex="One">One</SelectOption>
+            <SelectOption value="two" typeaheadIndex="Two">Two</SelectOption>
+            <SelectOption value="three" typeaheadIndex="Three"
+                >Three</SelectOption
+            >
+            <SelectOption value="four" typeaheadIndex="Fourth Option"
+                >Fourth Options</SelectOption
+            >
         </Select>
 
         <Label for="name_radio_id">Select a Radio</Label>

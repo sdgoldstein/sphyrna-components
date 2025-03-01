@@ -43,7 +43,7 @@
     {...restProps}
     use:enhance={({ formElement, formData, action, cancel, submitter }) => {
         let isValid = validate(formData);
-        if (isValid) {
+        if (isValid && providedSubmitHandler != undefined) {
             providedSubmitHandler(formData);
         }
 

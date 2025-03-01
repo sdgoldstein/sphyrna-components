@@ -12,7 +12,7 @@ type FormSubmitEvent = SubmitEvent&
 
 interface FormProps extends ParentComponentProps
 {
-    onsubmit: FormSubmissionHandler;
+    onsubmit?: FormSubmissionHandler;
 }
 
 class ZExtension

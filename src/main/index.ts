@@ -3,3 +3,7 @@ export * from "./components/data/index";
 export * from "./components/form/index";
 export * from "./components/modal/index";
 export * from "./components/navigation/index";
+
+import {zExtended} from "./components/form/form";
+
+export {zExtended};

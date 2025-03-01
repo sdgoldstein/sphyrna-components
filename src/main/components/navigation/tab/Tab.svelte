@@ -18,7 +18,7 @@
 
     let testId = $derived(buildTestId(id, testidProp));
 
-    getContext<TabDescriptor[]>("foo").push({
+    getContext<TabDescriptor[]>("optionRegistration").push({
         name: name,
         label: label,
     } as TabDescriptor);

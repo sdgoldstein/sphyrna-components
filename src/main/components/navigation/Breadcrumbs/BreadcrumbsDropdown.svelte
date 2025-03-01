@@ -60,7 +60,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
     const breadcrumbDropdownItems: BreadcrumbsDropdownRouteItemDescriptor[] =
         $state([]);
-    setContext("foo", breadcrumbDropdownItems);
+    setContext("optionRegistration", breadcrumbDropdownItems);
 
     const selectedBreadcrumb = $derived(
         breadcrumbDropdownItems.find((item) => item.route === route)?.label,

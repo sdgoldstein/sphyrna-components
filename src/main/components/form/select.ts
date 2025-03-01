@@ -1,26 +1,31 @@
 import type {ZodType} from "zod";
-import type {BaseComponentProps, ParentComponentProps} from "../component";
+import type {ParentComponentProps} from "../component";
+import type {Snippet} from "svelte";
+
+type SelectValue = string|number;
 
 interface SelectProps extends ParentComponentProps
 {
     name: string;
-    value?: string;
-    placeholder: string;
+    value?: SelectValue;
+    placeholder?: string;
     schema?: ZodType;
     disabled?: boolean;
     error?: string;
-    onValueChange?: (newValue: unknown) => void;
+    onValueChange?: (newValue: SelectValue) => void;
 }
 
-interface SelectOptionProps extends BaseComponentProps
+interface SelectOptionProps extends ParentComponentProps
 {
-    value: any;
-    label: string;
+    value: SelectValue;
+    typeaheadIndex: string;
 }
 
 interface SelectOptionDescriptor
 {
-    value: any;
-    label: string;
+    value: SelectValue;
+    typeaheadIndex: string;
+    children: Snippet;
 }
+
 export type{SelectProps, SelectOptionProps, SelectOptionDescriptor};

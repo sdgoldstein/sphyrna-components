@@ -19,7 +19,7 @@
         disabled,
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
-        checked,
+        checked = false,
         onValueChange = (checked: boolean) => {},
         children: providedChildren,
     }: CheckboxProps = $props();

@@ -21,7 +21,9 @@ Category -> NamedVariant -> Feature -> Element - -> State
         ...restProps
     }: BreadcrumbsDropdownRouteItemProps = $props();
 
-    getContext<BreadcrumbsDropdownRouteItemDescriptor[]>("foo").push({
+    getContext<BreadcrumbsDropdownRouteItemDescriptor[]>(
+        "optionRegistration",
+    ).push({
         route: route,
         label: label,
     } as BreadcrumbsDropdownRouteItemDescriptor);

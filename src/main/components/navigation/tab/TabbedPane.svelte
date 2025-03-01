@@ -45,7 +45,7 @@
     );
 
     const childTabs: TabDescriptor[] = $state([]);
-    setContext("foo", childTabs);
+    setContext("optionRegistration", childTabs);
 </script>
 
 <TabsPrimitive.Root
