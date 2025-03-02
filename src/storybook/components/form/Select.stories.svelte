@@ -31,6 +31,7 @@
 <script lang="ts">
     import SelectOption from "../../../main/components/form/SelectOption.svelte";
     import type { DynamicColorTheme } from "../../../main/theme/theme";
+    import type { SelectValue } from "../../../main/components/form/select";
 
     setTemplate(template);
 </script>
@@ -76,3 +77,22 @@
         disabled: true,
     }}
 />
+
+<Story name="With Numbers as Values">
+    <Form>
+        <Select
+            name="select_name"
+            placeholder="Select an Item"
+            onValueChange={(selectedValue: SelectValue) => {
+                alert(selectedValue);
+            }}
+        >
+            <SelectOption value="0" typeaheadIndex="O">One</SelectOption>
+            <SelectOption value="1" typeaheadIndex="T">Two</SelectOption>
+            <SelectOption value="2" typeaheadIndex="T">Three</SelectOption>
+            <SelectOption value="3" typeaheadIndex="F"
+                >Fourth Option</SelectOption
+            >
+        </Select>
+    </Form>
+</Story>

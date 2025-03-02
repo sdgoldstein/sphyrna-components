@@ -28,4 +28,4 @@ interface SelectOptionDescriptor
     children: Snippet;
 }
 
-export type{SelectProps, SelectOptionProps, SelectOptionDescriptor};
+export type{SelectValue, SelectProps, SelectOptionProps, SelectOptionDescriptor};

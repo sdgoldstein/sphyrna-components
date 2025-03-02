@@ -14,7 +14,7 @@ import SelectOption from "./SelectOption.svelte";
 import SubmitButton from "./SubmitButton.svelte";
 import type {LabelProps} from "./label";
 import type {RadioGroupOptionProps, RadioGroupProps} from "./radioGroup";
-import type {SelectOptionProps, SelectProps} from "./select";
+import type {SelectOptionProps, SelectProps, SelectValue} from "./select";
 import type {SubmitButtonProps} from "./submitButton";
 
 export {Checkbox, FileInput, Form, Input, Label, RadioGroup, RadioGroupOption, SelectOption, Select, SubmitButton};
@@ -28,5 +28,6 @@ export type{
     RadioGroupOptionProps,
     SelectProps,
     SelectOptionProps,
+    SelectValue,
     SubmitButtonProps
 };

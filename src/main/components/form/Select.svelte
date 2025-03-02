@@ -103,12 +103,16 @@
     setContext("optionRegistration", selectOptions);
 
     let value = $state(providedValue?.toString());
+    $effect(() => {
+        value = providedValue?.toString();
+    });
+
     const selectedOption: SelectOptionDescriptor | undefined = $derived(
-        selectOptions.find((item) => item.value === value),
+        selectOptions.find((item) => item.value.toString() === value),
     );
 
     function getValue(): string {
-        return selectedOption ? selectedOption.value.toString() : "";
+        return value ?? "";
     }
 
     function setValue(newValue: string) {
@@ -120,7 +124,7 @@
         // FIXME - force update
         $formValidator = $formValidator;
 
-        if (selectedOption) {
+        if (selectedOption !== undefined) {
             // FIXME - Will this ever not be defined?
             providedValue = selectedOption.value;
             onValueChange(providedValue);
