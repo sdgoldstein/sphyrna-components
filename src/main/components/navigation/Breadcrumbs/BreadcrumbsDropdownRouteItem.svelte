@@ -12,20 +12,23 @@ Category -> NamedVariant -> Feature -> Element - -> State
         BreadcrumbsDropdownRouteItemProps,
     } from "./breadcrumbs.js";
     import { getContext } from "svelte";
+    import { buildTestId } from "../../component.js";
 
     let {
         id,
         testid: testidProp,
         route,
-        label,
+        children: providedChildren,
         ...restProps
     }: BreadcrumbsDropdownRouteItemProps = $props();
+
+    let testId = $derived(buildTestId(id, testidProp));
 
     getContext<BreadcrumbsDropdownRouteItemDescriptor[]>(
         "optionRegistration",
     ).push({
         route: route,
-        label: label,
+        children: providedChildren,
     } as BreadcrumbsDropdownRouteItemDescriptor);
 </script>
 
@@ -34,5 +37,5 @@ Category -> NamedVariant -> Feature -> Element - -> State
     value={route}
     {...restProps}
 >
-    {label}
+    {@render providedChildren(id, testId)}
 </SelectPrimitive.Item>

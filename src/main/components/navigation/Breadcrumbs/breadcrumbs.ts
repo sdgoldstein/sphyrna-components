@@ -1,4 +1,5 @@
-import type {BaseComponentProps, ParentComponentProps} from "../../component";
+import type {Snippet} from "svelte";
+import type {ParentComponentProps} from "../../component";
 
 interface BreadcrumbsProps extends ParentComponentProps
 {
@@ -7,21 +8,20 @@ interface BreadcrumbsDropdownProps extends ParentComponentProps
 {
     route: string;
 }
-interface BreadcrumbsDropdownRouteItemProps extends BaseComponentProps
+
+interface BreadcrumbsDropdownRouteItemProps extends ParentComponentProps
 {
     route: string;
-    label: string;
 }
-interface BreadcrumbsRouteItemProps extends BaseComponentProps
+interface BreadcrumbsRouteItemProps extends ParentComponentProps
 {
     route: string;
-    label: string;
 }
 
 interface BreadcrumbsDropdownRouteItemDescriptor
 {
     route: string;
-    label: string;
+    children: Snippet;
 }
 
 export type{

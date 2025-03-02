@@ -12,15 +12,18 @@ Category -> NamedVariant -> Feature -> Element - -> State
 
     import type { BreadcrumbsRouteItemProps } from "./breadcrumbs.js";
     import Button from "../../core/Button.svelte";
+    import { buildTestId } from "../../component.js";
 
     let {
         id,
         testid: testidProp,
-        label,
         colorVariant = DEFAULT_COLOR_CATEGORY_VARIANT,
         dynamicColorTheme,
+        children: providedChildren,
         ...restProps
     }: BreadcrumbsRouteItemProps = $props();
+
+    let testId = $derived(buildTestId(id, testidProp));
 
     const styleClass = $derived(
         themedTWMerge("inline text-lg font-semibold last:hidden"),
@@ -36,7 +39,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
 </script>
 
 <li class={styleClass} {style} {...restProps}>
-    <Button>{label}</Button>
+    <Button>{@render providedChildren(id, testId)}</Button>
 </li>
 <li class={styleClass} {style}>
     <ChevronRight class="inline" />

@@ -63,7 +63,7 @@ Category -> NamedVariant -> Feature -> Element - -> State
     setContext("optionRegistration", breadcrumbDropdownItems);
 
     const selectedBreadcrumb = $derived(
-        breadcrumbDropdownItems.find((item) => item.route === route)?.label,
+        breadcrumbDropdownItems.find((item) => item.route === route),
     );
 
     onMount(() => {
@@ -90,7 +90,9 @@ Category -> NamedVariant -> Feature -> Element - -> State
             {id}
             data-testid={testId}
         >
-            {selectedBreadcrumb}
+            {#if selectedBreadcrumb !== undefined}
+                {@render selectedBreadcrumb.children()}
+            {/if}
             <ChevronDown class="h-4 w-4 opacity-50" />
         </SelectPrimitive.Trigger>
         <SelectPrimitive.Portal>
